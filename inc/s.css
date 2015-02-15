@@ -1,0 +1,185 @@
+div, ul, li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  text-align: center;
+  margin: 0;
+  padding: 0 0 15px 0;
+  font-family: sans-serif;
+  background: #000 url(/imgs/bgbody.jpg) top center no-repeat;
+  color: #FFFFFF;
+}
+
+h1, h2, h3, h4, p {
+  font-family: Verdana;
+  margin: 0;
+  padding: 10px 0;
+}
+
+h4{
+  font-weight: normal;
+  font-size: 11pt;
+}
+
+p {
+  font-size: 9pt;
+}
+
+a {
+  color: #6598b8;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #FFF;
+  text-decoration: none;
+}
+
+a img {
+  border: none;  
+}
+
+code {
+  color: #3366cc;
+  font-style: italic;
+}
+
+.alignleft{
+  float: left;
+  margin: 5px 10px 5px 0;
+}
+
+.alignright{
+  float: right;
+  margin: 5px 0 5px 10px;
+}
+
+#content{
+  width: 920px;
+  background-color:#BBB;
+  margin: 0 auto;
+}
+
+#hdr{
+  float:left;
+  height:160px;
+  width:920px;
+}
+
+#main{
+  background: url(/imgs/bg-trans.png) repeat;
+  float:left;
+  padding:10px;
+  text-align:left;
+  width:630px
+}
+
+#side{
+  float: right;
+  width: 250px;
+}
+
+.sidebox{
+  background: url(/imgs/bg-trans.png) repeat;
+  margin-bottom:20px;
+  padding:10px;
+}
+
+#ftr{
+  background: url(/imgs/bg-trans.png) repeat;
+  float: right;
+  margin-right: 20px;
+  padding: 0 10px;
+}
+#logo{
+  color: #FFF;
+  float: right;
+  text-align: left;
+  padding: 0;
+  width: 920px;
+}
+.whitelink{
+  color: #FFF;
+}
+.whitelink:hover {
+  color: #AAA;
+  text-decoration: none;
+}
+
+#hdrlinks{
+  text-align: right;
+  float: right;
+  width: 380px;
+  margin: 5px 0 0 0;
+}
+#hdrlinks li {
+  display: inline;
+}
+.hdrlnk{
+  font-size: 9pt;
+  padding: 0 0 0 25px;
+  text-transform: lowercase;
+}
+
+#catnav{
+  margin: 112px 0 0 0;
+  padding: 0;
+  clear: both;
+  height: 44px;
+  width: 960px;
+}
+#nav{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.navli{
+  float: left;
+  margin: 0 13px 0 0;
+  padding: 0;
+}
+.navli a:hover {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.comment{
+  min-height: 80px;
+  padding-top:15px;
+}
+.comment .name{
+  display: inline-block;  
+  width: 530px;
+}
+.comment .time{
+  color: #AAA;
+  display: inline-block;  
+  width: 530px;
+  font-size:11px;
+}
+.comment .gravatar{
+  padding-right: 10px;
+}
+
+#helpme{
+  text-align:justify;
+}
+#copyright{
+  font-size: 11px;
+  line-height: 14px;
+  padding: 0;
+  margin: 0;
+  color: #777;
+  text-align: right;
+}
+#dtimer{
+  font-size: 11px;
+  line-height: 14px;
+  padding: 0;
+  margin: 0;
+  color: #777;
+  text-align: right;
+}

@@ -1,0 +1,269 @@
+<script type="application/x-javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="application/x-javascript" src="/js/canvas-unstable.js"></script>
+<span style="color: #FFFFFF;">
+  <h1>Game of Life</h1>
+    <div id="container">
+        <canvas id="canvasGameOfLife" width="500" height="300"></canvas>
+        <br />
+        <div style="float:left;">Speed: <input id="frameDelay" value="2" size="5" maxlength="3" /></div>
+        <div style="float:right;"><div style="float: left;">Frames per second: </div><div style="float:right; width: 20px;" id="fps"></div></div>
+    </div>
+</span>             
+<br />
+<span id="debug"></span>
+<h2>Rules</h2>
+<p>
+The universe of the Game of Life 3D is an infinite three-dimensional orthogonal grid of square cells, each of which is in one of two possible states, live or dead. Every cell interacts with its eight neighbours, which are the cells that are directly horizontally, vertically, or diagonally adjacent. At each step in time, the following transitions occur:
+<ol>
+   <li>Any live cell with fewer than two live neighbours dies, as if caused by under-population.</li>
+   <li>Any live cell with more than three live neighbours dies, as if by overcrowding.</li>
+   <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+   <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+</ol>
+</p>
+<p>
+The initial pattern constitutes the seed of the system. The first generation is created by applying the above rules simultaneously to every cell in the seed-births and deaths happen simultaneously, and the discrete moment at which this happens is sometimes called a tick (in other words, each generation is a pure function of the one before). The rules continue to be applied repeatedly to create further generations.
+</p>
+<h2>Origins</h2>
+<p>
+Conway was interested in a problem presented in the 1940s by renowned mathematician John von Neumann, who tried to find a hypothetical machine that could build copies of itself and succeeded when he found a mathematical model for such a machine with very complicated rules on a rectangular grid. The Game of Life emerged as Conway's successful attempt to simplify von Neumann's ideas. The game made its first public appearance in the October 1970 issue of Scientific American, in Martin Gardner's "Mathematical Games" column. From a theoretical point of view, it is interesting because it has the power of a universal Turing machine: that is, anything that can be computed algorithmically can be computed within Conway's Game of Life.
+</p>
+<script> 
+// Settings
+var x = 10; // cells on the X axis
+var y = 10; // cells on the Y axis
+var z = 10; // cells on the Z axis
+var pixelsPerValue = 20; // How many pixels wide should be a cell
+var delayBetweenFrames = Math.ceil(1000/$('#frameDelay').val());// In ms
+//cavas width and height
+var cvs = new cvs(document.getElementById('canvasGameOfLife'));
+cvs.canvas.width  = x * pixelsPerValue;
+cvs.canvas.height = y * pixelsPerValue;
+
+// Create our matrix
+var matrix = new Array(x);
+var matrix_tmp = new Array(x);
+for (i = 0; i < x; i++)
+{
+    matrix[i] = new Array(y);
+    matrix_tmp[i] = new Array(y);
+    for (j = 0; j < y; j++)
+    {
+        matrix[i][j] = new Array(z);
+        matrix_tmp[i][j] = new Array(z);
+    }
+}
+
+// Fill with some random points
+var random = x*y*z;
+var m,n,o;
+for (i = 0; i < random; i++)
+{
+    m = Math.floor(Math.random()*x);
+    n = Math.floor(Math.random()*y);
+    o = Math.floor(Math.random()*z);
+    matrix[m][n][o] = 1;
+}
+
+// Draw the first cell generation
+draw_matrix();
+
+// Call for the next generation of the cell colony
+setTimeout("processLife()", delayBetweenFrames);
+setInterval(checkFps, 1000);
+
+function processLife()
+{
+    fps++;
+    cvs.ctx.fillStyle = '#333333';
+    cvs.clear2d();
+    delayBetweenFrames = Math.ceil(1000/$('#frameDelay').val());// In ms
+    var neighbours = 0;
+    matrix_tmp = matrix.clone();
+    debug = '';
+    for (i = 0; i < x; i++)
+    {
+        for (j = 0; j < y; j++)
+        {
+            for (q = 0; q < z; q++)
+            {
+                neighbours = count_neighbours(i,j,q);
+                // Underpopulation
+                if (neighbours < 2)
+                {
+                    matrix_tmp[i][j][q] = 0;
+                }
+                // Overcrowding
+                if (neighbours > 6)
+                {
+                    matrix_tmp[i][j][q] = 0;
+                }
+                // Birth
+                if (neighbours >3 && neighbours <7)
+                {
+                    matrix_tmp[i][j][q] = 1;
+                }
+                
+                debug += i+','+j+','+q+','+neighbours+'<br />';
+            }
+        }
+    }
+    //$('#debug').html(debug);
+    matrix = matrix_tmp.clone();
+    draw_matrix();
+    setTimeout("processLife()", delayBetweenFrames);
+}
+
+// Added so we can copy the array between steps
+Array.prototype.clone = function ()
+{
+    var tmp = new Array(); 
+    for (var property in this) 
+    {
+        tmp[property] = typeof (this[property]) == 'object'  ? this[property].clone() : this[property];
+    } 
+    return tmp;
+}
+
+function count_neighbours(i, j, q)
+{
+    var count = 0;
+    var aiminus,aiplus;
+    // Check for its maximum 26 neighbours
+    
+    //firstly are we at an edge? false means yes
+    iplus  = (i==x?0:1);
+    iminus = (i==0?0:1);
+    jplus  = (j==y?0:1);
+    jminus = (j==0?0:1);
+    qplus  = (q==z?0:1);
+    qminus = (q==0?0:1);
+    
+    //the two spaces directly in front and directly behind it
+    if (qplus){ 
+        if (matrix[i][j][q+1] == 1) count++;
+    }
+    if (qminus ){
+        if (matrix[i][j][q-1] == 1) count++;
+    }
+    
+    //3 spaces below it in the middle
+    aiminus = matrix[i][j-1];
+    if (aiminus != undefined)
+    {
+        if (aiminus[q] == 1) count++;
+        if (qminus){
+            if (aiminus[q-1] == 1) count++;
+        }
+        if (qplus){
+            if (aiminus[q+1] == 1) count++;
+        }
+    }
+    //3 spaces above it in the middle
+    aiplus = matrix[i][j+1];
+    if (aiplus != undefined)
+    {
+        if (aiplus[q] == 1) count++;
+        if (qminus){
+            if (aiplus[q-1] == 1) count++;
+        }
+        if (qplus){
+            if (aiplus[q+1] == 1) count++;
+        }
+    }
+    
+    //all 9 spaces to the left
+    aiminus = matrix[i-1];
+    if (aiminus != undefined)
+    {
+        if (aiminus[j][q] == 1) count++;
+        if (qplus){
+            if (aiminus[j][q+1] == 1) count++;
+        }
+        if (qminus){
+            if (aiminus[j][q-1] == 1) count++;
+        }
+        iu = aiminus[j+1];
+        if (iu != undefined){
+            if (iu[q] == 1) count++;
+            if (qplus){
+                if (iu[q+1] == 1) count++;
+            }
+            if (qminus){
+                if (iu[q-1] == 1) count++;
+            }
+        }
+        iu = aiminus[j-1];
+        if (iu != undefined){
+            if (iu[q] == 1) count++;
+            if (qplus){
+                if (iu[q+1] == 1) count++;
+            }
+            if (qminus){
+                if (iu[q-1] == 1) count++;
+            }
+        }
+    }
+    
+    aiplus = matrix[i+1];
+    if (aiplus != undefined)
+    {
+        if (aiplus[j][q] == 1) count++;
+        if (qplus){
+            if (aiplus[j][q+1] == 1) count++;
+        }
+        if (qminus){
+            if (aiplus[j][q-1] == 1) count++;
+        }
+        iu = aiplus[j+1];
+        if (iu != undefined){
+            if (iu[q] == 1) count++;
+            if (qplus){
+                if (iu[q+1] == 1) count++;
+            }
+            if (qminus){
+                if (iu[q-1] == 1) count++;
+            }
+        }
+        iu = aiplus[j-1];
+        if (iu != undefined){
+            if (iu[q] == 1) count++;
+            if (qplus){
+                if (iu[q+1] == 1) count++;
+            }
+            if (qminus){
+                if (iu[q-1] == 1) count++;
+            }
+        }
+    }
+    
+    return count;
+}
+
+function draw_matrix()
+{
+    var oi;
+    var oj;
+    var oq;
+    
+    for (q = 0; q < z; q++)
+    {
+        if(q<8){
+            continue;
+        }
+        cvs.ctx.fillStyle = '#00'+(99-(q*9))+'00';
+        oq = q * pixelsPerValue;
+        for (j = 0; j < y; j++)
+        {
+            oj = j * pixelsPerValue;
+            for (i = 0; i < x; i++)
+            {
+                if(matrix[i][j][q] == 1){
+                    oi = i * pixelsPerValue;
+                    cvs.draw3DSquare([oi,oj,oq],pixelsPerValue);
+                }
+            }
+        }
+    }
+}
+</script>

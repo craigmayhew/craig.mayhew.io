@@ -1,0 +1,160 @@
+<script type="application/x-javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<span style="color: #FFFFFF;">
+  <h1>Game of Life</h1>
+    <div id="container">
+        <canvas id="canvasGameOfLife" width="500" height="300"></canvas>
+        <br />
+        <div style="float:left;">Speed: <input id="frameDelay" value="2" size="5" maxlength="3" /></div>
+        <div style="float:right;"><div style="float: left;">Frames per second: </div><div style="float:right; width: 20px;" id="fps"></div></div>
+    </div>
+</span>             
+<br />
+<h2>Rules</h2>
+<p>
+The universe of the Game of Life is an infinite two-dimensional orthogonal grid of square cells, each of which is in one of two possible states, live or dead. Every cell interacts with its eight neighbours, which are the cells that are directly horizontally, vertically, or diagonally adjacent. At each step in time, the following transitions occur:
+<ol>
+   <li>Any live cell with fewer than two live neighbours dies, as if caused by under-population.</li>
+   <li>Any live cell with more than three live neighbours dies, as if by overcrowding.</li>
+   <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+   <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+</ol>
+</p>
+<p>
+The initial pattern constitutes the seed of the system. The first generation is created by applying the above rules simultaneously to every cell in the seed-births and deaths happen simultaneously, and the discrete moment at which this happens is sometimes called a tick (in other words, each generation is a pure function of the one before). The rules continue to be applied repeatedly to create further generations.
+</p>
+<h2>Origins</h2>
+<p>
+Conway was interested in a problem presented in the 1940s by renowned mathematician John von Neumann, who tried to find a hypothetical machine that could build copies of itself and succeeded when he found a mathematical model for such a machine with very complicated rules on a rectangular grid. The Game of Life emerged as Conway's successful attempt to simplify von Neumann's ideas. The game made its first public appearance in the October 1970 issue of Scientific American, in Martin Gardner's \"Mathematical Games\" column. From a theoretical point of view, it is interesting because it has the power of a universal Turing machine: that is, anything that can be computed algorithmically can be computed within Conway's Game of Life.
+</p>
+<script> 
+// Settings
+var x = 140; // cells on the X axis
+var y = 140; // cells on the Y axis
+var pixelsPerValue = 4; // How many pixels wide should be a cell
+var delayBetweenFrames = Math.ceil(1000/$('#frameDelay').val());// In ms
+//cavas width and height
+var cvs = new cvs(document.getElementById('canvasGameOfLife'));
+cvs.canvas.width  = x * pixelsPerValue;
+cvs.canvas.height = y * pixelsPerValue;
+//mouse events
+cvs.canvas.onmousedown = function(e) {
+    var pos = cvs.getMousePosition(e);
+    //make life
+    matrix[Math.floor(pos.y/pixelsPerValue)][Math.floor(pos.x/pixelsPerValue)] = 1;
+    draw_matrix();
+}
+
+// Create our matrix
+var matrix = new Array(y);
+var matrix_tmp = new Array(y);
+for (i = 0; i < y; i++)
+{
+    matrix[i] = new Array(x);
+    matrix_tmp[i] = new Array(x);
+}
+
+// Fill with some random points
+var random = x*y;
+var m,n;
+for (i = 0; i < random; i++)
+{
+    m = Math.floor(Math.random()*y);
+    n = Math.floor(Math.random()*x);
+    matrix[m][n] = 1;
+}
+
+// Draw the first cell generation
+draw_matrix();
+
+// Call for the next generation of the cell colony
+setTimeout("processLife()", delayBetweenFrames);
+setInterval(checkFps, 1000);
+
+function processLife()
+{
+    fps++;
+    cvs.ctx.fillStyle = '#333333';
+    cvs.clear2d();
+    delayBetweenFrames = Math.ceil(1000/$('#frameDelay').val());// In ms
+    var neighbours = 0;
+    matrix_tmp = matrix.clone();
+    for (i = 0; i < y; i++)
+    {
+        for (j = 0; j < x; j++)
+        {
+            neighbours = count_neighbours(i,j);
+            // Underpopulation
+            if (neighbours < 2)
+            {
+                matrix_tmp[i][j] = 0;
+            }
+            // Overcrowding
+            if (neighbours > 3)
+            {
+                matrix_tmp[i][j] = 0;
+            }
+            // Birth
+            if (neighbours == 3)
+            {
+                matrix_tmp[i][j] = 1;
+            }
+        }
+    }
+    matrix = matrix_tmp.clone();
+    draw_matrix();
+    setTimeout("processLife()", delayBetweenFrames);
+}
+
+// Added so we can copy the array between steps
+Array.prototype.clone = function ()
+{
+    var tmp = new Array(); 
+    for (var property in this) 
+    {
+        tmp[property] = typeof (this[property]) == 'object'  ? this[property].clone() : this[property];
+    } 
+    return tmp;
+}
+
+function count_neighbours(i, j)
+{
+    var count = 0;
+    // Check for its maximum 8 neighbours
+    if (matrix[i][j-1] == 1) count++;
+    if (matrix[i][j+1] == 1) count++;
+    //
+    var il = matrix[i-1];
+    if (il != undefined)
+    {
+        if (il[j] == 1) count++;
+        if (il[j-1] == 1) count++;
+        if (il[j+1] == 1) count++;
+    }
+    var ir = matrix[i+1];
+    if (ir != undefined)
+    {
+        if (ir[j] == 1) count++;
+        if (ir[j-1] == 1) count++;
+        if (ir[j+1] == 1) count++;
+    }
+    return count;
+}
+
+function draw_matrix()
+{
+    var oi;
+    var oj;
+    cvs.ctx.fillStyle = '#009900';
+    for (i = 0; i < y; i++)
+    {
+        oi = i * pixelsPerValue;
+        for (j = 0; j < x; j++)
+        {
+            if(matrix[i][j] == 1){
+                oj = j * pixelsPerValue;
+                cvs.drawRectangle(oj, oi, pixelsPerValue, pixelsPerValue);
+            }
+        }
+    }
+}
+</script>

@@ -1,0 +1,245 @@
+<script type="application/x-javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="application/x-javascript" src="/js/canvas.js"></script>
+<style>
+#container {
+    width: 804px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#notifierBox {
+    width: 200px;
+    text-align: center;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    margin: -50px 0 0 -200px;
+    background: #555;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+#ballsExpanded{
+  left: 0px;
+  top: 0px;
+}
+
+#levelScore{
+  right: 0px;
+  bottom: 0px;
+}
+#totalScore{
+  left: 0px;
+  bottom: 0px;
+}
+
+#levelNumber{
+  right: 0px;
+  top: 0px;
+}
+</style>
+<span style="color: #FFFFFF;">
+  <h1>Blam!</h1>
+    <div id="container">
+        <canvas id="ballBox" width="500" height="300"></canvas>
+        <div id="ballsExpanded"></div>
+        <div id="totalScore"></div>
+        <div id="levelNumber"></div>
+        Frames per second: <span id="fps"></span>
+        <div id="notifierBox">
+            <div id="notifierTitle">Make stuff explode!</div>
+            <div id="notifierButton"><input type="button" onclick="main();" value="Start" /></div>
+        </div>
+    </div>
+</span>
+<span id="debug"></span>
+<script type="application/x-javascript" src="/js/canvas.js"></script>
+<script type="application/x-javascript">
+    var fps         = 0;
+    var started     = false;
+    var animSpeed   = 5;
+    var balls       = new Array();
+    var ballsCount  = 15;
+    var expandedBalls = new Array();
+    var explosionSize = 35;
+    var intervalId;
+    var score           = 0;
+    var lastScore       = 0;
+    
+    var cvs = new cvs(document.getElementById('ballBox'));
+    
+    function main() {
+        setInterval(checkFps, 1000); 
+        //get canvas element
+        //initialize elements
+        cvs.canvas.notifierBoxEl = $('#notifierBox');
+        cvs.canvas.notifierBoxEl.hide(50);
+        cvs.canvas.notifierTitleEl = $('#notifierTitle');
+        cvs.canvas.notifierButtonEl = $('#notifierButton');
+        cvs.canvas.ballsExpandedEl = $('#ballsExpanded'); 
+        cvs.canvas.ballsExpandedEl.html("0");
+        cvs.canvas.totalScoreEl = $('#totalScore');
+        cvs.canvas.totalScoreEl.html("0 total points");
+        ///////
+        cvs.canvas.MinX = cvs.canvas.offsetLeft;
+        cvs.canvas.MinY = cvs.canvas.offsetTop;
+        cvs.canvas.MaxX = cvs.canvas.MinX + cvs.canvas.width;
+        cvs.canvas.MaxY = cvs.canvas.MinY + cvs.canvas.height;
+        //add click handler
+        cvs.canvas.onmousedown = function(e) {
+            var pos = getMousePositionInElement(this, e);
+            balls[0].x = pos.x;
+            balls[0].y = pos.y;
+            balls[0].explode();
+            //prevent this function from running again .. so they cant click twice
+            cvs.canvas.onmousedown = false;
+        }
+        //funcs!
+        cvs.canvas.start = function(){
+            if(this.started){
+                return true;
+            }
+            this.started = true;
+            this.intervalId = window.setInterval(function(){
+                return function(){
+                    stepper.call();
+                }
+            }(this), 10);//100hz frame rate
+        };
+
+        cvs.canvas.stop = function(){
+            this.started = false;
+            window.clearInterval(this.intervalId);
+        };
+        
+        //kick the script off, this will be moved me thinks
+        loadLevel();
+        cvs.canvas.start();
+    }
+    
+    function loadLevel(level){
+        loadBalls();
+        ballsCount = 15+level;
+    }
+    
+    function loadBalls(){
+        for(var i=0; i<ballsCount; i++){
+            balls[i] = new Array();
+            balls[i].radius = 4;//4 pixels
+            balls[i].index=i;
+            if (i!=0){
+                balls[i].x = Math.random()*cvs.canvas.width;
+                balls[i].y = Math.random()*cvs.canvas.height;
+                balls[i].xVector = Math.random();
+                balls[i].yVector = Math.random();
+            }else{
+                balls[0].x = -10
+                balls[0].y = -10
+                balls[0].xVector = 0;
+                balls[0].yVector = 0;
+                balls[i].points = 100;
+            }
+            balls[i].explode = function(){
+                this.exploded = true;
+            }
+            balls[i].exploding = function(){
+                if(this.explodedComplete == true){
+                    return true;
+                }
+                if(this.exploded == true && this.radius<=explosionSize){
+                    //increase size, as we are exploding
+                    this.radius+=0.06;
+                    this.sizeChangeCount++;
+                    //drop speed to 0
+                    this.xVector = 0;
+                    this.yVector = 0;
+                }else if(this.exploded == true){
+                    this.radius=0;
+                    this.explodedComplete = true;
+                }
+            }
+            balls[i].checkBounds = function(){
+                //bounce balls of wall
+                if (this.x + this.radius + this.xVector > cvs.canvas.width){
+                    //bounce
+                    this.xVector = -this.xVector;
+                    //make sure we dont pass through the wall
+                    this.x = cvs.canvas.width-this.radius;
+                }else if(this.x - this.radius + this.xVector < 0){
+                    //bounce
+                    this.xVector = -this.xVector;
+                    //make sure we dont pass through the wall
+                    this.x = this.radius;
+                }
+                if (this.y + this.radius + this.yVector > cvs.canvas.height){
+                    //bounce
+                    this.yVector = -this.yVector;
+                    //make sure we dont pass through the wall
+                    this.y = cvs.canvas.height-this.radius;
+                }else if(this.y - this.radius + this.yVector < 0){
+                    //bounce
+                    this.yVector = -this.yVector;
+                    //make sure we dont pass through the wall
+                    this.y = this.radius;
+                }
+            }
+            balls[i].checkCollision = function(){
+                if(this.explodedComplete){
+                    return true;
+                }
+                var tmpScore;//used to work out the score from the two colliding balls
+                for(var j=0; j<balls.length; j++){
+                    if (balls[j].xVector!=0){
+                        //use pythagoras theorom to work out the distance between the centres of the two circles
+                        //then add the two radius together and see if the circles overlap...
+                        if(
+                            Math.pow(Math.abs(balls[j].x-this.x), 2)
+                            +Math.pow(Math.abs(balls[j].y-this.y), 2)
+                            <= Math.pow(Math.abs(this.radius+balls[j].radius), 2)
+                        ){
+                            balls[j].explode();
+                            balls[j].incrementScore(this.points);
+                        }
+                    }
+                }
+            }
+            balls[i].incrementScore = function(pnts){
+                score           += pnts;
+                this.points     = Math.round(pnts*1.6/10)*10;//points that its worth if you strike this ball, 1.6 i just randomly picked
+                cvs.canvas.totalScoreEl.html(score+" total points");
+            }
+        }
+    }
+    
+    var stepper = function(){
+        fps++;
+        //draw stuff
+        cvs.ctx.fillStyle = "rgba(0, 220, 220, 0.5)";
+        //clear the canvas
+        cvs.ctx.clearRect(0, 0, cvs.canvas.width, cvs.canvas.height);
+        //draw balls
+        for(var i=0; i<balls.length; i++){
+            if(balls[i].explodedComplete == true){
+                continue;
+            }
+            if(balls[i].xVector!=0){
+                //move balls along vectors
+                balls[i].x+=balls[i].xVector;
+                balls[i].y+=balls[i].yVector;
+                //check for contact with walls and bounce if needed!
+                balls[i].checkBounds();
+            }else{
+                //collision detection
+                balls[i].checkCollision();
+                
+            }
+            //explode if need be
+            balls[i].exploding();
+            //draw a circle
+            cvs.drawCircle(balls[i].x, balls[i].y, balls[i].radius,0,220,220,0.5)
+        }
+    }
+</script>

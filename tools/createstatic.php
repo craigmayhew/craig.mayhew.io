@@ -166,10 +166,10 @@ class builder{
     foreach($jsonBlogTags as $tag=>$posts){
       $content = '';
       $i=0;
-      $tags = '<br /><br />';
       foreach($posts as $postname){
-        if(isset($postname['tags'])){
-          foreach($postname['tags'] as $c){
+        $tags = '<br /><br />';
+        if(isset($jsonBlogPosts[$postname]['tags'])){
+          foreach($jsonBlogPosts[$postname]['tags'] as $c){
             $tags .= '<a href="/blog/tag/'.$c.'">'.$c.'</a> &nbsp; ';
           }
         }
@@ -177,7 +177,7 @@ class builder{
         $content .= 
             '<h2>'.$jsonBlogPosts[$postname]['title'].'</h2>'.
             'by Craig Mayhew on '.date('D dS M Y',strtotime($jsonBlogPosts[$postname]['date'])).' under '.implode(', ',$jsonBlogPosts[$postname]['categories']).
-            '<br /><br /><br />'.$jsonBlogPosts[$postname]['content'].'<br /><br /><br />';
+            '<br /><br /><br />'.$jsonBlogPosts[$postname]['content'].$tags.'<br /><br /><br />';
         $i++;
         if($i===6){break;}
       }
@@ -192,17 +192,17 @@ class builder{
     foreach($jsonBlogCats as $cat=>$posts){
       $content = '';
       $i=0;
-      $tags = '<br /><br />';
       foreach($posts as $postname){
-	if(isset($postname['tags'])){
-          foreach($postname['tags'] as $c){
+        $tags = '<br /><br />';
+	if(isset($jsonBlogPosts[$postname]['tags'])){
+          foreach($jsonBlogPosts[$postname]['tags'] as $c){
             $tags .= '<a href="/blog/tag/'.$c.'">'.$c.'</a> &nbsp; ';
           }
         }
         $content .=
             '<h2>'.$jsonBlogPosts[$postname]['title'].'</h2>'.
             'by Craig Mayhew on '.date('D dS M Y',strtotime($jsonBlogPosts[$postname]['date'])).' under '.implode(', ',$jsonBlogPosts[$postname]['categories']).
-            '<br /><br /><br />'.$jsonBlogPosts[$postname]['content'];
+            '<br /><br /><br />'.$jsonBlogPosts[$postname]['content'].$tags.'<br /><br /><br />';
         $i++;
         if($i===6){break;}
       }
@@ -210,7 +210,7 @@ class builder{
       $page->setContent(nl2br($content));
       $page->setSideNav($this->sideNav);
       $content = $page->build();
-      $this->generateFile($this->destinationFolder.'blog/cat/'.str_replace('/','-',$cat).'/index.html',$content.$tags);
+      $this->generateFile($this->destinationFolder.'blog/cat/'.str_replace('/','-',$cat).'/index.html',$content);
     }
   }
   private function generateFile($name,$content){

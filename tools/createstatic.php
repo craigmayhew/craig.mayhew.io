@@ -300,8 +300,9 @@ class page{
                   '<br/><h4 class="heading">Do Goods</h4>'.
                   '<ul>'.
                     '<li><a href="http://fah-web.stanford.edu/cgi-bin/main.py?qtype=userpage&username=Craig_Mayhew">Folding@Home</a></li>'.
+                    '<li><a href="https://github.com/craigmayhew/rig">GitHub</a></li>'.
                     '<li><a href="http://www.kickstarter.com/profile/craigmayhew">Kickstarter</a></li>'.
-                    '<li><a href="http://en.wikipedia.org/wiki/User:Craig_Mayhew">Wikipedia</a></li>'.
+                    '<li><a href="https://en.wikipedia.org/wiki/User:Craig_Mayhew">Wikipedia</a></li>'.
                     '<li><a href="http://www.worldcommunitygrid.org/stat/viewMemberInfo.do?userName=Craig%20Mayhew">World Community Grid</a></li>'.
                   '</ul>'.
                   '<br/><h4 class="heading">Latest Blog Posts</h4>'.

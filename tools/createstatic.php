@@ -102,8 +102,8 @@ class builder{
         '<h2>'.$json['title'].'</h2>'.
         'by Craig Mayhew on '.date('D dS M Y',strtotime($json['date'])).' under '.implode(', ',$json['categories']).
         '<br /><br /><br />'.$json['content'].'<br /><br /><br />';
-        $this->sideNav .= '<li><a class="multiline" href="/blog/'.$json['name'].'">'.$json['title'].'</a></li>';
-        if($i===6){break;}
+        $this->sideNav .= '<li><a href="/blog/'.$json['name'].'">'.$json['title'].'</a></li>';
+        if($i===5){break;}
       }
        
       //front page
@@ -290,7 +290,7 @@ class page{
            '</div>'.
            '<div class="grid-item">'.
              '<br><br>'.
-             '<h4 class="heading">Do Goods</h4>'.
+             '<h4>Do Goods</h4>'.
               '<ul>'.
                 '<li><a href="http://fah-web.stanford.edu/cgi-bin/main.py?qtype=userpage&username=Craig_Mayhew">Folding@Home</a></li>'.
                 '<li><a href="https://github.com/craigmayhew">GitHub</a></li>'.
@@ -299,7 +299,7 @@ class page{
               '</ul>'.
            '</div>'.
            '<div class="grid-item">'.
-             '<h4 class="heading">Latest Blog Posts</h4>'.
+             '<h4>Latest Blog Posts</h4>'.
              '<ul>'.
                $this->navRight.
              '</ul>'.

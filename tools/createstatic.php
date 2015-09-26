@@ -305,8 +305,7 @@ class page{
              '</ul>'.
            '</div>'.
            '<div class="grid-item box3">'.
-             '<div id="copyright"><em>&copy; Craig Mayhew 2003 - '.date('Y').'</em></div>'.
-             '<div id="dtimer">'.time().'</div>'.
+
            '</div>'.
          '</div>'.
         '</body>'.
@@ -320,7 +319,16 @@ class page{
   }
   public function build(){
     $this->buildFooter();
-    return $this->header.'<div class="grid-item box2"><h1>'.$this->title.'</h1>'.$this->content.'</div>'.$this->footer;
+
+    return 
+    $this->header.
+    '<div class="grid-item box2">'.
+      '<h1>'.$this->title.'</h1>'.
+      $this->content.'<br><br>'.
+      '<div id="copyright"><em>&copy; Craig Mayhew 2003 - '.date('Y').'</em></div>'.
+      '<div id="dtimer">'.time().'</div>'.
+    '</div>'.
+    $this->footer;
   }
 }
 

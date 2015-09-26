@@ -231,91 +231,84 @@ class page{
   function __construct($title,$css=''){
     $this->title = $title;
     $this->navTop =
-    '<div id="catnav">'
-      .'<ul id="nav">'
-        .'<li class="navli"><a href="/blog/cat/Astrothoughts/" title="View all posts filed under Astrothoughts">Astrothoughts</a></li>'
-        .'<li class="navli"><a href="/blog/cat/Code/" title="View all posts filed under Code">Code</a></li>'
-        .'<li class="navli"><a href="/blog/cat/Events/" title="View all posts filed under Events">Events</a></li>'
-        .'<li class="navli"><a href="/blog/cat/Friends-Family/" title="View all posts filed under Friends/Family">Friends/Family</a></li>'
-        .'<li class="navli"><a href="/blog/cat/General/" title="View all posts filed under General">General</a></li>'
-        .'<li class="navli"><a href="/blog/cat/General-Techie/" title="View all posts filed under General/Techie">General/Techie</a></li>'
-        .'<li class="navli"><a href="/blog/cat/Linux-Ubuntu/" title="View all posts filed under Linux/Ubuntu">Linux/Ubuntu</a></li>'
-        .'<li class="navli"><a href="/blog/cat/News/" title="View all posts filed under News">News</a></li>'
-        .'<li class="navli"><a href="/blog/cat/Reviews-Experience/" title="View all posts filed under Reviews/Experience">Reviews/Experience</a></li>'
-      .'</ul>'
-    .'</div>';
+    '<a href="/blog/cat/Astrothoughts/" title="View all posts filed under Astrothoughts">Astrothoughts</a> '
+    .'<a href="/blog/cat/Code/" title="View all posts filed under Code">Code</a> '
+    .'<a href="/blog/cat/Events/" title="View all posts filed under Events">Events</a> '
+    .'<a href="/blog/cat/Friends-Family/" title="View all posts filed under Friends/Family">Friends/Family</a> '
+    .'<a href="/blog/cat/General/" title="View all posts filed under General">General</a> '
+    .'<a href="/blog/cat/General-Techie/" title="View all posts filed under General/Techie">General/Techie</a> '
+    .'<a href="/blog/cat/Linux-Ubuntu/" title="View all posts filed under Linux/Ubuntu">Linux/Ubuntu</a> '
+    .'<a href="/blog/cat/News/" title="View all posts filed under News">News</a> '
+    .'<a href="/blog/cat/Reviews-Experience/" title="View all posts filed under Reviews/Experience">Reviews/Experience</a>';
 
     $this->header =
-    '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"'.
-    '"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'.
-      '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">'.
+      '<!DOCTYPE html>'.
+      '<html lang="en">'.
         '<head>'.
           '<title>'.$this->title.'</title>'.
-          '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />'.
-          '<meta name="author" content="Craig Mayhew" />'.
-          '<meta name="keywords" content="Craig Mayhew" />'.
-          '<meta name="robots" content="follow, all" />'.
+          '<meta charset="UTF-8">'.
+          '<meta name="author" content="Craig Mayhew">'.
+          '<meta name="keywords" content="Craig Mayhew">'.
+          '<meta name="robots" content="follow, all">'.
+          '<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">'.
           '<script language="javascript" type="text/javascript" src="/js/js.js"></script>'.
           ($css?'<style type="text/css" media="screen">'.$css.'</style>':'').
+          '<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>'.
         '</head>'.
         '<body>'.
-          '<div id="content">'.
-            '<div id="hdr">'.
-              '<div id="hdrlinks">'.
-                '<ul>'.
-                  '<li><a class="whitelink hdrlnk" href="/">Home</a></li>'.
-                  '<li><a class="whitelink hdrlnk" href="/blog/">Blog</a></li>'.
-                  '<li><a class="whitelink hdrlnk" href="/games/">Games</a></li>'.
-                  '<li><a class="whitelink hdrlnk" href="/tools/">Tools</a></li>'.
-                '</ul>'.
-              '</div>'.
-              '<div id="logo">'.
-                '<h1>'.$this->title.'</h1>'.
-              '</div>'.
-              $this->navTop.
-            '</div>'.
-            '<div id="main">';
+         '<div class="grid js-masonry" data-masonry-options=\'{ "itemSelector": ".grid-item", "columWidth": 200 }\'>'.
+           '<div class="grid-item">'.
+            '<br><br><br>'.
+            '<a href="/">Home</a><br>'.
+            '<a href="/blog/">Blog</a><br>'.
+            '<a href="/games/">Games</a><br>'.
+            '<a href="/tools/">Tools</a>'.
+          '</div>';
   }
   private function buildFooter(){
     $this->footer = 
-              '<br /><br /><br />'.
-            '</div>'.
-            '<div id="side">'.
-              '<div class="sidebox" id="helpme">'.
-                'If you found this site helpful then please return the favour and help me out with the <a href="/helpme/">things I\'m stuck on</a> or improve upon one of my questions on <a href="https://www.quora.com/Craig-Mayhew">qoura</a>'.
-              '</div>'.
-              '<div class="sidebox">'.
-                '<h4>Follow Me</h4>'.
-                  '<ul>'.
-                    '<li><a href="https://plus.google.com/114394371414443857717">Google+</a></li>'.
-                    '<li><a href="https://www.facebook.com/profile.php?id=682399345">Facebook</a></li>'.
-                    '<li><a href="https://twitter.com/craigmayhew">Twitter</a></li>'.
-                    '<li><a href="http://www.flickr.com/photos/39301866@N04/">Flickr</a></li>'.
-                  '</ul>'.
-                  '<br/><h4>Projects</h4>'.
-                  '<ul>'.
-                    '<li><a href="http://www.adire.co.uk/">Adire</a></li>'.
-                    '<li><a href="http://www.bigprimes.net/">BigPrimes.net</a></li>'.
-                  '</ul>'.
-                  '<br/><h4 class="heading">Do Goods</h4>'.
-                  '<ul>'.
-                    '<li><a href="http://fah-web.stanford.edu/cgi-bin/main.py?qtype=userpage&username=Craig_Mayhew">Folding@Home</a></li>'.
-                    '<li><a href="https://github.com/craigmayhew">GitHub</a></li>'.
-                    '<li><a href="http://www.kickstarter.com/profile/craigmayhew">Kickstarter</a></li>'.
-                    '<li><a href="https://en.wikipedia.org/wiki/User:Craig_Mayhew">Wikipedia</a></li>'.
-                    '<li><a href="http://www.worldcommunitygrid.org/stat/viewMemberInfo.do?userName=Craig%20Mayhew">World Community Grid</a></li>'.
-                  '</ul>'.
-                  '<br/><h4 class="heading">Latest Blog Posts</h4>'.
-                '<ul>'.
-                  $this->navRight.
-                '</ul>'.
-              '</div>'.
-            '</div>'.
-            '<div id="ftr">'.
-              '<div id="copyright"><em>&copy; Craig Mayhew 2003 - '.date('Y').'</em></div>'.
-              '<div id="dtimer">'.time().'</div>'.
-            '</div>'.
+          '<div class="grid-item" id="helpme">'.
+            '<br><br>If you found this site helpful then please return the favour and help me out with the <a href="/helpme/">things I\'m stuck on</a> or improve upon one of my questions on <a href="https://www.quora.com/Craig-Mayhew">qoura</a>'.
           '</div>'.
+          '<div class="grid-item">'.
+            '<br><br>'.
+            '<h4>Follow Me</h4>'.
+              '<ul>'.
+                '<li><a href="https://plus.google.com/114394371414443857717">Google+</a></li>'.
+                '<li><a href="https://www.facebook.com/profile.php?id=682399345">Facebook</a></li>'.
+                '<li><a href="https://twitter.com/craigmayhew">Twitter</a></li>'.
+                '<li><a href="http://www.flickr.com/photos/39301866@N04/">Flickr</a></li>'.
+              '</ul>'.
+           '</div>'.
+           '<div class="grid-item">'.
+              '<br><br><br>'.
+              '<h4>Projects</h4>'.
+              '<ul>'.
+                '<li><a href="http://www.adire.co.uk/">Adire</a></li>'.
+                '<li><a href="http://www.bigprimes.net/">BigPrimes.net</a></li>'.
+              '</ul>'.
+           '</div>'.
+           '<div class="grid-item">'.
+             '<br><br>'.
+             '<h4 class="heading">Do Goods</h4>'.
+              '<ul>'.
+                '<li><a href="http://fah-web.stanford.edu/cgi-bin/main.py?qtype=userpage&username=Craig_Mayhew">Folding@Home</a></li>'.
+                '<li><a href="https://github.com/craigmayhew">GitHub</a></li>'.
+                '<li><a href="https://en.wikipedia.org/wiki/User:Craig_Mayhew">Wikipedia</a></li>'.
+                '<li><a href="http://www.worldcommunitygrid.org/stat/viewMemberInfo.do?userName=Craig%20Mayhew">World Community Grid</a></li>'.
+              '</ul>'.
+           '</div>'.
+           '<div class="grid-item">'.
+             '<h4 class="heading">Latest Blog Posts</h4>'.
+             '<ul>'.
+               $this->navRight.
+             '</ul>'.
+           '</div>'.
+           '<div class="grid-item box3">'.
+             '<div id="copyright"><em>&copy; Craig Mayhew 2003 - '.date('Y').'</em></div>'.
+             '<div id="dtimer">'.time().'</div>'.
+           '</div>'.
+         '</div>'.
         '</body>'.
       '</html>';
   }
@@ -327,7 +320,7 @@ class page{
   }
   public function build(){
     $this->buildFooter();
-    return $this->header.$this->content.$this->footer;
+    return $this->header.'<div class="grid-item box2"><h1>'.$this->title.'</h1>'.$this->content.'</div>'.$this->footer;
   }
 }
 

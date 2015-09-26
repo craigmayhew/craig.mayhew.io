@@ -58,16 +58,16 @@ code {
 }
 
 .grid-item, .box{
-  background-color: #252525;
-  box-shadow: 10px 10px 5px #1e1e1e,
-            1px 1px hsl(0, 0%, 22%),
-            2px 2px hsl(0, 0%, 22%),
-            3px 3px hsl(0, 0%, 21%),
-            4px 4px hsl(0, 0%, 21%),
-            5px 5px hsl(0, 0%, 20%),
-            6px 6px hsl(0, 0%, 20%),
-            7px 7px hsl(0, 0%, 19%),
-            8px 8px hsl(0, 0%, 19%);
+  background-color: #131313;
+  box-shadow: 10px 10px 5px #090909,
+            1px 1px hsl(0, 0%, 13%),
+            2px 2px hsl(0, 0%, 12%),
+            3px 3px hsl(0, 0%, 11%),
+            4px 4px hsl(0, 0%, 10%),
+            5px 5px hsl(0, 0%, 9%),
+            6px 6px hsl(0, 0%, 8%),
+            7px 7px hsl(0, 0%, 7%),
+            8px 8px hsl(0, 0%, 6%);
   display:inline-block;
   height:200px;
   margin:10px;

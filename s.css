@@ -77,7 +77,13 @@ code {
   vertical-align: middle;
   width: 200px;
 }
-
+.box div{
+  display: table-cell;
+  height: 200px;
+  text-align: center;
+  vertical-align: middle;
+  width: 200px;
+}
 .box2{
   background: radial-gradient(circle at 0% 0%, #333 0%, #131313 45%);
   height:980px;
@@ -88,6 +94,18 @@ code {
 .box3{
   background: radial-gradient(circle at 0% 0%, #333 0%, #131313 65%);
   width: 460px;
+}
+.box4{
+  background: radial-gradient(circle at 0% 0%, #333 0%, #131313 100%);
+  height: 70px;
+  width: 70px;
+}
+.box4 div{
+  display: table-cell;
+  height: 70px;
+  text-align: center;
+  vertical-align: middle;
+  width: 70px;
 }
 .grid{
   margin: 0 auto;

@@ -257,52 +257,62 @@ class page{
         '</head>'.
         '<body>'.
          '<div class="grid js-masonry" data-masonry-options=\'{ "itemSelector": ".grid-item", "columWidth": 200 }\'>'.
-           '<div class="grid-item">'.
-            '<br><br><br>'.
-            '<a href="/">Home</a><br>'.
-            '<a href="/blog/">Blog</a><br>'.
-            '<a href="/games/">Games</a><br>'.
-            '<a href="/tools/">Tools</a>'.
-          '</div>';
+           '<div class="grid-item box4">'.
+             '<div><a href="/">Home</a></div>'.
+           '</div>'.
+           '<div class="grid-item box4">'.
+             '<div><a href="/blog/">Blog</a></div>'.
+           '</div>';
   }
   private function buildFooter(){
     $this->footer = 
+           '<div class="grid-item box4">'.
+             '<div><a href="/games/">Games</a></div>'.
+           '</div>'.
+           '<div class="grid-item box4">'.
+             '<div><a href="/tools/">Tools</a></div>'.
+           '</div>'.
           '<div class="grid-item" id="helpme">'.
-            '<br><br>If you found this site helpful then please return the favour and help me out with the <a href="/helpme/">things I\'m stuck on</a> or improve upon one of my questions on <a href="https://www.quora.com/Craig-Mayhew">qoura</a>'.
+            '<br><br>If you found this site helpful then please return the favour and help me out with the <a href="/helpme/">things I\'m stuck on</a> or improve upon one of my questions over at <a href="https://www.quora.com/Craig-Mayhew">qoura</a>'.
           '</div>'.
           '<div class="grid-item">'.
-            '<br><br>'.
-            '<h4>Follow Me</h4>'.
+            '<div>'.
+              '<h4>Follow Me</h4>'.
               '<ul>'.
                 '<li><a href="https://plus.google.com/114394371414443857717">Google+</a></li>'.
                 '<li><a href="https://www.facebook.com/profile.php?id=682399345">Facebook</a></li>'.
                 '<li><a href="https://twitter.com/craigmayhew">Twitter</a></li>'.
                 '<li><a href="http://www.flickr.com/photos/39301866@N04/">Flickr</a></li>'.
               '</ul>'.
+             '</div>'.
            '</div>'.
            '<div class="grid-item">'.
-              '<br><br><br>'.
+            '<div>'.
               '<h4>Projects</h4>'.
               '<ul>'.
                 '<li><a href="http://www.adire.co.uk/">Adire</a></li>'.
                 '<li><a href="http://www.bigprimes.net/">BigPrimes.net</a></li>'.
               '</ul>'.
+            '</div>'.
            '</div>'.
            '<div class="grid-item">'.
-             '<br><br>'.
-             '<h4>Do Goods</h4>'.
+             '<div>'.
+              '<h4>Do Goods</h4>'.
               '<ul>'.
                 '<li><a href="http://fah-web.stanford.edu/cgi-bin/main.py?qtype=userpage&username=Craig_Mayhew">Folding@Home</a></li>'.
                 '<li><a href="https://github.com/craigmayhew">GitHub</a></li>'.
                 '<li><a href="https://en.wikipedia.org/wiki/User:Craig_Mayhew">Wikipedia</a></li>'.
                 '<li><a href="http://www.worldcommunitygrid.org/stat/viewMemberInfo.do?userName=Craig%20Mayhew">World Community Grid</a></li>'.
               '</ul>'.
+            '</div>'.
            '</div>'.
            '<div class="grid-item">'.
-             '<h4>Latest Blog Posts</h4>'.
-             '<ul>'.
-               $this->navRight.
-             '</ul>'.
+             '<div>'.
+               '<h4>Latest Blog Posts</h4>'.
+               '<ul>'.
+                 $this->navRight.
+               '</ul>'.
+             '</div>'.
            '</div>'.
            '<div class="grid-item box3">'.
 

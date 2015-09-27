@@ -151,7 +151,6 @@ class builder{
           '</div>';
         }
         $content =
-          '<h2>'.$json['title'].'</h2>'.
           'by Craig Mayhew on '.date('D dS M Y',strtotime($json['date'])).' under '.implode(', ',$json['categories']).
           '<br /><br /><br />'.$json['content'].'<br /><br /><br />';
         $page->setContent(nl2br($content).$tags.nl2br($comments));

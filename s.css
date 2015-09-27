@@ -5,7 +5,7 @@ div, ul, li {
 }
 
 body {
-  background: #ccc;
+  background: transparent radial-gradient(circle at 0% -20% , #ffffff 0%, #b5b5b5 70%) repeat scroll 0% 0%;
   color: #FFFFFF;
   font-family: 'Ubuntu', sans-serif;
   margin: 0;
@@ -59,6 +59,7 @@ code {
 
 .grid-item, .box{
   background-color: #131313;
+  background: radial-gradient(circle at 0% 0%, #333 0%, #131313 95%);
   box-shadow: 10px 10px 5px #090909,
             1px 1px hsl(0, 0%, 13%),
             2px 2px hsl(0, 0%, 12%),
@@ -78,17 +79,19 @@ code {
 }
 
 .box2{
+  background: radial-gradient(circle at 0% 0%, #333 0%, #131313 45%);
   height:980px;
   overflow: auto;
   vertical-align:top;
   width: 720px;
 }
 .box3{
+  background: radial-gradient(circle at 0% 0%, #333 0%, #131313 65%);
   width: 460px;
 }
 .grid{
-  margin: auto 0;
-  width: 1200px;
+  margin: 0 auto;
+  width: 1050px;
 }
 .comment{
   min-height: 80px;

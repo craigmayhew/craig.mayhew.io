@@ -255,37 +255,52 @@ class page{
           '<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>'.
         '</head>'.
         '<body>'.
-         '<div class="grid js-masonry" data-masonry-options=\'{ "itemSelector": ".grid-item", "columWidth": 200 }\'>'.
+         '<div class="grid js-masonry" data-masonry-options=\'{ "itemSelector": ".grid-item", "columWidth": "box5" }\'>'.
+          '<div class="grid-item box5">'.
+              '<a href="https://plus.google.com/114394371414443857717"><img height="16" width="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACxElEQVQ4jW2TTWhcVRTHf+e+13kzmc/QopLQLgRjU6u0ItXUD2yLqNSVIkgFFyqtyxrERYsboWZhoCgoonEjuJAsFC0VWlwoqGA2ASnWxqgVk2bIJJM3M5l5X/ceF8+Goj3bw+/cyzm/vywenVAFUEWMhzqLpgkiBoyA5j18HxHhv+UDiCoYg4v6SCGgMLoLF0dokiC+j/g+NtxAnfvfEB9V1Bg0GhCM7WH78ZMkf/5GcfweCrtux3ZDet9eZG3mXcT3t0BVRUQwiECWYYbKjEy9R7JwmeaZUzSnTqNpQraynMMiCKDWbsFAPkCjAaV7H8Cr1Yl+vYRXb5D8vkDn6y8o3b2fwuhO1FowBlOuIMZs/cQAqBjcoA9AMDaO7XVxSYzthihgO2G+2ELA6NmPkSDARRGqio9zmFKJwfwcmz99z/CzL5Bc/YPB/ByVg4dovT+NXW/h77gFr9bAVGp49WFQ0DhCFo9O5Fe0FikWqTx0hNL+A5QfPET45Wc0z5yiuHsvI29/gBmqYKo1XLeD7YYsvXYc//pCxPOw7XU2Zj/BRX2qh59gaN8BhiYeJlm4zNLky3i1OiPTH7H8+gnsRhviCCMiqLW4LKPx3IvsnJml8shjdC6co3DHbkanPyQY20PWvIbthLheBxu2cy9U8RXQLOXW01MEd97FyhsnSa/9jev16F48x21vnqXxzPOs/PIzGscsvfoSGseYYjG/gmYpXq1B9dHH6Z7/nM0fv8sb1Rqdr2bpfXMeUx/OFVeH2+yhzt1gojG4NCFdW6X+9DHS1SbRpXlQZfsrk5T23cfqO28h3r8Weh6oonmCkMWnDqrGMcH4XnacmMw9CDdAIV3+i/anM/TnfsBUqnDDy9dLrjx5vyKCiwaIvw1TriK+B4Btr6NZiilXbgoD+Fda64CC8cD10dZaHmHIw2MMbLZuCgP8A634UW1oE1wuAAAAAElFTkSuQmCC"></a>'.
+          '</div>'.
+          '<div class="grid-item box5">'.
+                '<a href="https://www.facebook.com/profile.php?id=682399345"><img height="16" width="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA8ElEQVQ4jc2PvWrCYBSGH+1XtRFChE5KBy+ghYKI0ngJ4gW0S4cMbtmLKJReRpdCL6A6KDiJiqCLi466OFhwkhoKJtpBECLiZ3Tp2d4Dz/sDZ54PIJktNYXPr3sB7fWq1a2UMgJA1WK6uAx5SraXvzqAADgEq+Eg5nOKxG2UhbXke/aD+VbbMkKWlH9MkL6/AUBTL9BUd5jUIHkXA8AsftLrjzatruPHGyhXAQAGY8sFSg2q708uXf8wAJhM5xgv5e3fL2uwe43O8LgGD7lXANpfBZcOKBohJSI32N27bz+cMOGfGjiO0/JMrmifGw7AHw9PMw4bXIoqAAAAAElFTkSuQmCC"></a>'.
+          '</div>'.
+          '<div class="grid-item box4 hidden">'.
+            '<div>'.
+            '</div>'.
+          '</div>';
+  }
+  private function buildFooter(){
+    $this->footer = 
+          '<div class="grid-item box5">'.
+                '<a href="https://twitter.com/craigmayhew"><img height="16" width="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB10lEQVQ4jcWRO2hUQRSGv3Nm7twrwQiJsCAugthIUCwtxFILMQYkiy+ixEelnY21hZ2YUgwJsRB0fZDCKiCIFnYagxYqq0SLWKikMJG9d+ZYaNAkC2kE/26G+b6fOQf+dwTg0Ni7+uTwto+dHpwaf1/Ma7yMuGHAS7KmS/FSqbpXhBntv9GqqdPnA+NvdnUSzCtjmhUXNRQ9LqzrlpCfjiH/LE4biutSl2uP+tCrWfF0YKJ1HjNZgvtvtWqaZUfE56gPiM+QLEezQpwLe5JUpQzeeRUs9c4iUrOqJMVyhhRH0TSl5jMpuqbF+aXf/ooZVVnte3CsNqXV4ob1iF0V9W3JcjQUOzQUI6LFa7IwjehyGDBLeGvPA3hfmqXAFVFU1CGimDPEEiCIaofJmC2Q3gJo80z9KyKjf/YiiCiiHlG3qv234MXD41u+ASiA6pcLltI1sB+dNrGiHKp4femoAM1GX9us2o1RrMUnsw/i481lAgCr4iAWn63RHiW2h5qN+uIqwf0Tmz+FttufiLfBOtExpXju7tFNT/6+lcMTrZ1JOIhJn2b+gLi8W9yK4Zm1MDvbbGx8tFKr905ufQnusWThO+rnUF0AKrBZjElSOYTNbe8E/5P8BGddrrqInXD7AAAAAElFTkSuQmCC"></a>'.
+          '</div>'.
+          '<div class="grid-item box5 hidden">'.
+            '<div>'.
+            '</div>'.
+          '</div>'.
+          '<div class="grid-item box4 hidden">'.
+            '<div>'.
+            '</div>'.
+          '</div>'.
+          '<div class="grid-item box4 hidden">'.
+            '<div>'.
+            '</div>'.
+          '</div>'.
            '<div class="grid-item box4">'.
              '<div><a href="/">Home</a></div>'.
            '</div>'.
            '<div class="grid-item box4">'.
              '<div><a href="/blog/">Blog</a></div>'.
-           '</div>';
-  }
-  private function buildFooter(){
-    $this->footer = 
+           '</div>'.
            '<div class="grid-item box4">'.
              '<div><a href="/games/">Games</a></div>'.
            '</div>'.
            '<div class="grid-item box4">'.
              '<div><a href="/tools/">Tools</a></div>'.
            '</div>'.
-          '<div class="grid-item" id="helpme">'.
+          '<div class="grid-item box" id="helpme">'.
             '<br><br>If you found this site helpful then please return the favour and help me out with the <a href="/helpme/">things I\'m stuck on</a> or improve upon one of my questions over at <a href="https://www.quora.com/Craig-Mayhew">qoura</a>'.
           '</div>'.
-          '<div class="grid-item">'.
-            '<div>'.
-              '<h4>Follow Me</h4>'.
-              '<ul>'.
-                '<li><a href="https://plus.google.com/114394371414443857717">Google+</a></li>'.
-                '<li><a href="https://www.facebook.com/profile.php?id=682399345">Facebook</a></li>'.
-                '<li><a href="https://twitter.com/craigmayhew">Twitter</a></li>'.
-                '<li><a href="http://www.flickr.com/photos/39301866@N04/">Flickr</a></li>'.
-              '</ul>'.
-             '</div>'.
-           '</div>'.
-           '<div class="grid-item">'.
+
+          '<div class="grid-item box">'.
             '<div>'.
               '<h4>Projects</h4>'.
               '<ul>'.
@@ -294,7 +309,7 @@ class page{
               '</ul>'.
             '</div>'.
            '</div>'.
-           '<div class="grid-item">'.
+           '<div class="grid-item box">'.
              '<div>'.
               '<h4>Do Goods</h4>'.
               '<ul>'.
@@ -305,16 +320,13 @@ class page{
               '</ul>'.
             '</div>'.
            '</div>'.
-           '<div class="grid-item">'.
+           '<div class="grid-item box">'.
              '<div>'.
                '<h4>Latest Blog Posts</h4>'.
                '<ul>'.
                  $this->navRight.
                '</ul>'.
              '</div>'.
-           '</div>'.
-           '<div class="grid-item box3">'.
-
            '</div>'.
          '</div>'.
         '</body>'.

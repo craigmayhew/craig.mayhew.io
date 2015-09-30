@@ -280,16 +280,16 @@ class page{
             '<div>'.
             '</div>'.
           '</div>'.
-          '<div class="grid-item box4 hidden">'.
-            '<div>'.
-            '</div>'.
-          '</div>'.
            '<div class="grid-item box4">'.
              '<div><a href="/">Home</a></div>'.
            '</div>'.
            '<div class="grid-item box4">'.
              '<div><a href="/blog/">Blog</a></div>'.
            '</div>'.
+          '<div class="grid-item box4 hidden">'.
+            '<div>'.
+            '</div>'.
+          '</div>'.
            '<div class="grid-item box4">'.
              '<div><a href="/games/">Games</a></div>'.
            '</div>'.

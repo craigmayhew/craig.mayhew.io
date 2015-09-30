@@ -290,11 +290,11 @@ class page{
             '<div>'.
             '</div>'.
           '</div>'.
-           '<div class="grid-item box4">'.
-             '<div><a href="/games/">Games</a></div>'.
+           '<div class="grid-item box4 hidden">'.
+             '<div></div>'.
            '</div>'.
            '<div class="grid-item box4">'.
-             '<div><a href="/tools/">Tools</a></div>'.
+             '<div><a href="/games/">Games</a></div>'.
            '</div>'.
           '<div class="grid-item box" id="helpme">'.
             '<br><br>If you found this site helpful then please return the favour and help me out with the <a href="/helpme/">things I\'m stuck on</a> or improve upon one of my questions over at <a href="https://www.quora.com/Craig-Mayhew/questions">qoura</a>'.

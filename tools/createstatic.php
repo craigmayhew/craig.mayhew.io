@@ -262,8 +262,10 @@ class page{
           '<div class="grid-item box5">'.
                 '<a href="https://www.facebook.com/profile.php?id=682399345"><img height="16" width="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA8ElEQVQ4jc2PvWrCYBSGH+1XtRFChE5KBy+ghYKI0ngJ4gW0S4cMbtmLKJReRpdCL6A6KDiJiqCLi466OFhwkhoKJtpBECLiZ3Tp2d4Dz/sDZ54PIJktNYXPr3sB7fWq1a2UMgJA1WK6uAx5SraXvzqAADgEq+Eg5nOKxG2UhbXke/aD+VbbMkKWlH9MkL6/AUBTL9BUd5jUIHkXA8AsftLrjzatruPHGyhXAQAGY8sFSg2q708uXf8wAJhM5xgv5e3fL2uwe43O8LgGD7lXANpfBZcOKBohJSI32N27bz+cMOGfGjiO0/JMrmifGw7AHw9PMw4bXIoqAAAAAElFTkSuQmCC"></a>'.
           '</div>'.
+
           '<div class="grid-item box4 hidden">'.
             '<div>'.
+
             '</div>'.
           '</div>';
   }
@@ -277,13 +279,18 @@ class page{
             '<div>'.
             '</div>'.
           '</div>'.
-          '<div class="grid-item box4 hidden">'.
-            '<div>'.
-            '</div>'.
+          '<div class="grid-item box5">'.
+               '<a href="https://www.quora.com/Craig-Mayhew/questions"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABVUlEQVQ4jaWSPUhCURiGH6PbYlzOkg5GKP2QNKSLggQpGU6FNgu11lA0OzQ1OLkFTdJULSU2hZEOLk7eptsS3aG7uHQRnBxqMC8e7YbkuxzOe855+N7vfK6bJb6YQFOTPAaYdjoQwRAzqrD3rUZtPIDb5yeSL+KJxiW/Yxo0z08xKyXJlyIoqiBVbuKJxrF0jfpRhmo2gaVruH1+Ni7uR8ASIJwroPyUXT/MYFZKtBo1nrMJum0LgJX9E2fAfDINgFkp0TEN2++2LbsHvu303xEArNcXhvWbNwL4jyRAP6dYXe+twRAiGAJgLrIJIEUbAXw89b7IE42jqIJwrkCq3CSSLzK7sAiAcXclAVyDo6yogp3qO4oq6JgGb9eXeGNJvLEtACxd43E37AyA3iCtHZ8R2DuQLnbbFg+JgB3TETAMAyTg7bJrfMCg+hP4qWtSFWMDnPQNNLVwx7pkC3AAAAAASUVORK5CYII="></a>'.
           '</div>'.
-           '<div class="grid-item box4">'.
+          '<div class="grid-item box5 hidden">'.
+          '</div>'.
+          '<div class="grid-item box4">'.
              '<div><a href="/">Home</a></div>'.
-           '</div>'.
+          '</div>'.
+          '<div class="grid-item box5 hidden">'.
+          '</div>'.
+          '<div class="grid-item box5 hidden">'.
+          '</div>'.
            '<div class="grid-item box4">'.
              '<div><a href="/blog/">Blog</a></div>'.
            '</div>'.
@@ -296,33 +303,6 @@ class page{
            '</div>'.
            '<div class="grid-item box4">'.
              '<div><a href="/games/">Games</a></div>'.
-           '</div>'.
-           //
-           '<div class="grid-item box4 hidden">'.
-             '<div></div>'.
-           '</div>'.
-           '<div class="grid-item box4 hidden">'.
-             '<div></div>'.
-           '</div>'.
-           '<div class="grid-item box4 hidden">'.
-             '<div></div>'.
-           '</div>'.
-           '<div class="grid-item box5">'.
-             '<div>'.
-               '<a href="https://www.quora.com/Craig-Mayhew/questions"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABVUlEQVQ4jaWSPUhCURiGH6PbYlzOkg5GKP2QNKSLggQpGU6FNgu11lA0OzQ1OLkFTdJULSU2hZEOLk7eptsS3aG7uHQRnBxqMC8e7YbkuxzOe855+N7vfK6bJb6YQFOTPAaYdjoQwRAzqrD3rUZtPIDb5yeSL+KJxiW/Yxo0z08xKyXJlyIoqiBVbuKJxrF0jfpRhmo2gaVruH1+Ni7uR8ASIJwroPyUXT/MYFZKtBo1nrMJum0LgJX9E2fAfDINgFkp0TEN2++2LbsHvu303xEArNcXhvWbNwL4jyRAP6dYXe+twRAiGAJgLrIJIEUbAXw89b7IE42jqIJwrkCq3CSSLzK7sAiAcXclAVyDo6yogp3qO4oq6JgGb9eXeGNJvLEtACxd43E37AyA3iCtHZ8R2DuQLnbbFg+JgB3TETAMAyTg7bJrfMCg+hP4qWtSFWMDnPQNNLVwx7pkC3AAAAAASUVORK5CYII="></a>'.
-             '</div>'.
-           '</div>'.
-           '<div class="grid-item box5">'.
-             '<div>'.
-             '</div>'.
-           '</div>'.
-           '<div class="grid-item box5">'.
-             '<div>'.
-             '</div>'.
-           '</div>'.
-           '<div class="grid-item box5">'.
-             '<div>'.
-             '</div>'.
            '</div>'.
            '<div class="grid-item box">'.
             '<div>'.

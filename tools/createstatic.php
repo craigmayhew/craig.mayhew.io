@@ -262,48 +262,36 @@ class page{
           '<div class="grid-item box5">'.
                 '<a href="https://www.facebook.com/profile.php?id=682399345"><img height="16" width="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA8ElEQVQ4jc2PvWrCYBSGH+1XtRFChE5KBy+ghYKI0ngJ4gW0S4cMbtmLKJReRpdCL6A6KDiJiqCLi466OFhwkhoKJtpBECLiZ3Tp2d4Dz/sDZ54PIJktNYXPr3sB7fWq1a2UMgJA1WK6uAx5SraXvzqAADgEq+Eg5nOKxG2UhbXke/aD+VbbMkKWlH9MkL6/AUBTL9BUd5jUIHkXA8AsftLrjzatruPHGyhXAQAGY8sFSg2q708uXf8wAJhM5xgv5e3fL2uwe43O8LgGD7lXANpfBZcOKBohJSI32N27bz+cMOGfGjiO0/JMrmifGw7AHw9PMw4bXIoqAAAAAElFTkSuQmCC"></a>'.
           '</div>'.
-
-          '<div class="grid-item box4 hidden">'.
-            '<div>'.
-
-            '</div>'.
-          '</div>';
-  }
-  private function buildFooter(){
-    $this->footer = 
-          '<div class="grid-item box5">'.
-                '<a href="https://twitter.com/craigmayhew"><img height="16" width="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB10lEQVQ4jcWRO2hUQRSGv3Nm7twrwQiJsCAugthIUCwtxFILMQYkiy+ixEelnY21hZ2YUgwJsRB0fZDCKiCIFnYagxYqq0SLWKikMJG9d+ZYaNAkC2kE/26G+b6fOQf+dwTg0Ni7+uTwto+dHpwaf1/Ma7yMuGHAS7KmS/FSqbpXhBntv9GqqdPnA+NvdnUSzCtjmhUXNRQ9LqzrlpCfjiH/LE4biutSl2uP+tCrWfF0YKJ1HjNZgvtvtWqaZUfE56gPiM+QLEezQpwLe5JUpQzeeRUs9c4iUrOqJMVyhhRH0TSl5jMpuqbF+aXf/ooZVVnte3CsNqXV4ob1iF0V9W3JcjQUOzQUI6LFa7IwjehyGDBLeGvPA3hfmqXAFVFU1CGimDPEEiCIaofJmC2Q3gJo80z9KyKjf/YiiCiiHlG3qv234MXD41u+ASiA6pcLltI1sB+dNrGiHKp4femoAM1GX9us2o1RrMUnsw/i481lAgCr4iAWn63RHiW2h5qN+uIqwf0Tmz+FttufiLfBOtExpXju7tFNT/6+lcMTrZ1JOIhJn2b+gLi8W9yK4Zm1MDvbbGx8tFKr905ufQnusWThO+rnUF0AKrBZjElSOYTNbe8E/5P8BGddrrqInXD7AAAAAElFTkSuQmCC"></a>'.
-          '</div>'.
-
-          '<div class="grid-item box5 hidden">'.
-            '<div>'.
-            '</div>'.
-          '</div>'.
           '<div class="grid-item box5">'.
                '<a href="https://www.quora.com/Craig-Mayhew/questions"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABVUlEQVQ4jaWSPUhCURiGH6PbYlzOkg5GKP2QNKSLggQpGU6FNgu11lA0OzQ1OLkFTdJULSU2hZEOLk7eptsS3aG7uHQRnBxqMC8e7YbkuxzOe855+N7vfK6bJb6YQFOTPAaYdjoQwRAzqrD3rUZtPIDb5yeSL+KJxiW/Yxo0z08xKyXJlyIoqiBVbuKJxrF0jfpRhmo2gaVruH1+Ni7uR8ASIJwroPyUXT/MYFZKtBo1nrMJum0LgJX9E2fAfDINgFkp0TEN2++2LbsHvu303xEArNcXhvWbNwL4jyRAP6dYXe+twRAiGAJgLrIJIEUbAXw89b7IE42jqIJwrkCq3CSSLzK7sAiAcXclAVyDo6yogp3qO4oq6JgGb9eXeGNJvLEtACxd43E37AyA3iCtHZ8R2DuQLnbbFg+JgB3TETAMAyTg7bJrfMCg+hP4qWtSFWMDnPQNNLVwx7pkC3AAAAAASUVORK5CYII="></a>'.
           '</div>'.
-          '<div class="grid-item box5 hidden">'.
+          '<div class="grid-item box5">'.
+                '<a href="https://twitter.com/craigmayhew"><img height="16" width="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB10lEQVQ4jcWRO2hUQRSGv3Nm7twrwQiJsCAugthIUCwtxFILMQYkiy+ixEelnY21hZ2YUgwJsRB0fZDCKiCIFnYagxYqq0SLWKikMJG9d+ZYaNAkC2kE/26G+b6fOQf+dwTg0Ni7+uTwto+dHpwaf1/Ma7yMuGHAS7KmS/FSqbpXhBntv9GqqdPnA+NvdnUSzCtjmhUXNRQ9LqzrlpCfjiH/LE4biutSl2uP+tCrWfF0YKJ1HjNZgvtvtWqaZUfE56gPiM+QLEezQpwLe5JUpQzeeRUs9c4iUrOqJMVyhhRH0TSl5jMpuqbF+aXf/ooZVVnte3CsNqXV4ob1iF0V9W3JcjQUOzQUI6LFa7IwjehyGDBLeGvPA3hfmqXAFVFU1CGimDPEEiCIaofJmC2Q3gJo80z9KyKjf/YiiCiiHlG3qv234MXD41u+ASiA6pcLltI1sB+dNrGiHKp4femoAM1GX9us2o1RrMUnsw/i481lAgCr4iAWn63RHiW2h5qN+uIqwf0Tmz+FttufiLfBOtExpXju7tFNT/6+lcMTrZ1JOIhJn2b+gLi8W9yK4Zm1MDvbbGx8tFKr905ufQnusWThO+rnUF0AKrBZjElSOYTNbe8E/5P8BGddrrqInXD7AAAAAElFTkSuQmCC"></a>'.
+          '</div>'.
+          '<div class="grid-item box4 hidden">'.
+          '</div>'.
+          '<div class="grid-item box4 hidden">'.
           '</div>'.
           '<div class="grid-item box4">'.
              '<div><a href="/">Home</a></div>'.
           '</div>'.
-          '<div class="grid-item box5 hidden">'.
-          '</div>'.
-          '<div class="grid-item box5 hidden">'.
-          '</div>'.
-           '<div class="grid-item box4">'.
+          '<div class="grid-item box4">'.
              '<div><a href="/blog/">Blog</a></div>'.
-           '</div>'.
-          '<div class="grid-item box4 hidden">'.
-            '<div>'.
-            '</div>'.
           '</div>'.
-           '<div class="grid-item box4 hidden">'.
-             '<div></div>'.
-           '</div>'.
-           '<div class="grid-item box4">'.
+          '<div class="grid-item box4">'.
              '<div><a href="/games/">Games</a></div>'.
-           '</div>'.
+          '</div>'.
+          '<div class="grid-item box4 hidden">'.
+          '</div>'.
+          '<div class="grid-item box4 hidden">'.
+          '</div>'.
+          '<div class="grid-item box5 hidden">'.
+          '</div>'.
+          '<div class="grid-item box5 hidden">'.
+          '</div>';
+  }
+  private function buildFooter(){
+    $this->footer = 
            '<div class="grid-item box">'.
              '<div>'.
                '<h4>Latest Blog Posts</h4>'.

@@ -51,7 +51,7 @@ code {
 nav{
   display: inline-block;
   margin-left: 98px;
-  width: 700px;
+  width: 500px;
 }
 
 nav a {
@@ -88,11 +88,11 @@ nav a {
   width: 380px;
 }
 .box2{
-  min-height:1390px;
+  min-height:1490px;
   overflow: auto;
   text-align:justify;
   vertical-align:top;
-  width: 1050px;
+  width: 810px;
 }
 .box4{
   height: 16px;
@@ -105,7 +105,7 @@ nav a {
 }
 .grid{
   margin: 0 auto;
-  width: 1050px;
+  width: 860px;
 }
 .comment{
   min-height: 80px;

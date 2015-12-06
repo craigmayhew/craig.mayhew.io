@@ -252,6 +252,7 @@ class page{
           '<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">'.
           '<script language="javascript" type="text/javascript" src="/js/js.js"></script>'.
           ($css?'<style type="text/css" media="screen">'.$css.'</style>':'').
+          '<meta name="viewport" content="width=device-width, initial-scale=0.3, maximum-scale=1, user-scalable=yes">'.
         '</head>'.
         '<body>'.
          '<div class="grid">'.

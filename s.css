@@ -6,7 +6,7 @@ div, ul, li {
 
 body {
   background: transparent radial-gradient(circle at 0% -20% , #ffffff 0%, #b5b5b5 70%) repeat scroll 0% 0%;
-  color: #FFFFFF;
+  color: #151515;
   font-family: 'Ubuntu', sans-serif;
   margin: 0;
   padding: 0 0 15px 0;
@@ -35,7 +35,7 @@ a {
 }
 
 a:hover {
-  color: #FFF;
+  color: #000;
   text-decoration: none;
 }
 
@@ -48,6 +48,18 @@ code {
   font-style: italic;
 }
 
+nav{
+  display: inline-block;
+  margin-left: 98px;
+  width: 700px;
+}
+
+nav a {
+  display: inline-block;
+  margin-left: 20px;
+  width: 60px;
+}
+
 .alignleft{
   float: left;
   margin: 5px 10px 5px 0;
@@ -58,70 +70,38 @@ code {
   margin: 5px 0 5px 10px;
 }
 
-.grid-item{
-  background-color: #131313;
-  background: radial-gradient(circle at 0% 0%, #333 0%, #131313 95%);
-  box-shadow: 10px 10px 5px #090909,
-            1px 1px hsl(0, 0%, 13%),
-            2px 2px hsl(0, 0%, 12%),
-            3px 3px hsl(0, 0%, 11%),
-            4px 4px hsl(0, 0%, 10%),
-            5px 5px hsl(0, 0%, 9%),
-            6px 6px hsl(0, 0%, 8%),
-            7px 7px hsl(0, 0%, 7%),
-            8px 8px hsl(0, 0%, 6%);
+.box, .box2, .box5{
   display:inline-block;
   margin:5px;
   overflow: hidden;
   padding:20px;
   vertical-align: middle;
-  width: 20px;
 }
 .box{
   height:190px;
-  width: 190px;
+  width: 400px;
 }
 .box div{
-  display: table-cell;
   height: 200px;
   text-align: center;
   vertical-align: middle;
-  width: 200px;
+  width: 380px;
 }
 .box2{
-  background: radial-gradient(circle at 0% 0%, #333 0%, #131313 45%);
-  display:block;
   min-height:1390px;
   overflow: auto;
   text-align:justify;
   vertical-align:top;
   width: 1050px;
 }
-.box3{
-  background: radial-gradient(circle at 0% 0%, #333 0%, #131313 65%);
-  width: 460px;
-}
 .box4{
-  background: radial-gradient(circle at 0% 0%, #333 0%, #131313 100%);
-  height: 70px;
-  width: 70px;
-}
-.box4 div{
-  display: table-cell;
-  height: 70px;
-  text-align: center;
-  vertical-align: middle;
+  height: 16px;
   width: 70px;
 }
 .box5{
-  background: radial-gradient(circle at 0% 0%, #333 0%, #131313 100%);
   height: 16px;
   padding:17px;
   width: 16px;
-}
-.grid div.hidden{
-  background: none;
-  box-shadow: none;
 }
 .grid{
   margin: 0 auto;

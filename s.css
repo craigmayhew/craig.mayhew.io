@@ -13,19 +13,20 @@ body {
   text-align: center;
 }
 
-h1, h2, h3, h4, p {
+h1, h2, h3, h4 {
   font-family: 'Ubuntu', sans-serif;
+  font-weight: normal;
   margin: 0;
   padding: 10px 0;
 }
 
-h4{
-  font-weight: normal;
-  font-size: 11pt;
-}
+h1{font-size: 32px;}
+h2{font-size: 28px;}
+h3{font-size: 24px;}
+h4{font-size: 20px;}
 
-p {
-  font-size: 9pt;
+body, div, p {
+  font-size: 16px;
 }
 
 a {
@@ -80,7 +81,6 @@ code {
   height:190px;
   width: 190px;
 }
-}
 .box div{
   display: table-cell;
   height: 200px;
@@ -90,8 +90,10 @@ code {
 }
 .box2{
   background: radial-gradient(circle at 0% 0%, #333 0%, #131313 45%);
-  height:1390px;
+  display:block;
+  min-height:1390px;
   overflow: auto;
+  text-align:justify;
   vertical-align:top;
   width: 720px;
 }

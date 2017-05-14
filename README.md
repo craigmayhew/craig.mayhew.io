@@ -29,3 +29,20 @@ cd tools
 php createstatic.php
 php uploadeToS3.php
 </pre>
+
+## partial deploy
+
+You can specify what should be regenerated via arguements to createstatic.php.  e.g. to deploy just the blog and pages
+<pre>
+php createstatic.php blog pages 
+</pre>
+
+Or just regenrate the web pages and static content.
+<pre>
+php createstatic.php pages static 
+</pre>
+
+Finally, deploy.
+<pre>
+php uploadeToS3.php
+</pre>

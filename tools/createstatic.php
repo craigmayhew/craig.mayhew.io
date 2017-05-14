@@ -38,11 +38,13 @@ class builder{
           case 'blogs': 
           case 'blogposts':
             $build['blog'] = 'blog';
+            $build['pages'] = 'pages';
             break; 
           case 'static':
             $build['static'] = 'static';
             break; 
           case 'pages':
+            $build['blog'] = 'blog';
             $build['pages'] = 'pages';
             break; 
         }

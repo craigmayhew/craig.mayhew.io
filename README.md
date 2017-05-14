@@ -14,6 +14,14 @@ php composer.phar selfupdate
 php composer.phar install
 </pre>
 
+Optionally, if you intend to deploy to S3, you need to add your credentials to your home folder. The file needs permission 600 ~/.aws/credentials
+
+<pre>
+[default]
+aws_access_key_id = SECRET_ID
+aws_secret_access_key = SECRET_KEY
+</pre>
+
 ## deploy
 
 <pre>

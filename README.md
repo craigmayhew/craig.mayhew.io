@@ -1,8 +1,23 @@
 # craig.mayhew.io
+
 Craig Mayhew's Personal website
 
-Pages and posts stored as json files. One file per post/page.
+Blog posts are stored in blogposts/ as json files. One file per post.
+Pages are stored in pages/ as json files. One file per page.
 
-PHP is used to generate static html in the htdocs directory.
+PHP is used to generate static html in the htdocs directory and then optionally sync that to an S3 bucket.
 
-See tools/createstatic.php
+## install
+
+<pre>
+php composer.phar selfupdate
+php composer.phar install
+</pre>
+
+## deploy
+
+<pre>
+cd tools
+php createstatic.php
+php uploadeToS3.php
+</pre>

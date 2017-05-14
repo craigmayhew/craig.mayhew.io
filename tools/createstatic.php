@@ -30,13 +30,39 @@ class builder{
   }
 
   public function build(){
+    $build = [];
+    if(isset($GLOBALS['argv']) && is_array($GLOBALS['argv']) && count($GLOBALS['argv'])>1){
+      foreach($GLOBALS['argv'] as $v){
+        switch ($v) {
+          case 'blog': 
+          case 'blogs': 
+          case 'blogposts':
+            $build['blog'] = 'blog';
+            break; 
+          case 'static':
+            $build['static'] = 'static';
+            break; 
+          case 'pages':
+            $build['pages'] = 'pages';
+            break; 
+        }
+      }
+    }else{
+      $build = ['static','blog','pages'];
+    }
     $this->css = file_get_contents($this->cssPath);
-    echo "Copying Static Files\n";
-    $this->copyStaticFiles();
-    echo "Building Blog\n";
-    $this->buildBlog();
-    echo "Building Pages\n";
-    $this->buildPages($this->dirPages);
+    if(isset($build['static'])){
+      echo "Copying Static Files\n";
+      $this->copyStaticFiles();
+    }
+    if(isset($build['blog'])){
+      echo "Building Blog\n";
+      $this->buildBlog();
+    }
+    if(isset($build['static'])){
+      echo "Building Pages\n";
+      $this->buildPages($this->dirPages);
+    }
   }
 
   private function copyStaticFiles(){
@@ -118,7 +144,7 @@ class builder{
       $page->setSideNav($this->sideNav);
       $content = $page->build();
       $this->generateFile($this->destinationFolder.'blog/index.html',$content);
-       
+      
       foreach($jsonBlogPosts as $json){
         //tags
         if(isset($json['tags']) && is_array($json['tags'])){
@@ -166,6 +192,18 @@ class builder{
       }
     }
     unset($handle,$entry,$json);
+
+    //create archive page
+    $content = '';
+    foreach($jsonBlogPosts as $json){ 
+        //add blog post to the archive array
+        $content .= substr($json['date'],0,10).' <a href="/blog/'.$json['name'].'/index.html'.'">'.$json['title'].'</a><br>';
+    }
+    $page = new page('Blog Archive',$this->css);
+    $page->setContent($content);
+    $page->setSideNav($this->sideNav);
+    $content = $page->build();
+    $this->generateFile($this->destinationFolder.'blog/archive/index.html',$content);
 
     //create tag pages
     foreach($jsonBlogTags as $tag=>$posts){

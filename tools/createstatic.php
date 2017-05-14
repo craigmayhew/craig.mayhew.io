@@ -42,10 +42,16 @@ class builder{
   private function copyStaticFiles(){
     //copy static files
     foreach($this->justCopy as $fileOrFolder){
+      //if we are copying a file
       if(is_file('../'.$fileOrFolder)){
         echo 'copied '.$this->destinationFolder.$fileOrFolder."\n";
         copy('../'.$fileOrFolder,$this->destinationFolder.$fileOrFolder);
-      }else{
+      }else{ //else we are copying a folder
+        //check if the folder needs creating in the destination
+        if(!is_dir($this->destinationFolder.$fileOrFolder)){
+          mkdir($this->destinationFolder.$fileOrFolder);
+        }
+        //copy the contents over
         $this->recurse_copy('../'.$fileOrFolder,$this->destinationFolder.$fileOrFolder);
       }
     }

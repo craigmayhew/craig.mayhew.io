@@ -59,7 +59,7 @@ class builder{
       echo "Building Blog\n";
       $this->buildBlog();
     }
-    if(isset($build['static'])){
+    if(isset($build['pages'])){
       echo "Building Pages\n";
       $this->buildPages($this->dirPages);
     }

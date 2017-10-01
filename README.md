@@ -26,20 +26,20 @@ aws_secret_access_key = SECRET_KEY
 
 <pre>
 cd tools
-php createstatic.php
+php build.php
 php uploadeToS3.php
 </pre>
 
 ## partial deploy
 
-You can specify what should be regenerated via arguments to createstatic.php.  e.g. to deploy just the blog and pages
+You can specify what should be regenerated via arguments to build.php.  e.g. to deploy just the blog and pages
 <pre>
-php createstatic.php blog pages 
+php build.php blog pages 
 </pre>
 
 Or just regenerate the web pages and static content.
 <pre>
-php createstatic.php pages static 
+php build.php pages static 
 </pre>
 
 Finally, deploy.

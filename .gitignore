@@ -1,3 +1,5 @@
+.terraform/*
 logs*
 htdocs/*
+terraform.*
 vendor/*

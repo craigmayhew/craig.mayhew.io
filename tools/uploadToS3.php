@@ -3,7 +3,7 @@
 require '../vendor/autoload.php';
 use Aws\Common\Aws;
 
-$dir = '/srv/craig.mayhew.io/public/htdocs';
+$dir = '/home/user/craig.mayhew.io/htdocs';
 $bucket = 'craig.mayhew.io';
 $keyPrefix = '';
 $options = array(

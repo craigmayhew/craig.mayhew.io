@@ -291,47 +291,34 @@ class page{
       '<!DOCTYPE html>'.
       '<html lang="en">'.
         '<head>'.
-          '<title>'.$this->title.'</title>'.
-          '<meta charset="UTF-8">'.
-          '<meta name="author" content="Craig Mayhew">'.
-          '<meta name="keywords" content="Craig Mayhew">'.
-          '<meta name="robots" content="follow, all">'.
-          '<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">'.
-          '<script language="javascript" type="text/javascript" src="/js/js.js"></script>'.
-          ($css?'<style type="text/css" media="screen">'.$css.'</style>':'').
-          '<meta name="viewport" content="width=device-width, initial-scale=0.3, maximum-scale=1, user-scalable=yes">'.
+            '<meta charset="utf-8">'.
+            '<meta http-equiv="X-UA-Compatible" content="IE=edge">'.
+            '<meta name="viewport" content="width=device-width, initial-scale=1">'.
+            '<title>'.$this->title.'</title>'.
+            '<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">'.
+            '<link rel="stylesheet" href="/css/font-awesome.min.css">'.
+            '<link rel="stylesheet" href="/style.css">'.
         '</head>'.
         '<body>'.
-         '<div class="grid">'.
-          '<div class="box5">'.
-              '<a href="https://plus.google.com/114394371414443857717"><img height="16" width="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACxElEQVQ4jW2TTWhcVRTHf+e+13kzmc/QopLQLgRjU6u0ItXUD2yLqNSVIkgFFyqtyxrERYsboWZhoCgoonEjuJAsFC0VWlwoqGA2ASnWxqgVk2bIJJM3M5l5X/ceF8+Goj3bw+/cyzm/vywenVAFUEWMhzqLpgkiBoyA5j18HxHhv+UDiCoYg4v6SCGgMLoLF0dokiC+j/g+NtxAnfvfEB9V1Bg0GhCM7WH78ZMkf/5GcfweCrtux3ZDet9eZG3mXcT3t0BVRUQwiECWYYbKjEy9R7JwmeaZUzSnTqNpQraynMMiCKDWbsFAPkCjAaV7H8Cr1Yl+vYRXb5D8vkDn6y8o3b2fwuhO1FowBlOuIMZs/cQAqBjcoA9AMDaO7XVxSYzthihgO2G+2ELA6NmPkSDARRGqio9zmFKJwfwcmz99z/CzL5Bc/YPB/ByVg4dovT+NXW/h77gFr9bAVGp49WFQ0DhCFo9O5Fe0FikWqTx0hNL+A5QfPET45Wc0z5yiuHsvI29/gBmqYKo1XLeD7YYsvXYc//pCxPOw7XU2Zj/BRX2qh59gaN8BhiYeJlm4zNLky3i1OiPTH7H8+gnsRhviCCMiqLW4LKPx3IvsnJml8shjdC6co3DHbkanPyQY20PWvIbthLheBxu2cy9U8RXQLOXW01MEd97FyhsnSa/9jev16F48x21vnqXxzPOs/PIzGscsvfoSGseYYjG/gmYpXq1B9dHH6Z7/nM0fv8sb1Rqdr2bpfXMeUx/OFVeH2+yhzt1gojG4NCFdW6X+9DHS1SbRpXlQZfsrk5T23cfqO28h3r8Weh6oonmCkMWnDqrGMcH4XnacmMw9CDdAIV3+i/anM/TnfsBUqnDDy9dLrjx5vyKCiwaIvw1TriK+B4Btr6NZiilXbgoD+Fda64CC8cD10dZaHmHIw2MMbLZuCgP8A634UW1oE1wuAAAAAElFTkSuQmCC"></a>'.
-          '</div>'.
-          '<div class="box5">'.
-                '<a href="https://www.facebook.com/profile.php?id=682399345"><img height="16" width="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA8ElEQVQ4jc2PvWrCYBSGH+1XtRFChE5KBy+ghYKI0ngJ4gW0S4cMbtmLKJReRpdCL6A6KDiJiqCLi466OFhwkhoKJtpBECLiZ3Tp2d4Dz/sDZ54PIJktNYXPr3sB7fWq1a2UMgJA1WK6uAx5SraXvzqAADgEq+Eg5nOKxG2UhbXke/aD+VbbMkKWlH9MkL6/AUBTL9BUd5jUIHkXA8AsftLrjzatruPHGyhXAQAGY8sFSg2q708uXf8wAJhM5xgv5e3fL2uwe43O8LgGD7lXANpfBZcOKBohJSI32N27bz+cMOGfGjiO0/JMrmifGw7AHw9PMw4bXIoqAAAAAElFTkSuQmCC"></a>'.
-          '</div>'.
-          '<div class="box5">'.
-               '<a href="https://www.quora.com/Craig-Mayhew/questions"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABVUlEQVQ4jaWSPUhCURiGH6PbYlzOkg5GKP2QNKSLggQpGU6FNgu11lA0OzQ1OLkFTdJULSU2hZEOLk7eptsS3aG7uHQRnBxqMC8e7YbkuxzOe855+N7vfK6bJb6YQFOTPAaYdjoQwRAzqrD3rUZtPIDb5yeSL+KJxiW/Yxo0z08xKyXJlyIoqiBVbuKJxrF0jfpRhmo2gaVruH1+Ni7uR8ASIJwroPyUXT/MYFZKtBo1nrMJum0LgJX9E2fAfDINgFkp0TEN2++2LbsHvu303xEArNcXhvWbNwL4jyRAP6dYXe+twRAiGAJgLrIJIEUbAXw89b7IE42jqIJwrkCq3CSSLzK7sAiAcXclAVyDo6yogp3qO4oq6JgGb9eXeGNJvLEtACxd43E37AyA3iCtHZ8R2DuQLnbbFg+JgB3TETAMAyTg7bJrfMCg+hP4qWtSFWMDnPQNNLVwx7pkC3AAAAAASUVORK5CYII="></a>'.
-          '</div>'.
-          '<div class="box5">'.
-                '<a href="https://twitter.com/craigmayhew"><img height="16" width="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB10lEQVQ4jcWRO2hUQRSGv3Nm7twrwQiJsCAugthIUCwtxFILMQYkiy+ixEelnY21hZ2YUgwJsRB0fZDCKiCIFnYagxYqq0SLWKikMJG9d+ZYaNAkC2kE/26G+b6fOQf+dwTg0Ni7+uTwto+dHpwaf1/Ma7yMuGHAS7KmS/FSqbpXhBntv9GqqdPnA+NvdnUSzCtjmhUXNRQ9LqzrlpCfjiH/LE4biutSl2uP+tCrWfF0YKJ1HjNZgvtvtWqaZUfE56gPiM+QLEezQpwLe5JUpQzeeRUs9c4iUrOqJMVyhhRH0TSl5jMpuqbF+aXf/ooZVVnte3CsNqXV4ob1iF0V9W3JcjQUOzQUI6LFa7IwjehyGDBLeGvPA3hfmqXAFVFU1CGimDPEEiCIaofJmC2Q3gJo80z9KyKjf/YiiCiiHlG3qv234MXD41u+ASiA6pcLltI1sB+dNrGiHKp4femoAM1GX9us2o1RrMUnsw/i481lAgCr4iAWn63RHiW2h5qN+uIqwf0Tmz+FttufiLfBOtExpXju7tFNT/6+lcMTrZ1JOIhJn2b+gLi8W9yK4Zm1MDvbbGx8tFKr905ufQnusWThO+rnUF0AKrBZjElSOYTNbe8E/5P8BGddrrqInXD7AAAAAElFTkSuQmCC"></a>'.
-          '</div>'.
-          '<nav>'.
-             '<a href="/">Home</a>'.
-             '<a href="/blog/">Blog</a>'.
-             '<a href="/games/">Games</a>'.
-          '</nav>';
+          '<div class="wrapper overlay">'.
+            '<div class="container">'.
+              '<div class="homeContent">'.
+                '<h1 class="page_title"><a href="/">Craig Mayhew\'s Blog</a></h1>';
   }
   private function buildFooter(){
     $this->footer = 
-           '<div class="box">'.
-             '<div>'.
-               '<h4>Latest Blog Posts</h4>'.
-               '<ul>'.
-                 $this->navRight.
-               '</ul>'.
-             '</div>'.
-           '</div>'.
-         '</div>'.
+               '</div>'.
+                 '<div class="row">'.
+                   '<div class="col-12 text-center">'.
+                     '<p class="copyText">&copy; 2017 Craig Mayhew\'s Blog</p>'.
+                   '</div>'.
+                 '</div>'.
+               '</div>'.
+            '</div>'.
+          '</div>'.
+          '<script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>'.
+          '<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>'.
+          '<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>'.
         '</body>'.
       '</html>';
   }

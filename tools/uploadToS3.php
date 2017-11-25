@@ -12,11 +12,10 @@ $options = array(
   'debug'       => true
 );
 
-$config = array(
+$config = [
   'profile' => 'default',
   'region' => 'eu-west-1'
-);
-
+];
 $aws = Aws::factory($config);
 $client = $aws->get('s3');
 $client->uploadDirectory($dir, $bucket, $keyPrefix, $options);

@@ -49,8 +49,8 @@ class builder{
             break; 
         }
       }
-    }else{
-      $build = ['static','blog','pages'];
+    } else {
+      $build = ['static'=>1,'blog'=>1,'pages'=>1];
     }
     $this->css = file_get_contents($this->cssPath);
     if(isset($build['static'])){

@@ -1,5 +1,6 @@
-.terraform/*
-logs*
-htdocs/*
+.idea
+.terraform
+logs
+htdocs
 terraform.*
-vendor/*
+vendor/

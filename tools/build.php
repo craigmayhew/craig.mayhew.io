@@ -6,9 +6,9 @@ class builder{
   private $destinationFolder = '../htdocs/';
   private $blogposts = '../blogposts/';
   private $dirPages  = '../pages/';
-  private $cssPath   = '../s.css';
+  private $cssPath   = '../css/style.css';
   private $css       = '';
-  private $justCopy  = array('favicon.ico','files','imgs','js','robots.txt','uploads');
+  private $justCopy  = array('favicon.ico','files','imgs','css','js','robots.txt','uploads');
   private $sideNav   = '';
   /*CONFIG END*/
 

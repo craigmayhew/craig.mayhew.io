@@ -33,7 +33,7 @@ body {
 * Just put your Image name in 'url' attribute.
 ******************************/
 .wrapper {
-	background: url(images/bg.jpg) no-repeat fixed center center / cover;
+	background: url(/imgs/bg.jpg) no-repeat fixed center center / cover;
 	position: relative;
 	min-height: 100vh;
 }

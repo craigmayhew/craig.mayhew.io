@@ -1,18 +1,3 @@
-var unixtime = Math.round(+new Date()/1000)
-var dcount=3694464000-unixtime
-var dcounter=setInterval(dtimer, 1000)
-function dtimer()
-{
-  dcount=dcount-1
-  if (dcount <= 0)
-  {
-     clearInterval(dcounter)
-     return;
-  }
-
- document.getElementById("dtimer").innerHTML=dcount
-}
-
 function cvs(canvasEl){
     this.canvas = canvasEl;
     this.ctx = this.canvas.getContext('2d');

@@ -295,15 +295,15 @@ class page{
             '<meta http-equiv="X-UA-Compatible" content="IE=edge">'.
             '<meta name="viewport" content="width=device-width, initial-scale=1">'.
             '<title>'.$this->title.'</title>'.
+            '<script src="https://use.fontawesome.com/cefa967eb5.js"></script>'.
             '<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">'.
             '<link rel="stylesheet" href="/css/font-awesome.min.css">'.
-            '<link rel="stylesheet" href="/style.css">'.
+            '<link rel="stylesheet" href="/css/style.css">'.
         '</head>'.
         '<body>'.
           '<div class="wrapper overlay">'.
             '<div class="container">'.
-              '<div class="homeContent">'.
-                '<h1 class="page_title"><a href="/">Craig Mayhew\'s Blog</a></h1>';
+              '<div class="homeContent">';
   }
   private function buildFooter(){
     $this->footer = 
@@ -334,10 +334,8 @@ class page{
     return 
     $this->header.
     '<div class="box2">'.
-      '<h1>'.$this->title.'</h1>'.
+      '<h1 class="page_title"><a href="/">'.$this->title.'</a></h1>'.
       $this->content.'<br><br>'.
-      '<div id="copyright"><em>&copy; Craig Mayhew 2003 - '.date('Y').'</em></div>'.
-      '<div id="dtimer">'.time().'</div>'.
     '</div>'.
     $this->footer;
   }

@@ -125,11 +125,34 @@ class builder{
        
       return ($b['date'] < $a['date'] ? -1 : 1);
     });
-   
+
+    $this->sideNav =
+    '<div class="sidebar">'.
+        '<aside class="widget">'.
+            '<h3>Recent Posts</h3>'.
+            '<ul>'.
+                '<li><a href="/blog/reprap-4-year-project/">3D Printer</a></li>'.
+                '<li><a href="/blog/usb-secure-eraser/">USB Eraser</a></li>'.
+                '<li><a href="/blog/dns-the-original-cdn/">DNS as a CDN</a></li>'.
+            '</ul>'.
+        '</aside>'.
+        '<aside class="widget">'.
+            '<h3>Category</h3>'.
+            '<ul>'.
+                '<li><a href="/blog/cat/Astrothoughts/">Astrothoughts</a></li>'.
+                '<li><a href="/blog/cat/Code/">Code</a></li>'.
+                '<li><a href="/blog/cat/General/">General</a></li>'.
+                '<li><a href="/blog/cat/Reviews-Experience/">Reviews/Experience</a></li>'.
+                '<li><a href="/blog/cat/General-Techie/">Techie</a></li>'.
+            '</ul>'.
+        '</aside>'.
+        '<a class="backHome" href="/">Back to home</a>'.
+    '</div>';
     //now work out tags and categories 
     if(count($jsonBlogPosts)>0){
       $i=0;
-      $this->sideNav = '';
+
+      //build front page
       $frontPage = '';
       foreach($jsonBlogPosts as $json){
         $i++;
@@ -137,7 +160,6 @@ class builder{
         '<h2>'.$json['title'].'</h2>'.
         'by Craig Mayhew on '.date('D dS M Y',strtotime($json['date'])).' under '.implode(', ',$json['categories']).
         '<br /><br /><br />'.$json['content'].'<br /><br /><br />';
-        $this->sideNav .= '<li><a href="/blog/'.$json['name'].'">'.$json['title'].'</a></li>';
         if($i===4){break;}
       }
        
@@ -175,20 +197,37 @@ class builder{
         foreach($json['tags'] as $c){
           $tags .= '<a href="/blog/tag/'.$c.'">'.$c.'</a> &nbsp; ';
         }
-        $comments = '<br /><br /> '.count($json['comments']).' Comments';
-        foreach($json['comments'] as $c){
-          $comments .= 
-          '<div class="comment">'.
-            '<img align="left" class="gravatar" height="80" width="80" src="//www.gravatar.com/avatar/'.md5(trim($c['authorEmail'])).'">'.
-            '<div class="name">'.$c['author'].'</div>'.
-            '<div class="time">'.$c['timestampGMT'].'</div>'.
-            $c['comment'].
-          '</div>';
-        }
+
         $content =
-          'by Craig Mayhew on '.date('D dS M Y',strtotime($json['date'])).' under '.implode(', ',$json['categories']).
-          '<br /><br /><br />'.$json['content'].'<br /><br /><br />';
-        $page->setContent(nl2br($content).$tags.nl2br($comments));
+        '<div class="col-sm-12 col-md-9 col-lg-9 col-xl-11">'.
+            '<div class="postBox">'.
+                '<div class="postHead">'.
+                    '<div class="date">'.
+                        '<span>'.date('d',strtotime($json['date'])).'</span>'.date('M',strtotime($json['date'])).
+                    '</div>'.
+                    '<h2>'.$json['title'].'</h2>'.
+                    '<span>by Craig Mayhew on '.date('D jS M Y',strtotime($json['date'])).' under '.implode(', ',$json['categories']).'</span>'.
+                '</div>'.
+                '<div class="postBody">'.
+                    nl2br($json['content']).
+                    $tags.
+                '</div>'.
+                '<div class="sharePost">'.
+                    '<ul>'.
+                        '<li>'.
+                            '<a href="#"><i class="fa fa-heart-o"></i>Like</a>'.
+                        '</li>'.
+                        '<li>'.
+                            '<a href="#"><i class="fa fa-clock-o"></i>Later</a>'.
+                        '</li>'.
+                        '<li>'.
+                            '<a href="#"><i class="fa fa-share-square-o"></i>Share</a>'.
+                        '</li>'.
+                    '</ul>'.
+                '</div>'.
+            '</div>'.
+        '</div>';
+        $page->setContent($content);
         $page->setSideNav($this->sideNav);
         $content = $page->build();
         $this->generateFile($this->destinationFolder.'blog/'.$json['name'].'/index.html',$content);
@@ -239,21 +278,30 @@ class builder{
       $content = '';
       $i=0;
       foreach($posts as $postname){
-        $tags = '<br /><br />';
-	if(isset($jsonBlogPosts[$postname]['tags'])){
-          foreach($jsonBlogPosts[$postname]['tags'] as $c){
-            $tags .= '<a href="/blog/tag/'.$c.'">'.$c.'</a> &nbsp; ';
-          }
-        }
         $content .=
             '<h2>'.$jsonBlogPosts[$postname]['title'].'</h2>'.
             'by Craig Mayhew on '.date('D dS M Y',strtotime($jsonBlogPosts[$postname]['date'])).' under '.implode(', ',$jsonBlogPosts[$postname]['categories']).
-            '<br /><br /><br />'.$jsonBlogPosts[$postname]['content'].$tags.'<br /><br /><br />';
+            '<br /><br /><br />'.$jsonBlogPosts[$postname]['content'].'<br /><br /><br />';
         $i++;
         if($i===6){break;}
       }
       $page = new page($cat,$this->css);
-      $page->setContent(nl2br($content));
+        $content =
+        '<div class="col-sm-12 col-md-9 col-lg-9 col-xl-11">'.
+            '<div class="postBox">'.
+                '<div class="postHead">'.
+                    '<div class="date">'.
+                        '<span>&nbsp;</span>&nbsp;'.
+                    '</div>'.
+                    '<h2>'.$cat.'</h2>'.
+                    '<span>by Craig Mayhew</span>'.
+                '</div>'.
+                '<div class="postBody">'.
+                    nl2br($content).
+                '</div>'.
+            '</div>'.
+        '</div>';
+      $page->setContent($content);
       $page->setSideNav($this->sideNav);
       $content = $page->build();
       $this->generateFile($this->destinationFolder.'blog/cat/'.str_replace('/','-',$cat).'/index.html',$content);
@@ -271,21 +319,10 @@ class builder{
 
 class page{
   private $content  = '';
-  private $navTop   = '';
   public  $navRight = '';
   private $title    = '';
   function __construct($title,$css=''){
     $this->title = $title;
-    $this->navTop =
-    '<a href="/blog/cat/Astrothoughts/" title="View all posts filed under Astrothoughts">Astrothoughts</a> '
-    .'<a href="/blog/cat/Code/" title="View all posts filed under Code">Code</a> '
-    .'<a href="/blog/cat/Events/" title="View all posts filed under Events">Events</a> '
-    .'<a href="/blog/cat/Friends-Family/" title="View all posts filed under Friends/Family">Friends/Family</a> '
-    .'<a href="/blog/cat/General/" title="View all posts filed under General">General</a> '
-    .'<a href="/blog/cat/General-Techie/" title="View all posts filed under General/Techie">General/Techie</a> '
-    .'<a href="/blog/cat/Linux-Ubuntu/" title="View all posts filed under Linux/Ubuntu">Linux/Ubuntu</a> '
-    .'<a href="/blog/cat/News/" title="View all posts filed under News">News</a> '
-    .'<a href="/blog/cat/Reviews-Experience/" title="View all posts filed under Reviews/Experience">Reviews/Experience</a>';
 
     $this->header =
       '<!DOCTYPE html>'.
@@ -302,15 +339,14 @@ class page{
         '</head>'.
         '<body>'.
           '<div class="wrapper overlay">'.
-            '<div class="container">'.
-              '<div class="homeContent">';
+            '<div class="container">';
   }
   private function buildFooter(){
-    $this->footer = 
-               '</div>'.
+    $this->footer =
+                  $this->navRight.
                  '<div class="row">'.
                    '<div class="col-12 text-center">'.
-                     '<p class="copyText">&copy; 2017 Craig Mayhew\'s Blog</p>'.
+                     '<p class="copyText">&copy; 2017 Craig Mayhew</p>'.
                    '</div>'.
                  '</div>'.
                '</div>'.

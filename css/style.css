@@ -248,9 +248,9 @@ body {
 .social_icons a:nth-child(odd) {
 	margin-right: 5px;
 }
-.social_icons a.facebook{background-color: #5d82d1;}
+.social_icons a.github{background-color: #24292e;}
 .social_icons a.twitter{background-color: #40bff5;}
-.social_icons a.printerest{background-color: #e03037;}
+.social_icons a.pinterest{background-color: #e03037;}
 .social_icons a.rss{background-color: #faa33d;}
 .copyText {margin-top: 75px}
 

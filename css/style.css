@@ -146,6 +146,9 @@ body {
 .block {
 	padding: 19px 17px;
 }
+.blockFullHeight {
+	padding: 0 23px;
+}
 .block i {
 	font-size: 33px;
 	text-align: center;
@@ -203,12 +206,6 @@ body {
 	width: 100%;
 	height: 100%;
 }
-.left_block .block {
-	padding: 0 23px;
-}
-.right_block .block {
-	padding: 19px 17px;
-} 
 .right_block .royal_blue .block h4 {
 	line-height: 19px;
 	margin-top: 8px;

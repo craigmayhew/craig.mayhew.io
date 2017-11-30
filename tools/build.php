@@ -97,7 +97,7 @@ class builder{
         $json = json_decode(file_get_contents($dir.$entry),true);
         $page = new page($json['title'],$this->css);
         $page->setContent(file_get_contents(substr($dir.$entry,0,-5).'.html'));
-        $page->setSideNav($this->sideNav);
+        $page->setSideNav('');
         $content = $page->build();
         $this->generateFile($this->destinationFolder.$json['url'].'/index.html',$content);
       }

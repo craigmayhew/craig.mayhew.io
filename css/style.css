@@ -282,6 +282,12 @@ body {
 	padding: 0 82px 95px;
 	color: #373737;
 }
+.postBody h3 a{
+	text-decoration:none;
+	color: #1b1b1b;
+}
+.postBody h3 a:hover{text-decoration:none;}
+
 .postBody p {
 	font-size: 15px;
 }

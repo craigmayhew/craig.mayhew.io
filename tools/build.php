@@ -112,6 +112,7 @@ class builder{
     if($handle = opendir($this->blogposts)){
       while(false !== ($entry = readdir($handle))){
         if($entry=='.' || $entry=='..'){continue;}
+        if(substr($entry, -5) !== '.json'){continue;}
         $json = json_decode(file_get_contents($this->blogposts.$entry),true);
         $jsonBlogPosts[$json['name']] = $json;
       }
@@ -154,18 +155,49 @@ class builder{
 
       //build front page
       $frontPage = '';
+      $textPreviewLength = 220;
       foreach($jsonBlogPosts as $json){
         $i++;
-        $frontPage .= 
-        '<h2>'.$json['title'].'</h2>'.
-        'by Craig Mayhew on '.date('D dS M Y',strtotime($json['date'])).' under '.implode(', ',$json['categories']).
-        '<br /><br /><br />'.$json['content'].'<br /><br /><br />';
-        if($i===4){break;}
+        $text = explode(' ', substr(strip_tags($json['content']), 0, $textPreviewLength));
+        array_pop($text);
+        $text = implode(' ', $text).'…';
+        $frontPage .=
+        '<br /><br /><br /><h3><a href="/blog/'.$json['name'].'">'.$json['title'].'</a></h3></h2>'.
+        '<br />'.$text.'<br /><br />';
+        if($i===7){break;}
       }
        
       //front page
       $page = new page('Craig Mayhew\'s Blog',$this->css);
-      $page->setContent(nl2br($frontPage));
+      $content =
+        '<div class="col-sm-12 col-md-9 col-lg-9 col-xl-11">'.
+            '<div class="postBox">'.
+                '<div class="postHead">'.
+                    '<div class="date">'.
+                        '<span>&nbsp;</span>&nbsp;'.
+                    '</div>'.
+                    '<h2>Latest Blog Posts</h2>'.
+                    '<span>by Craig Mayhew</span>'.
+                '</div>'.
+                '<div class="postBody">'.
+                    nl2br($frontPage).
+                '</div>'.
+                '<div class="sharePost">'.
+                    '<ul>'.
+                        '<li>'.
+                            '<a href="#"><i class="fa fa-heart-o"></i>Like</a>'.
+                        '</li>'.
+                        '<li>'.
+                            '<a href="#"><i class="fa fa-clock-o"></i>Later</a>'.
+                        '</li>'.
+                        '<li>'.
+                            '<a href="#"><i class="fa fa-share-square-o"></i>Share</a>'.
+                        '</li>'.
+                    '</ul>'.
+                '</div>'.
+            '</div>'.
+        '</div>';
+      $page->setContent($content);
       $page->setSideNav($this->sideNav);
       $content = $page->build();
       $this->generateFile($this->destinationFolder.'blog/index.html',$content);
@@ -194,8 +226,10 @@ class builder{
         //create blog post file
         $page = new page($json['title'],$this->css);
         $tags = '<br /><br />';
-        foreach($json['tags'] as $c){
-          $tags .= '<a href="/blog/tag/'.$c.'">'.$c.'</a> &nbsp; ';
+        if (isset($json['tags']) && is_array($json['tags'])) {
+            foreach ($json['tags'] as $c) {
+                $tags .= '<a href="/blog/tag/' . $c . '">' . $c . '</a> &nbsp; ';
+            }
         }
 
         $content =

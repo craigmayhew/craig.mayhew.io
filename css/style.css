@@ -76,6 +76,11 @@ body {
 	background-color: #5434af;
 	background-clip: content-box;
 }
+.charcoal {
+	background-color: #36454f;
+	background-clip: content-box;
+}
+
 /******** Box Color End *********/
 
 .container {

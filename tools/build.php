@@ -162,7 +162,7 @@ class builder{
         array_pop($text);
         $text = implode(' ', $text).'…';
         $frontPage .=
-        '<br /><br /><br /><h3><a href="/blog/'.$json['name'].'">'.$json['title'].'</a></h3></h2>'.
+        '<br /><br /><br /><h3><a href="/blog/'.$json['name'].'">'.$json['title'].'</a></h3>'.
         '<br />'.$text.'<br /><br />';
         if($i===7){break;}
       }
@@ -186,9 +186,9 @@ class builder{
         if(isset($json['tags']) && is_array($json['tags'])){
           foreach($json['tags'] as $tag){
             if(isset($jsonBlogTags[$tag])){
-              $jsonBlogTags[$tag][] = $json['name'];
+              $jsonBlogTags[$tag][] = $json;
             }else{
-              $jsonBlogTags[$tag] = array($json['name']);
+              $jsonBlogTags[$tag] = array($json);
             }
           }
         }
@@ -196,9 +196,9 @@ class builder{
         if(isset($json['categories'])){
           foreach($json['categories'] as $cat){
             if(isset($jsonBlogCats[$cat])){
-              $jsonBlogCats[$cat][] = $json['name'];
+              $jsonBlogCats[$cat][] = $json;
             }else{
-              $jsonBlogCats[$cat] = array($json['name']);
+              $jsonBlogCats[$cat] = array($json);
             }
           }
         }
@@ -233,6 +233,7 @@ class builder{
         $content .= substr($json['date'],0,10).' <a href="/blog/'.$json['name'].'/index.html'.'">'.$json['title'].'</a><br>';
     }
     $page = new page('Blog Archive',$this->css);
+    $content = $page->blogify('blog/archive/','<span>&nbsp;</span>&nbsp;', 'Blog Archive', 'by Craig Mayhew', nl2br($content));
     $page->setContent($content);
     $page->setSideNav($this->sideNav);
     $content = $page->build();
@@ -242,43 +243,53 @@ class builder{
     foreach($jsonBlogTags as $tag=>$posts){
       $content = '';
       $i=0;
-      foreach($posts as $postname){
-        $tags = '<br /><br />';
-        if(isset($jsonBlogPosts[$postname]['tags'])){
-          foreach($jsonBlogPosts[$postname]['tags'] as $c){
+      $tags = '<br /><br />';
+      foreach($posts as $json){
+        if(isset($json['tags'])){
+          foreach($json['tags'] as $c){
             $tags .= '<a href="/blog/tag/'.$c.'">'.$c.'</a> &nbsp; ';
           }
         }
-        
-        $content .= 
-            '<h2>'.$jsonBlogPosts[$postname]['title'].'</h2>'.
-            'by Craig Mayhew on '.date('D dS M Y',strtotime($jsonBlogPosts[$postname]['date'])).' under '.implode(', ',$jsonBlogPosts[$postname]['categories']).
-            '<br /><br /><br />'.$jsonBlogPosts[$postname]['content'].$tags.'<br /><br /><br />';
+        $text = explode(' ', substr(strip_tags($json['content']), 0, $textPreviewLength));
+        array_pop($text);
+        $content .=
+        '<br /><br /><br /><h3><a href="/blog/'.$json['name'].'">'.$json['title'].'</a></h3>'.
+        '<br />'.implode(' ', $text).'…<br /><br />';
         $i++;
         if($i===6){break;}
       }
       $page = new page($tag,$this->css);
+      $url = 'blog/tag/'.str_replace('/','-',$tag).'/index.html';
+      $content = $page->blogify($url,'<span>&nbsp;</span>&nbsp;', $tag, 'by Craig Mayhew', $content.$tags);
+
       $page->setContent(nl2br($content));
       $page->setSideNav($this->sideNav);
       $content = $page->build();
-      $this->generateFile($this->destinationFolder.'blog/tag/'.str_replace('/','-',$tag).'/index.html',$content.$tags);
+      $this->generateFile($this->destinationFolder.$url,$content);
     }
 
     //create category pages
     foreach($jsonBlogCats as $cat=>$posts){
       $content = '';
       $i=0;
-      foreach($posts as $postname){
+      $tags = '<br /><br />';
+      foreach($posts as $json){
+        if(isset($json['tags'])){
+          foreach($json['tags'] as $c){
+            $tags .= '<a href="/blog/tag/'.$c.'">'.$c.'</a> &nbsp; ';
+          }
+        }
+        $text = explode(' ', substr(strip_tags($json['content']), 0, $textPreviewLength));
+        array_pop($text);
         $content .=
-            '<h2>'.$jsonBlogPosts[$postname]['title'].'</h2>'.
-            'by Craig Mayhew on '.date('D dS M Y',strtotime($jsonBlogPosts[$postname]['date'])).' under '.implode(', ',$jsonBlogPosts[$postname]['categories']).
-            '<br /><br /><br />'.$jsonBlogPosts[$postname]['content'].'<br /><br /><br />';
+        '<br /><br /><br /><h3><a href="/blog/'.$json['name'].'">'.$json['title'].'</a></h3>'.
+        '<br />'.implode(' ', $text).'…<br /><br />';
         $i++;
         if($i===6){break;}
       }
       $page = new page($cat,$this->css);
       $url = 'blog/cat/'.str_replace('/','-',$cat).'/index.html';
-      $content = $page->blogify($url,'<span>&nbsp;</span>&nbsp;', $cat, 'by Craig Mayhew', nl2br($content));
+      $content = $page->blogify($url,'<span>&nbsp;</span>&nbsp;', $cat, 'by Craig Mayhew', $content.$tags);
       $page->setContent($content);
       $page->setSideNav($this->sideNav);
       $content = $page->build();

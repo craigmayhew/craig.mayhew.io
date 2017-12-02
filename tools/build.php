@@ -371,19 +371,7 @@ class page{
 
               if ($social) {
                   $return .=
-                  '<div class="sharePost">' .
-                      '<ul>' .
-                          '<li>' .
-                            '<a href="#"><i class="fa fa-heart-o"></i>Like</a>' .
-                          '</li>' .
-                          '<li>' .
-                            '<a href="#"><i class="fa fa-clock-o"></i>Later</a>' .
-                          '</li>' .
-                          '<li>' .
-                            '<a href="#"><i class="fa fa-share-square-o"></i>Share</a>' .
-                          '</li>' .
-                      '</ul>' .
-                  '</div>';
+                  '<div class="sharePost"><div class="sharethis-inline-share-buttons"></div></div>';
               }
            $return .=
           '</div>'.

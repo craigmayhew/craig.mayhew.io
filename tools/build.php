@@ -169,34 +169,13 @@ class builder{
        
       //front page
       $page = new page('Craig Mayhew\'s Blog',$this->css);
-      $content =
-        '<div class="col-sm-12 col-md-9 col-lg-9 col-xl-11">'.
-            '<div class="postBox">'.
-                '<div class="postHead">'.
-                    '<div class="date">'.
-                        '<span>&nbsp;</span>&nbsp;'.
-                    '</div>'.
-                    '<h2>Latest Blog Posts</h2>'.
-                    '<span>by Craig Mayhew</span>'.
-                '</div>'.
-                '<div class="postBody">'.
-                    nl2br($frontPage).
-                '</div>'.
-                '<div class="sharePost">'.
-                    '<ul>'.
-                        '<li>'.
-                            '<a href="#"><i class="fa fa-heart-o"></i>Like</a>'.
-                        '</li>'.
-                        '<li>'.
-                            '<a href="#"><i class="fa fa-clock-o"></i>Later</a>'.
-                        '</li>'.
-                        '<li>'.
-                            '<a href="#"><i class="fa fa-share-square-o"></i>Share</a>'.
-                        '</li>'.
-                    '</ul>'.
-                '</div>'.
-            '</div>'.
-        '</div>';
+      $content = $page->blogify(
+        'blog/',
+        '<span>&nbsp;</span>&nbsp;',
+        'Latest Blog Posts',
+        'by Craig Mayhew',
+        nl2br($frontPage)
+      );
       $page->setContent($content);
       $page->setSideNav($this->sideNav);
       $content = $page->build();
@@ -232,35 +211,13 @@ class builder{
             }
         }
 
-        $content =
-        '<div class="col-sm-12 col-md-9 col-lg-9 col-xl-11">'.
-            '<div class="postBox">'.
-                '<div class="postHead">'.
-                    '<div class="date">'.
-                        '<span>'.date('d',strtotime($json['date'])).'</span>'.date('M',strtotime($json['date'])).
-                    '</div>'.
-                    '<h2>'.$json['title'].'</h2>'.
-                    '<span>by Craig Mayhew on '.date('D jS M Y',strtotime($json['date'])).' under '.implode(', ',$json['categories']).'</span>'.
-                '</div>'.
-                '<div class="postBody">'.
-                    nl2br($json['content']).
-                    $tags.
-                '</div>'.
-                '<div class="sharePost">'.
-                    '<ul>'.
-                        '<li>'.
-                            '<a href="#"><i class="fa fa-heart-o"></i>Like</a>'.
-                        '</li>'.
-                        '<li>'.
-                            '<a href="#"><i class="fa fa-clock-o"></i>Later</a>'.
-                        '</li>'.
-                        '<li>'.
-                            '<a href="#"><i class="fa fa-share-square-o"></i>Share</a>'.
-                        '</li>'.
-                    '</ul>'.
-                '</div>'.
-            '</div>'.
-        '</div>';
+        $content = $page->blogify(
+            'blog/'.$json['name'].'/',
+            '<span>'.date('d',strtotime($json['date'])).'</span>'.date('M',strtotime($json['date'])),
+            $json['title'],
+            'by Craig Mayhew on '.date('D jS M Y',strtotime($json['date'])).' under '.implode(', ',$json['categories']),
+            nl2br($json['content']).$tags,
+            true);
         $page->setContent($content);
         $page->setSideNav($this->sideNav);
         $content = $page->build();
@@ -320,25 +277,12 @@ class builder{
         if($i===6){break;}
       }
       $page = new page($cat,$this->css);
-        $content =
-        '<div class="col-sm-12 col-md-9 col-lg-9 col-xl-11">'.
-            '<div class="postBox">'.
-                '<div class="postHead">'.
-                    '<div class="date">'.
-                        '<span>&nbsp;</span>&nbsp;'.
-                    '</div>'.
-                    '<h2>'.$cat.'</h2>'.
-                    '<span>by Craig Mayhew</span>'.
-                '</div>'.
-                '<div class="postBody">'.
-                    nl2br($content).
-                '</div>'.
-            '</div>'.
-        '</div>';
+      $url = 'blog/cat/'.str_replace('/','-',$cat).'/index.html';
+      $content = $page->blogify($url,'<span>&nbsp;</span>&nbsp;', $cat, 'by Craig Mayhew', nl2br($content));
       $page->setContent($content);
       $page->setSideNav($this->sideNav);
       $content = $page->build();
-      $this->generateFile($this->destinationFolder.'blog/cat/'.str_replace('/','-',$cat).'/index.html',$content);
+      $this->generateFile($this->destinationFolder.$url,$content);
     }
   }
   private function generateFile($name,$content){
@@ -372,6 +316,7 @@ class page{
             '<link rel="stylesheet" href="/css/style.css">'.
         '</head>'.
         '<body>'.
+      '<div id="fb-root"></div>'.
           '<div class="wrapper overlay">'.
             '<div class="container">';
   }
@@ -398,16 +343,64 @@ class page{
   public function setSideNav($nav){
     $this->navRight = $nav;
   }
-  public function build(){
-    $this->buildFooter();
+  public function blogify($url, $date, $title, $author, $content, $social=false){
+      $return =
+      '<script>'.
+        '(function(d, s, id) {'.
+          'var js, fjs = d.getElementsByTagName(s)[0];'.
+          'if (d.getElementById(id)) return;'.
+          'js = d.createElement(s); js.id = id;'.
+          'js.src = \'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11\';'.
+          'fjs.parentNode.insertBefore(js, fjs);'.
+        '}(document, \'script\', \'facebook-jssdk\'));'.
+      '</script>'.
+      '<div class="col-sm-12 col-md-9 col-lg-9 col-xl-11">'.
+          '<div class="postBox">'.
+              '<div class="postHead">'.
+                  '<div class="date">'.
+                      $date.
+                  '</div>'.
+                  '<h2>'.$title.'</h2>'.
+                  '<span>'.$author.'</span>'.
+              '</div>'.
+              '<div class="postBody">'.
+                $content.
+                ($social ? '<br><br><br><div class="fb-comments" data-href="https://craig.mayhew.io/'.$url.'" data-numposts="5" data-width="100%"></div>' : '').
+              '</div>';
 
-    return 
-    $this->header.
-    '<div class="box2">'.
-      '<h1 class="page_title"><a href="/">'.$this->title.'</a></h1>'.
-      $this->content.'<br><br>'.
-    '</div>'.
-    $this->footer;
+              if ($social) {
+                  $return .=
+                  '<div class="sharePost">' .
+                      '<ul>' .
+                          '<li>' .
+                            '<a href="#"><i class="fa fa-heart-o"></i>Like</a>' .
+                          '</li>' .
+                          '<li>' .
+                            '<a href="#"><i class="fa fa-clock-o"></i>Later</a>' .
+                          '</li>' .
+                          '<li>' .
+                            '<a href="#"><i class="fa fa-share-square-o"></i>Share</a>' .
+                          '</li>' .
+                      '</ul>' .
+                  '</div>';
+              }
+           $return .=
+          '</div>'.
+      '</div>';
+
+      return $return;
+  }
+  public function build()
+  {
+      $this->buildFooter();
+
+      return
+          $this->header .
+          '<div class="box2">' .
+          '<h1 class="page_title"><a href="/">' . $this->title . '</a></h1>' .
+          $this->content . '<br><br>' .
+          '</div>' .
+          $this->footer;
   }
 }
 

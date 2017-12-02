@@ -321,7 +321,7 @@ class page{
             '<meta http-equiv="X-UA-Compatible" content="IE=edge">'.
             '<meta name="viewport" content="width=device-width, initial-scale=1">'.
             '<title>'.$this->title.'</title>'.
-            '<script src="https://use.fontawesome.com/cefa967eb5.js"></script>'.
+            '<script src="//use.fontawesome.com/cefa967eb5.js"></script>'.
             '<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5a22f74f689cdf0012ad4b71&product=sticky-share-buttons"></script>'.
             '<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">'.
             '<link rel="stylesheet" href="/css/font-awesome.min.css">'.

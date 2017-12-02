@@ -8,7 +8,7 @@ class builder{
   private $dirPages  = '../pages/';
   private $cssPath   = '../css/style.css';
   private $css       = '';
-  private $justCopy  = array('favicon.ico','files','imgs','css','js','robots.txt','uploads');
+  private $justCopy  = ['favicon.ico','files','imgs','css','js','robots.txt','uploads'];
   private $sideNav   = '';
   /*CONFIG END*/
 
@@ -106,9 +106,9 @@ class builder{
 
   //build blog section
   private function buildBlog(){
-    $jsonBlogPosts  = array();
-    $jsonBlogCats   = array();
-    $jsonBlogTags   = array();
+    $jsonBlogPosts  = [];
+    $jsonBlogCats   = [];
+    $jsonBlogTags   = [];
     if($handle = opendir($this->blogposts)){
       while(false !== ($entry = readdir($handle))){
         if($entry=='.' || $entry=='..'){continue;}
@@ -188,7 +188,7 @@ class builder{
             if(isset($jsonBlogTags[$tag])){
               $jsonBlogTags[$tag][] = $json;
             }else{
-              $jsonBlogTags[$tag] = array($json);
+              $jsonBlogTags[$tag] = [$json];
             }
           }
         }
@@ -198,7 +198,7 @@ class builder{
             if(isset($jsonBlogCats[$cat])){
               $jsonBlogCats[$cat][] = $json;
             }else{
-              $jsonBlogCats[$cat] = array($json);
+              $jsonBlogCats[$cat] = [$json];
             }
           }
         }

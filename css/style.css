@@ -112,6 +112,7 @@ body {
 	position: absolute;
 	top: 38px;
 	left: 23px;
+	margin-right: 6px;
 	max-width: 163px;
 	text-transform: uppercase;
 }

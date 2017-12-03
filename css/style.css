@@ -97,11 +97,12 @@ body {
 }
 .blockThumb {
 	position: relative;
+	overflow-y: hidden;
 }
 .blockThumb img {
 	width: 100%;
-	height: 100%;
 	display: block;
+	max-width: 100%;
 }
 .blockThumb h4 {margin: 0}
 .blockThumb h4 a {

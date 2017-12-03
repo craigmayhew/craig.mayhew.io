@@ -500,7 +500,8 @@ body {
 }
 @media screen and (max-width: 575px) {
 	.social_icons {text-align: center}
-	.right_block .col-sm:first-child {margin-bottom: 10px}
+	.left_block .col-sm:first-child,
+	.right_block .col-sm:first-child{margin-bottom: 10px}
 }
 @media screen and (max-width: 479px) {
 	.page_title,

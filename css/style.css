@@ -178,7 +178,7 @@ body {
 	color: #fff;
 	font-weight: 600;
 }
-.block a i {
+.block a i.fa-angle-right{
 	display: inline-block;
 	width: 18px;
 	height: 18px;

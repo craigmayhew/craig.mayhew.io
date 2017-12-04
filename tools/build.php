@@ -5,6 +5,7 @@ class builder{
   /*CONFIG START*/
   private $destinationFolder = '../htdocs/';
   private $blogposts = '../blogposts/';
+  private $dirArticles  = '../articles/';
   private $dirPages  = '../pages/';
   private $cssPath   = '../css/style.css';
   private $css       = '';
@@ -42,15 +43,19 @@ class builder{
             break; 
           case 'static':
             $build['static'] = 'static';
-            break; 
+            break;
           case 'pages':
+            $build['articles'] = 'articles';
             $build['blog'] = 'blog';
             $build['pages'] = 'pages';
-            break; 
+            break;
+          case 'articles':
+            $build['articles'] = 'articles';
+            break;
         }
       }
     } else {
-      $build = ['static'=>1,'blog'=>1,'pages'=>1];
+      $build = ['static'=>1,'blog'=>1,'pages'=>1,'articles'=>1];
     }
     $this->css = file_get_contents($this->cssPath);
     if(isset($build['static'])){
@@ -60,6 +65,10 @@ class builder{
     if(isset($build['blog'])){
       echo "Building Blog\n";
       $this->buildBlog();
+    }
+    if(isset($build['articles'])){
+      echo "Building Articles\n";
+      $this->buildArticles($this->dirArticles);
     }
     if(isset($build['pages'])){
       echo "Building Pages\n";
@@ -95,12 +104,33 @@ class builder{
         }
         if(substr($entry,-5) != '.json'){continue;}
         $json = json_decode(file_get_contents($dir.$entry),true);
+
         $page = new page($json['title'],$this->css);
-        $page->setContent(file_get_contents(substr($dir.$entry,0,-5).'.html'));
-        $page->setSideNav('');
+        $content = file_get_contents(substr($dir.$entry,0,-5).'.html');
+        //pagify everything except the home page
+        if ('/' !== $json['url']){
+          $content = $page->pagify('', $json['title'], '', $content);
+        }
+        $page->setContent($content);
         $content = $page->build();
         $this->generateFile($this->destinationFolder.$json['url'].'/index.html',$content);
       }
+    }
+  }
+
+  //build articles
+  private function buildArticles($dir){
+    if($handle = opendir($dir)){
+        while(false !== ($entry = readdir($handle))){
+            if(substr($entry,-5) != '.json'){continue;}
+            $json = json_decode(file_get_contents($dir.$entry),true);
+            $page = new page($json['title'],$this->css);
+            $content = file_get_contents(substr($dir.$entry,0,-5).'.html');
+            $content = $page->pagify('', $json['title'], '', $content);
+            $page->setContent($content);
+            $content = $page->build();
+            $this->generateFile($this->destinationFolder.'articles/'.$json['url'].'/index.html',$content);
+        }
     }
   }
 
@@ -389,6 +419,34 @@ class page{
       '</div>';
 
       return $return;
+  }
+  public function pagify($date, $title, $author, $content){
+    $return =
+    '<script>'.
+        '(function(d, s, id) {'.
+        'var js, fjs = d.getElementsByTagName(s)[0];'.
+        'if (d.getElementById(id)) return;'.
+        'js = d.createElement(s); js.id = id;'.
+        'js.src = \'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11\';'.
+        'fjs.parentNode.insertBefore(js, fjs);'.
+        '}(document, \'script\', \'facebook-jssdk\'));'.
+    '</script>'.
+    '<div class="col-sm-12 col-md-9 col-lg-9 col-xl-11">'.
+        '<div class="postBox">'.
+            '<div class="postHead">'.
+                '<div class="date">'.
+                    $date.
+                '</div>'.
+                '<h2>'.$title.'</h2>'.
+                '<span>'.$author.'</span>'.
+            '</div>'.
+            '<div class="postBody">'.
+                $content.
+            '</div>'.
+        '</div>'.
+    '</div>';
+
+    return $return;
   }
   public function build()
   {

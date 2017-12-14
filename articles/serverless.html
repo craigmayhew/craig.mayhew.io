@@ -1,6 +1,6 @@
 <p>
-    <b>Executive summary</b><br>
-    The next big thing that's happening right now.
+    <b>Executive summary</b><br><br>
+    The next big thing that's been happening since 2011.
     The premise builds on paradigms before it, allowing you to manage less infrastructure and concentrate on your product.
 </p>
 
@@ -9,33 +9,44 @@
 </p>
 
 <p>
-    To adopt serverless, there's a few things you will need to change. No servers means no containers, no os patching/upgrading. No on site staging environments (you have this in cloud already though, right?) and less work for your devops.
-    Serverless technology has limitations and some applications cannot yet be migrated. For starters, AWS has a 3GB ceiling on memory usage and a 300 second limit on execution time. This makes it great for web apps, but terrible for long running tasks. Over time, these ceilings will be get higher.
+    Serverless has been available for simple websites wince 2011 when amazon announced you could host a wwebsite directly on an S3 bucket. This immediately took away the need to deal with virtual machines and operating systems. Suddenly you could deploy a static website to an S3 bucket and it scaled all the way from free to millions of visitors. More recently, the term serverless is being used when moving more complex and interactive applications to a service that elevates you above the tasks of dealing with the OS, patching, or VMs. 
+<br><br>
+To adopt serverless, there's a few things you will need to change. No servers means no containers, no os patching/upgrading. No on site staging environments (you have this in cloud already though, right?) and less work for your devops. Serverless technology has limitations that you need to be aware of and some applications cannot yet be migrated. For starters, AWS has a 3GB ceiling on memory usage and a 300 second limit on execution time. This makes it great for web apps, but terrible for long running tasks. Over time, the bar will continue to be raised.<br><br>
+I don't know about you, but a simplified future with concentrated focus on the application layer sounds like a win-win to me.
 </p>
 
 <p>
-    <b>Latest industry developments</b><br>
-    2017-11-30 AWS announces the first serverless database service. This takes advantage of AWS Aurora having separate compute and storage layers (really aurora is two services under the hood). You pay for the storage in GB hours and Compute/ram capacity time in per second increments.</p>
-    2017-11-30 AWS announces fargate. Manage containers without the orchestration.
+    <b>Latest industry developments</b><br><br>
+    2017-nov-30 AWS announces the first serverless database service. This takes advantage of AWS Aurora having separate compute and storage layers (really aurora is two services under the hood). You pay for the storage in GB hours and Compute/ram capacity time in per second increments.</p>
+    2017-nov-30 AWS announces fargate. Manage containers without the orchestration.
+    2014-nov-14 AWS announces lambda. Event driven containers billed per 100ms.
+    2011-feb-17 AWS announces full static website hosting on S3.
 </p>
 
 <p>
-    <b>Technical FAQ</b><br>
-    Docker allows us to ship the OS layer and the app layer as a single immutable deployment. How do we know that our app that is working in dev, will also work in live?<br>
+    <b>Technical FAQ</b><br><br>
+
+    I don't trust serverless<br>
+    <ul>
+        <li>If you trust the entire service/supply chain of your chosen cloud provider, one more service in the chain is going to make very little difference to the sum.</li>
+    </ul>
+
+    We don't have great test coverage, will this be a problem?<br>
+    <ul>
+        <li>Yes, and not just for serverless. If you have poor test coverage, the cost of change puts you at a competitive disadvantage.</li>
+    </ul>
+
+    Our app doesn't work in serverless<br>
+    <ul>
+        <li>If your app doesn't work in a serverless architecture then it's either very specialised or much more likely, it's a legacy application that needs replacing.</li>
+    </ul>
+
+    Docker allows us to ship the OS and the app layer as a single immutable deployment. How do we know that our app that is working in dev, will also work in live?<br>
     There are a few options here.
     <ol>
         <li>Run dev, staging and live in the cloud provider. Don't run anything locally. This ensures identical behaviour in those environments.</li>
         <li>Run just staging and live in the cloud provider. Accept that your local dev environment might pass tests that don't pass when they hit staging.</li>
     </ol>
-    I don't trust serverless<br>
-    <ul>
-        <li>If you trust the entire service/supply chain of your chosen cloud provider, one more service in the chain is going to make very little difference to the sum.</li>
-        <li>If your app doesn't work in a serverless architecture then I already consider it a legacy application.</li>
-    </ul>
-    We don't have great test coverage, will this be a problem?<br>
-    <ul>
-        <li>Yes, and not just for serverless. If you have poor test coverage, the cost of change puts you at a competitive disadvantage.</li>
-    </ul>
 </p>
 
 <p>

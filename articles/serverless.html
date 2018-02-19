@@ -9,7 +9,7 @@
 </p>
 
 <p>
-    Serverless has been available for simple websites wince 2011 when amazon announced you could host a wwebsite directly on an S3 bucket. This immediately took away the need to deal with virtual machines and operating systems. Suddenly you could deploy a static website to an S3 bucket and it scaled all the way from free to millions of visitors. More recently, the term serverless is being used when moving more complex and interactive applications to a service that elevates you above the tasks of dealing with the OS, patching, or VMs. 
+    Serverless has been available for simple websites since 2011 when amazon announced you could host a website directly on an S3 bucket. This immediately took away the need to deal with virtual machines and operating systems. Suddenly you could deploy a static website to an S3 bucket and it scaled all the way from free to millions of visitors. More recently, the term serverless is being used when moving more complex and interactive applications to a service that elevates you above the tasks of dealing with the OS, patching, or VMs.
 <br><br>
 To adopt serverless, there's a few things you will need to change. No servers means no containers, no os patching/upgrading. No on site staging environments (you have this in cloud already though, right?) and less work for your devops. Serverless technology has limitations that you need to be aware of and some applications cannot yet be migrated. For starters, AWS has a 3GB ceiling on memory usage and a 300 second limit on execution time. This makes it great for web apps, but terrible for long running tasks. Over time, the bar will continue to be raised.<br><br>
 I don't know about you, but a simplified future with concentrated focus on the application layer sounds like a win-win to me.
@@ -54,9 +54,4 @@ I don't know about you, but a simplified future with concentrated focus on the a
         <li>Run dev, staging and live in the cloud provider. Don't run anything locally. This ensures identical behaviour in those environments.</li>
         <li>Run just staging and live in the cloud provider. Accept that your local dev environment might pass tests that don't pass when they hit staging.</li>
     </ol>
-</p>
-
-<p>
-    <b>Can I help you?</b><br>
-    Questions not answered here? Please <a href="/contact/">contact me</a>.
 </p>

@@ -248,7 +248,7 @@ class builder{
       $content = $page->blogify(
         'blog/',
         '<span>&nbsp;</span>&nbsp;',
-        'Latest Blog Posts',
+        'Latest blog posts',
         'by Craig Mayhew',
         nl2br($frontPage)
       );

@@ -389,7 +389,7 @@ class page{
                   $this->navRight.
                  '<div class="row">'.
                    '<div class="col-12 text-center">'.
-                     '<p class="copyText">&copy; 2017 Craig Mayhew</p>'.
+                     '<p class="copyText">&copy; 2018 Craig Mayhew</p>'.
                    '</div>'.
                  '</div>'.
                '</div>'.

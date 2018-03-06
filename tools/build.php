@@ -120,17 +120,63 @@ class builder{
 
   //build articles
   private function buildArticles($dir){
+    $jsonArticles = [];
     if($handle = opendir($dir)){
         while(false !== ($entry = readdir($handle))){
-            if(substr($entry,-5) != '.json'){continue;}
+            if($entry=='.' || $entry=='..'){continue;}
+            if(substr($entry, -5) !== '.json'){continue;}
             $json = json_decode(file_get_contents($dir.$entry),true);
+            if(isset($json['live']) && $json['live']==='no'){continue;}
+
             $page = new page($json['title'],$this->css);
             $content = file_get_contents(substr($dir.$entry,0,-5).'.html');
+            $json['content'] = $content;
+
+            $jsonArticles[$json['title']] = $json;
+
             $content = $page->pagify('', $json['title'], '', $content);
             $page->setContent($content);
             $content = $page->build();
             $this->generateFile($this->destinationFolder.'articles/'.$json['url'].'/index.html',$content);
         }
+
+        //now order articles by date DESC
+        uasort($jsonArticles, function($a, $b) {
+            if($a['lastupdated']==$b['lastupdated']){
+                return 0;
+            }
+
+            return ($b['lastupdated'] < $a['lastupdated'] ? -1 : 1);
+        });
+
+        //build list of articles page
+        $frontPage = '';
+        $textPreviewLength = 220;
+        $i=0;
+        foreach($jsonArticles as $json){
+            $i++;
+            $text = explode(' ', substr(strip_tags($json['content']), 0, $textPreviewLength));
+            array_pop($text);
+            $text = trim(implode(' ', $text)).'…';
+            $frontPage .=
+                '<br /><br /><br /><h3><a href="/articles/'.$json['url'].'">'.$json['title'].'</a></h3>'.
+                '<br />'.$text.'<br /><br />';
+            if($i===50){break;}
+        }
+
+        //articles front page
+        $page = new page('Craig Mayhew\'s Articles',$this->css);
+        $content = $page->blogify(
+            'articles/',
+            '<span>&nbsp;</span>&nbsp;',
+            'Latest articles',
+            'by Craig Mayhew',
+            nl2br($frontPage)
+        );
+        $page->setContent($content);
+        $page->setSideNav($this->sideNav);
+        $content = $page->build();
+        $this->generateFile($this->destinationFolder.'articles/index.html',$content);
     }
   }
 

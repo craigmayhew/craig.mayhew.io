@@ -1,4 +1,5 @@
 {
-  "url":"games/ofLife",
-  "title":"Game of Life"
+  "relativePath":"../../",
+  "title":"Game of Life",
+  "url":"games/ofLife"
 }

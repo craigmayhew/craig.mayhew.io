@@ -120,7 +120,7 @@ class builder{
         if(substr($entry,-5) != '.json'){continue;}
         $json = json_decode(file_get_contents($dir.$entry),true);
 
-        $page = new page($json['title'],$this->css,$this->generateForIPFS,$this->generateForIPFS?'../':'/');
+        $page = new page($json['title'],$this->css,$this->generateForIPFS,$json['relativePath']);
         $content = file_get_contents(substr($dir.$entry,0,-5).'.html');
         //pagify everything except the home page
         if ('/' !== $json['url']){
@@ -143,13 +143,13 @@ class builder{
             $json = json_decode(file_get_contents($dir.$entry),true);
             if(isset($json['live']) && $json['live']==='no'){continue;}
 
-            $page = new page($json['title'],$this->css,$this->generateForIPFS,$this->generateForIPFS?'../':'/');
+            $page = new page($json['title'],$this->css,$this->generateForIPFS,$this->generateForIPFS?'../../':'/');
             $content = file_get_contents(substr($dir.$entry,0,-5).'.html');
             $json['content'] = $content;
 
             $jsonArticles[$json['title']] = $json;
 
-            $content = $page->pagify('', $json['title'], '', $content);
+            $content = $page->pagify('', 'Article', '', $content);
             $page->setContent($content);
             $content = $page->build();
             $this->generateFile($this->destinationFolder.'articles/'.$json['url'].'/index.html',$content);
@@ -338,7 +338,7 @@ class builder{
       foreach($posts as $json){
         if(isset($json['tags'])){
           foreach($json['tags'] as $c){
-            $tags .= '<a href="blog/tag/'.$c.'">'.$c.'</a> &nbsp; ';
+            $tags .= '<a href="blog/tag/'.$c.'">page_title'.$c.'</a> &nbsp; ';
           }
         }
         $text = explode(' ', substr(strip_tags($json['content']), 0, $textPreviewLength));

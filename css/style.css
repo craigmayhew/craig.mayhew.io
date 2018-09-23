@@ -33,7 +33,7 @@ body {
 * Just put your Image name in 'url' attribute.
 ******************************/
 .wrapper {
-	background: url(../imgs/bg.jpg) no-repeat fixed center center / cover;
+	background: url(https://craig.mayhew.io/imgs/bg.jpg) no-repeat fixed center center / cover;
 	position: relative;
 	min-height: 100vh;
 }
@@ -359,7 +359,7 @@ body {
 }
 .widget li::after {
 	content: '';
-	background-image: url(../images/arrow.png);
+	background-image: url(https://craig.mayhew.io/images/arrow.png);
 	left: 0;
 	top: 50%;
 	position: absolute;
@@ -385,7 +385,7 @@ body {
 .backHome:before {
 	position: absolute;
 	content: '';
-	background-image: url(../images/round-arrow.png);
+	background-image: url(https://craig.mayhew.io/images/round-arrow.png);
 	width: 33px;
 	height: 33px;
 	left: 0;

@@ -149,7 +149,7 @@ class builder{
 
             $jsonArticles[$json['title']] = $json;
 
-            $content = $page->pagify('', 'Article', '', $content);
+            $content = $page->pagify('', 'Article', 'By Craig Mayhew', $content);
             $page->setContent($content);
             $content = $page->build();
             $this->generateFile($this->destinationFolder.'articles/'.$json['url'].'/index.html',$content);

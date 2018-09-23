@@ -287,8 +287,10 @@ body {
 }
 .postBody h3 a:hover{text-decoration:none;}
 
-.postBody p {
+.postBody p,
+.postBody ol li {
 	font-size: 15px;
+	line-height: 2em;
 }
 .postBody img {
 	width: 100%;

@@ -1,0 +1,14 @@
+language: php
+
+php:
+  - php7.3
+  - php7.4
+  - nightly
+
+install:
+  composer install
+
+script:
+  cd tools
+  php build.php pages static
+  //php uploadToS3.php key=${var.access_key} secret=${var.secret_key}

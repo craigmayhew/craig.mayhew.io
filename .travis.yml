@@ -11,4 +11,4 @@ install:
 script:
   cd tools
   php build.php pages static
-  //php uploadToS3.php key=${var.access_key} secret=${var.secret_key}
+  //php uploadToS3.php key=$AWSACCESSKEY secret=$AWSSECRETKEY

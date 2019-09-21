@@ -5,32 +5,13 @@ Craig Mayhew's Personal website
 Blog posts are stored in blogposts/ as json files. One file per post.
 Pages are stored in pages/ as json files. One file per page.
 
-PHP is used to generate static html in the htdocs directory and then optionally sync that to an S3 bucket.
-
-## install
-
-<pre>
-php composer.phar selfupdate
-php composer.phar install
-</pre>
-
-Optionally, if you intend to deploy to S3, you need to add your credentials to your home folder. The file needs permission 600 ~/.aws/credentials
-
-<pre>
-[default]
-aws_access_key_id = SECRET_ID
-aws_secret_access_key = SECRET_KEY
-</pre>
+PHP is used to generate static html in the htdocs directory, sync that to an S3 bucket and then wipe cache on cloudfront.
 
 ## deploy
 
-<pre>
-cd tools
-php build.php
-php uploadeToS3.php
-</pre>
+Deployment is handled by TravisCI. See [.travis.yml](https://github.com/craigmayhew/craig.mayhew.io/blob/master/.travis.yml)
 
-## partial deploy
+## partial local builds
 
 You can specify what should be regenerated via arguments to build.php.  e.g. to deploy just the blog and pages
 <pre>

@@ -9,10 +9,10 @@ install:
 
 script:
   - |
-    cd tools && php build.php pages static
+    cd $TRAVIS_BUILD_DIR/tools && php build.php pages static
     
     if([ $TRAVIS_BRANCH == "master" ] && [ $TRAVIS_PULL_REQUEST == "false" ])
     then
-      cd tools && php uploadToS3.php key=$AWSACCESSKEY secret=$AWSSECRETKEY
+      cd $TRAVIS_BUILD_DIR/tools && php uploadToS3.php key=$AWSACCESSKEY secret=$AWSSECRETKEY
       echo "Deployed"
     fi

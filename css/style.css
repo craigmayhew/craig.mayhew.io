@@ -114,7 +114,7 @@ body {
 	top: 38px;
 	left: 23px;
 	margin-right: 6px;
-	max-width: 240px
+	max-width: 240px;
 	text-transform: uppercase;
 }
 .blockThumb h4 a span {text-transform: lowercase;}

@@ -17,7 +17,7 @@ script:
       echo "Deployed to S3"
 
       # deploy to ipfs via infura
-      FILES=$(find * | awk '{print "-F \"file=@" $1 ";filename=" $1 "\""}')
+      FILES=$(find * -type f | awk '{print "-F \"file=@" $1 ";filename=" $1 "\""}')
       curl "https://ipfs.infura.io:5001/api/v0/add?pin=true&recursive=true&wrap-with-directory=true" -X POST -H "Content-Type: multipart/form-data" $FILES
       echo "Deployed to IPFS via Infura"
     fi

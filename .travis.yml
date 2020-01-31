@@ -17,7 +17,10 @@ script:
       echo "Deployed to S3"
 
       # deploy to ipfs via infura
-      FILES=$(find * -type f | awk '{print "-F \"file=@" $1 ";filename=" $1 "\""}')
+      # sadly only files without spaces for now
+      # TODO: FIX THIS NOT WORKING FOR FILES WITH SPACES
+      FILES=$(find * -type f | grep -v ' ' | sed -e 's/ /\\ /g' | awk -v q="'" '{print " -F " q "file=@" $0 ";filename=" $0 q}')
+      //FILES=$(find * -type f | sed -e 's/ /\\ /g' | awk -v q="'" '{print " -F " q "file=" $0 ";filename=" $0 q}')
       curl "https://ipfs.infura.io:5001/api/v0/add?pin=true&recursive=true&wrap-with-directory=true" -X POST -H "Content-Type: multipart/form-data" $FILES
       echo "Deployed to IPFS via Infura"
     fi

@@ -51,8 +51,12 @@ php:
   - 7.3
   - nightly
 
+before_install:
+  - sudo apt-get update -y
+  - sudo apt-get install curl -y
+
 install:
-  composer install
+  - composer install
 
 script:
   - |

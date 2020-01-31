@@ -17,6 +17,7 @@ script:
       echo "Deployed to S3"
 
       # deploy to ipfs via infura
+      cd $TRAVIS_BUILD_DIR/htdocs
       # sadly only files without spaces for now
       # TODO: FIX THIS NOT WORKING FOR FILES WITH SPACES
       FILES=$(find * -type f | grep -v ' ' | sed -e 's/ /\\ /g' | awk -v q="'" '{print " -F " q "file=@" $0 ";filename=" $0 q}')

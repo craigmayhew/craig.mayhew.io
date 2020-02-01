@@ -77,7 +77,7 @@ script:
       n=1
       while [ $n -le 40 ]
       do
-        curl "https://ipfs.infura.io:5001/api/v0/add?pin=true&recursive=true&wrap-with-directory=true" -vv -X POST -H "Content-Type: multipart/form-data" $FILES
+        curl "https://ipfs.infura.io:5001/api/v0/add?pin=true&recursive=true&wrap-with-directory=true" -vv -X POST -H "Content-Type: multipart/form-data" $FILES -C -
         echo "Deployed to IPFS via Infura"
         n=$(( n+1 ))
       done

@@ -253,7 +253,7 @@ class builder{
         array_pop($text);
         $text = implode(' ', $text).'…';
         $frontPage .=
-        '<br /><br /><br /><h3><a href="blog/'.$json['name'].'">'.$json['title'].'</a></h3>'.
+        '<br /><br /><br /><h3><a href="'.$json['name'].'/">'.$json['title'].'</a></h3>'.
         '<br />'.$text.'<br /><br />';
         if($i===50){break;}
       }

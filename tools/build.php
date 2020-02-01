@@ -195,6 +195,31 @@ class builder{
     }
   }
 
+  private function getSideNav($depth = '..') {
+    return
+    '<div class="sidebar">'.
+        '<aside class="widget">'.
+            '<h3>Recent Posts</h3>'.
+            '<ul>'.
+                '<li><a href="'.($this->generateForIPFS?$depth:'blog').'/reprap-4-year-project/">3D Printer</a></li>'.
+                '<li><a href="'.($this->generateForIPFS?$depth:'blog').'/usb-secure-eraser/">USB Eraser</a></li>'.
+                '<li><a href="'.($this->generateForIPFS?$depth:'blog').'/dns-the-original-cdn/">DNS as a CDN</a></li>'.
+            '</ul>'.
+        '</aside>'.
+        '<aside class="widget">'.
+            '<h3>Category</h3>'.
+            '<ul>'.
+                '<li><a href="'.($this->generateForIPFS?$depth:'blog').'/cat/Astrothoughts/">Astrothoughts</a></li>'.
+                '<li><a href="'.($this->generateForIPFS?$depth:'blog').'/cat/Code/">Code</a></li>'.
+                '<li><a href="'.($this->generateForIPFS?$depth:'blog').'/cat/General/">General</a></li>'.
+                '<li><a href="'.($this->generateForIPFS?$depth:'blog').'/cat/Reviews-Experience/">Reviews/Experience</a></li>'.
+                '<li><a href="'.($this->generateForIPFS?$depth:'blog').'/cat/General-Techie/">Techie</a></li>'.
+            '</ul>'.
+        '</aside>'.
+    ($this->generateForIPFS?'':'<a class="backHome" href="/">Back to home</a>').
+    '</div>';
+  }
+
   //build blog section
   private function buildBlog(){
     $jsonBlogPosts  = [];
@@ -218,28 +243,8 @@ class builder{
       return ($b['date'] < $a['date'] ? -1 : 1);
     });
 
-    $this->sideNav =
-    '<div class="sidebar">'.
-        '<aside class="widget">'.
-            '<h3>Recent Posts</h3>'.
-            '<ul>'.
-                '<li><a href="'.($this->generateForIPFS?'..':'blog').'/reprap-4-year-project/">3D Printer</a></li>'.
-                '<li><a href="'.($this->generateForIPFS?'..':'blog').'/usb-secure-eraser/">USB Eraser</a></li>'.
-                '<li><a href="'.($this->generateForIPFS?'..':'blog').'/dns-the-original-cdn/">DNS as a CDN</a></li>'.
-            '</ul>'.
-        '</aside>'.
-        '<aside class="widget">'.
-            '<h3>Category</h3>'.
-            '<ul>'.
-                '<li><a href="'.($this->generateForIPFS?'..':'blog').'/cat/Astrothoughts/">Astrothoughts</a></li>'.
-                '<li><a href="'.($this->generateForIPFS?'..':'blog').'/cat/Code/">Code</a></li>'.
-                '<li><a href="'.($this->generateForIPFS?'..':'blog').'/cat/General/">General</a></li>'.
-                '<li><a href="'.($this->generateForIPFS?'..':'blog').'/cat/Reviews-Experience/">Reviews/Experience</a></li>'.
-                '<li><a href="'.($this->generateForIPFS?'..':'blog').'/cat/General-Techie/">Techie</a></li>'.
-            '</ul>'.
-        '</aside>'.
-    ($this->generateForIPFS?'':'<a class="backHome" href="/">Back to home</a>').
-    '</div>';
+    $this->sideNav = $this->getSideNav('..');
+    
     //now work out tags and categories 
     if(count($jsonBlogPosts)>0){
       $i=0;

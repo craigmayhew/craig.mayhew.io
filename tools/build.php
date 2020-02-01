@@ -336,8 +336,8 @@ class builder{
     foreach($jsonBlogTags as $tag=>$posts){
       $content = '';
       $i=0;
-      $tags = '<br /><br />';
       foreach($posts as $json){
+        $tags = '<br /><br />';
         if(isset($json['tags'])){
           foreach($json['tags'] as $c){
             $tags .= '<a href="'.($this->generateForIPFS?'../../../':'/').'blog/tag/'.str_replace(' ','-',$c) .'">'.$c.'</a> &nbsp; ';
@@ -347,13 +347,13 @@ class builder{
         array_pop($text);
         $content .=
         '<br /><br /><br /><h3><a href="'.$json['name'].'">'.$json['title'].'</a></h3>'.
-        '<br />'.implode(' ', $text).'…<br /><br />';
+        '<br />'.implode(' ', $text).'…'.$tags.'<br /><br />';
         $i++;
         if($i===6){break;}
       }
       $page = new page($tag,$this->css,$this->generateForIPFS,$this->generateForIPFS?'../../../':'/');
       $url = 'blog/tag/'.str_replace(['/',' '],'-',$tag).'/index.html';
-      $content = $page->blogify($url,'<span>&nbsp;</span>&nbsp;', $tag, 'by Craig Mayhew', $content.$tags);
+      $content = $page->blogify($url,'<span>&nbsp;</span>&nbsp;', $tag, 'by Craig Mayhew', $content);
 
       $page->setContent(nl2br($content));
       $page->setSideNav($this->getSideNav('../..'));

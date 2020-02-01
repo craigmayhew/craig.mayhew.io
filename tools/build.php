@@ -298,7 +298,7 @@ class builder{
         $tags = '<br /><br />';
         if (isset($json['tags']) && is_array($json['tags'])) {
             foreach ($json['tags'] as $c) {
-                $tags .= '<a href="blog/tag/' . $c . '">' . $c . '</a> &nbsp; ';
+                $tags .= '<a href="blog/tag/' . str_replace(' ','-',$c) . '">' . $c . '</a> &nbsp; ';
             }
         }
 
@@ -338,7 +338,7 @@ class builder{
       foreach($posts as $json){
         if(isset($json['tags'])){
           foreach($json['tags'] as $c){
-            $tags .= '<a href="blog/tag/'.$c.'">page_title'.$c.'</a> &nbsp; ';
+            $tags .= '<a href="blog/tag/'.str_replace(' ','-',$c) .'">'.$c.'</a> &nbsp; ';
           }
         }
         $text = explode(' ', substr(strip_tags($json['content']), 0, $textPreviewLength));
@@ -350,7 +350,7 @@ class builder{
         if($i===6){break;}
       }
       $page = new page($tag,$this->css,$this->generateForIPFS,$this->generateForIPFS?'../../':'/');
-      $url = 'blog/tag/'.str_replace('/','-',$tag).'/index.html';
+      $url = 'blog/tag/'.str_replace(['/',' '],'-',$tag).'/index.html';
       $content = $page->blogify($url,'<span>&nbsp;</span>&nbsp;', $tag, 'by Craig Mayhew', $content.$tags);
 
       $page->setContent(nl2br($content));
@@ -367,7 +367,7 @@ class builder{
       foreach($posts as $json){
         if(isset($json['tags'])){
           foreach($json['tags'] as $c){
-            $tags .= '<a href="blog/tag/'.$c.'">'.$c.'</a> &nbsp; ';
+            $tags .= '<a href="blog/tag/'.str_replace(' ','-',$c).'">'.$c.'</a> &nbsp; ';
           }
         }
         $text = explode(' ', substr(strip_tags($json['content']), 0, $textPreviewLength));

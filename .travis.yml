@@ -54,6 +54,11 @@ php:
 before_install:
   - sudo apt-get update -y
   - sudo apt-get install curl -y
+  - sudo apt-get install golang-go -y
+  - wget https://dist.ipfs.io/go-ipfs/v0.4.23/go-ipfs_v0.4.23_linux-amd64.tar.gz
+  - tar xvfz go-ipfs_v0.4.23_linux-amd64.tar.gz
+  - sudo mv go-ipfs/ipfs /usr/local/bin/ipfs
+  - sudo rm -rf go-ipfs/
 
 install:
   - composer install

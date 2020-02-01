@@ -67,7 +67,7 @@ script:
   - |
     cd $TRAVIS_BUILD_DIR/tools && php build.php pages static
     
-    if([ $TRAVIS_PHP_VERSION == "7.3" ] && [ $TRAVIS_BRANCH == "master" ] && [ $TRAVIS_PULL_REQUEST == "false" ])
+    if([ $TRAVIS_PHP_VERSION == "7.4" ] && [ $TRAVIS_BRANCH == "master" ] && [ $TRAVIS_PULL_REQUEST == "false" ])
     then
       cd $TRAVIS_BUILD_DIR/tools && php uploadToS3.php
       echo "Deployed to S3"

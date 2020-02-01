@@ -82,4 +82,7 @@ script:
         n=$(( n+1 ))
       done
 
+      # update IPNS
+      #aws change-resource-record-sets --hosted-zone-id $HOSTEDZONEID --cli-input-json "{\"Comment\": \"UPSERT IPNS TXT Record\",\"Changes\": [{\"Action\": \"UPSERT\",\"ResourceRecordSet\": {\"Name\": \"_dnslink.craig.mayhew.io\",\"Type\": \"TXT,\"TTL\": 300,\"ResourceRecords\": [{ \"Value\": \"dnslink=\/ipfs\/QmZf6XZMe21HtaYESY2DsnLBZU814RGWzjRe22rHxM5tLq\"}]}}]}"
+      echo "Updated IPNS DNS Record"
     fi

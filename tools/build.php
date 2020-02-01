@@ -321,7 +321,7 @@ class builder{
     $content = '';
     foreach($jsonBlogPosts as $json){
         //add blog post to the archive array
-        $content .= substr($json['date'],0,10).' <a href="../'.$json['name'].'/index.html">'.$json['title'].'</a><br>';
+        $content .= substr($json['date'],0,10).' <a href="'.($this->generateForIPFS?'../':'blog/').$json['name'].'/index.html">'.$json['title'].'</a><br>';
     }
     $page = new page('Blog Archive',$this->css,$this->generateForIPFS,$this->generateForIPFS?'../../':'/');
     $content = $page->blogify('blog/archive/','<span>&nbsp;</span>&nbsp;', 'Blog Archive', 'by Craig Mayhew', nl2br($content));

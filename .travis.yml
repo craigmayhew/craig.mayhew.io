@@ -69,7 +69,7 @@ script:
 
       # deploy to ipfs via infura
       cd $TRAVIS_BUILD_DIR/htdocs
-      FILES=$(find * -type f | sed -e 's/ /\\ /g' | awk -v q="'" '{print " -F " q "file=@\"" $0 "\";filename=\"" $0 "\"" q}')
+      FILES=$(find * -type f | awk -v q="'" '{print " -F " q "file=@\"" $0 "\";filename=\"" $0 "\"" q}')
       echo $FILES
       curl "https://ipfs.infura.io:5001/api/v0/add?pin=true&recursive=true&wrap-with-directory=true" -vv -X POST -H "Content-Type: multipart/form-data" $FILES
       echo "Deployed to IPFS via Infura"

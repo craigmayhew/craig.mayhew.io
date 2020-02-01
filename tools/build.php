@@ -312,7 +312,7 @@ class builder{
             nl2br($json['content']).$tags,
             true);
         $page->setContent($content);
-        $page->setSideNav($this->getSideNav('../..'));
+        $page->setSideNav($this->getSideNav('..'));
         $content = $page->build();
         $this->generateFile($this->destinationFolder.'blog/'.$json['name'].'/index.html',$content);
       }
@@ -328,7 +328,7 @@ class builder{
     $page = new page('Blog Archive',$this->css,$this->generateForIPFS,$this->generateForIPFS?'../../':'/');
     $content = $page->blogify('blog/archive/','<span>&nbsp;</span>&nbsp;', 'Blog Archive', 'by Craig Mayhew', nl2br($content));
     $page->setContent($content);
-    $page->setSideNav($this->getSideNav('../..'));
+    $page->setSideNav($this->getSideNav('..'));
     $content = $page->build();
     $this->generateFile($this->destinationFolder.'blog/archive/index.html',$content);
 

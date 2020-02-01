@@ -223,19 +223,19 @@ class builder{
         '<aside class="widget">'.
             '<h3>Recent Posts</h3>'.
             '<ul>'.
-                '<li><a href="blog/reprap-4-year-project/">3D Printer</a></li>'.
-                '<li><a href="blog/usb-secure-eraser/">USB Eraser</a></li>'.
-                '<li><a href="blog/dns-the-original-cdn/">DNS as a CDN</a></li>'.
+                '<li><a href="'.($this->generateForIPFS?'..':'blog').'/reprap-4-year-project/">3D Printer</a></li>'.
+                '<li><a href="'.($this->generateForIPFS?'..':'blog').'/usb-secure-eraser/">USB Eraser</a></li>'.
+                '<li><a href="'.($this->generateForIPFS?'..':'blog').'/dns-the-original-cdn/">DNS as a CDN</a></li>'.
             '</ul>'.
         '</aside>'.
         '<aside class="widget">'.
             '<h3>Category</h3>'.
             '<ul>'.
-                '<li><a href="blog/cat/Astrothoughts/">Astrothoughts</a></li>'.
-                '<li><a href="blog/cat/Code/">Code</a></li>'.
-                '<li><a href="blog/cat/General/">General</a></li>'.
-                '<li><a href="blog/cat/Reviews-Experience/">Reviews/Experience</a></li>'.
-                '<li><a href="blog/cat/General-Techie/">Techie</a></li>'.
+                '<li><a href="'.($this->generateForIPFS?'..':'blog').'/cat/Astrothoughts/">Astrothoughts</a></li>'.
+                '<li><a href="'.($this->generateForIPFS?'..':'blog').'/cat/Code/">Code</a></li>'.
+                '<li><a href="'.($this->generateForIPFS?'..':'blog').'/cat/General/">General</a></li>'.
+                '<li><a href="'.($this->generateForIPFS?'..':'blog').'/cat/Reviews-Experience/">Reviews/Experience</a></li>'.
+                '<li><a href="'.($this->generateForIPFS?'..':'blog').'/cat/General-Techie/">Techie</a></li>'.
             '</ul>'.
         '</aside>'.
     ($this->generateForIPFS?'':'<a class="backHome" href="/">Back to home</a>').

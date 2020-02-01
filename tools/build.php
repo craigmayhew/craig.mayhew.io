@@ -300,7 +300,7 @@ class builder{
         $tags = '<br /><br />';
         if (isset($json['tags']) && is_array($json['tags'])) {
             foreach ($json['tags'] as $c) {
-                $tags .= '<a href="blog/tag/' . str_replace(' ','-',$c) . '">' . $c . '</a> &nbsp; ';
+                $tags .= '<a href="'.($this->generateForIPFS?'../../':'/').'blog/tag/' . str_replace(' ','-',$c) . '">' . $c . '</a> &nbsp; ';
             }
         }
 
@@ -340,7 +340,7 @@ class builder{
       foreach($posts as $json){
         if(isset($json['tags'])){
           foreach($json['tags'] as $c){
-            $tags .= '<a href="blog/tag/'.str_replace(' ','-',$c) .'">'.$c.'</a> &nbsp; ';
+            $tags .= '<a href="'.($this->generateForIPFS?'../../../':'/').'blog/tag/'.str_replace(' ','-',$c) .'">'.$c.'</a> &nbsp; ';
           }
         }
         $text = explode(' ', substr(strip_tags($json['content']), 0, $textPreviewLength));
@@ -369,13 +369,13 @@ class builder{
       foreach($posts as $json){
         if(isset($json['tags'])){
           foreach($json['tags'] as $c){
-            $tags .= '<a href="blog/tag/'.str_replace(' ','-',$c).'">'.$c.'</a> &nbsp; ';
+            $tags .= '<a href="'.($this->generateForIPFS?'../../':'').'blog/tag/'.str_replace(' ','-',$c).'">'.$c.'</a> &nbsp; ';
           }
         }
         $text = explode(' ', substr(strip_tags($json['content']), 0, $textPreviewLength));
         array_pop($text);
         $content .=
-        '<br /><br /><br /><h3><a href="'.$json['name'].'">'.$json['title'].'</a></h3>'.
+        '<br /><br /><br /><h3><a href="'.($this->generateForIPFS?'../../':'/').'blog/'.$json['name'].'/">'.$json['title'].'</a></h3>'.
         '<br />'.implode(' ', $text).'…<br /><br />';
         $i++;
         if($i===6){break;}

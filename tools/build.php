@@ -10,7 +10,6 @@ class builder{
   private $cssPath   = '../css/style.css';
   private $css       = '';
   private $justCopy  = ['favicon.ico','files','imgs','css','js','robots.txt','uploads'];
-  private $sideNav   = '';
   private $generateForIPFS = false;
   /*CONFIG END*/
 
@@ -189,7 +188,7 @@ class builder{
             nl2br($frontPage)
         );
         $page->setContent($content);
-        $page->setSideNav($this->sideNav);
+        $page->setSideNav($this->getSideNav('..'));
         $content = $page->build();
         $this->generateFile($this->destinationFolder.'articles/index.html',$content);
     }
@@ -242,8 +241,6 @@ class builder{
        
       return ($b['date'] < $a['date'] ? -1 : 1);
     });
-
-    $this->sideNav = $this->getSideNav('..');
     
     //now work out tags and categories 
     if(count($jsonBlogPosts)>0){
@@ -273,7 +270,7 @@ class builder{
         nl2br($frontPage)
       );
       $page->setContent($content);
-      $page->setSideNav($this->sideNav);
+      $page->setSideNav($this->getSideNav('..'));
       $content = $page->build();
       $this->generateFile($this->destinationFolder.'blog/index.html',$content);
       
@@ -315,7 +312,7 @@ class builder{
             nl2br($json['content']).$tags,
             true);
         $page->setContent($content);
-        $page->setSideNav($this->sideNav);
+        $page->setSideNav($this->getSideNav('../..'));
         $content = $page->build();
         $this->generateFile($this->destinationFolder.'blog/'.$json['name'].'/index.html',$content);
       }
@@ -331,7 +328,7 @@ class builder{
     $page = new page('Blog Archive',$this->css,$this->generateForIPFS,$this->generateForIPFS?'../../':'/');
     $content = $page->blogify('blog/archive/','<span>&nbsp;</span>&nbsp;', 'Blog Archive', 'by Craig Mayhew', nl2br($content));
     $page->setContent($content);
-    $page->setSideNav($this->sideNav);
+    $page->setSideNav($this->getSideNav('../..'));
     $content = $page->build();
     $this->generateFile($this->destinationFolder.'blog/archive/index.html',$content);
 
@@ -359,7 +356,7 @@ class builder{
       $content = $page->blogify($url,'<span>&nbsp;</span>&nbsp;', $tag, 'by Craig Mayhew', $content.$tags);
 
       $page->setContent(nl2br($content));
-      $page->setSideNav($this->sideNav);
+      $page->setSideNav($this->getSideNav('../..'));
       $content = $page->build();
       $this->generateFile($this->destinationFolder.$url,$content);
     }
@@ -387,7 +384,7 @@ class builder{
       $url = 'blog/cat/'.str_replace('/','-',$cat).'/index.html';
       $content = $page->blogify($url,'<span>&nbsp;</span>&nbsp;', $cat, 'by Craig Mayhew', $content.$tags);
       $page->setContent($content);
-      $page->setSideNav($this->sideNav);
+      $page->setSideNav($this->getSideNav('../..'));
       $content = $page->build();
       $this->generateFile($this->destinationFolder.$url,$content);
     }

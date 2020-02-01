@@ -68,21 +68,21 @@ script:
       echo "Deployed to S3"
 
       # deploy to ipfs via infura
-      cd $TRAVIS_BUILD_DIR/htdocs
-      FILES=$(find * -type f | awk -v q="'" '{print " -F " q "file=@\"" $0 "\";filename=\"" $0 "\"" q}')
-      echo $FILES
+      #cd $TRAVIS_BUILD_DIR/htdocs
+      #FILES=$(find * -type f | awk -v q="'" '{print " -F " q "file=@\"" $0 "\";filename=\"" $0 "\"" q}')
+      #echo $FILES
       # this loop is to allow adding the files to ipfs
       # over and over until they are all added
       # seems to do about 10 per attempt
-      n=1
-      while [ $n -le 40 ]
-      do
-        curl "https://ipfs.infura.io:5001/api/v0/add?pin=true&recursive=true&wrap-with-directory=true" -vv -X POST -H "Content-Type: multipart/form-data" $FILES -C -
-        echo "Deployed to IPFS via Infura"
-        n=$(( n+1 ))
-      done
+      #n=1
+      #while [ $n -le 40 ]
+      #do
+      #  curl "https://ipfs.infura.io:5001/api/v0/add?pin=true&recursive=true&wrap-with-directory=true" -vv -X POST -H "Content-Type: multipart/form-data" $FILES -C -
+      #  echo "Deployed to IPFS via Infura"
+      #  n=$(( n+1 ))
+      #done
 
       # update IPNS
       #aws change-resource-record-sets --hosted-zone-id $HOSTEDZONEID --cli-input-json "{\"Comment\": \"UPSERT IPNS TXT Record\",\"Changes\": [{\"Action\": \"UPSERT\",\"ResourceRecordSet\": {\"Name\": \"_dnslink.craig.mayhew.io\",\"Type\": \"TXT,\"TTL\": 300,\"ResourceRecords\": [{ \"Value\": \"dnslink=\/ipfs\/QmZf6XZMe21HtaYESY2DsnLBZU814RGWzjRe22rHxM5tLq\"}]}}]}"
-      echo "Updated IPNS DNS Record"
+      #echo "Updated IPNS DNS Record"
     fi

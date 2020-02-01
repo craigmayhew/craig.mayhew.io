@@ -346,7 +346,7 @@ class builder{
         $text = explode(' ', substr(strip_tags($json['content']), 0, $textPreviewLength));
         array_pop($text);
         $content .=
-        '<br /><br /><br /><h3><a href="'.$json['name'].'">'.$json['title'].'</a></h3>'.
+        '<br /><br /><br /><h3><a href="'.($this->generateForIPFS?'../../../':'/').'blog/'.$json['name'].'">'.$json['title'].'</a></h3>'.
         '<br />'.implode(' ', $text).'…'.$tags.'<br /><br />';
         $i++;
         if($i===6){break;}

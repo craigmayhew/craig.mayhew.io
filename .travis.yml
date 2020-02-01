@@ -87,6 +87,14 @@ script:
       #  n=$(( n+1 ))
       #done
 
+      # deploy to IPFS via local node
+      cd $TRAVIS_BUILD_DIR/htdocs
+      # ipfs add -r 
+      # ipfs daemon &
+      # todo: connect to a pinning service to persist after travis instance terminates
+      #INFURA_IP=$(dig +short $(dig +short ipfs.infura.io))
+      #curl "https://ipfs.infura.io:5001/api/v0/pin/add?arg=/ipfs/QmSTkR1kkqMuGEeBS49dxVJjgHRMH6cUYa7D3tcHDQ3ea3" 
+
       # update IPNS
       #aws change-resource-record-sets --hosted-zone-id $HOSTEDZONEID --cli-input-json "{\"Comment\": \"UPSERT IPNS TXT Record\",\"Changes\": [{\"Action\": \"UPSERT\",\"ResourceRecordSet\": {\"Name\": \"_dnslink.craig.mayhew.io\",\"Type\": \"TXT,\"TTL\": 300,\"ResourceRecords\": [{ \"Value\": \"dnslink=\/ipfs\/QmZf6XZMe21HtaYESY2DsnLBZU814RGWzjRe22rHxM5tLq\"}]}}]}"
       #echo "Updated IPNS DNS Record"

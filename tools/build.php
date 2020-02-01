@@ -270,7 +270,7 @@ class builder{
         nl2br($frontPage)
       );
       $page->setContent($content);
-      $page->setSideNav($this->getSideNav('..'));
+      $page->setSideNav($this->getSideNav('.'));
       $content = $page->build();
       $this->generateFile($this->destinationFolder.'blog/index.html',$content);
       
@@ -351,7 +351,7 @@ class builder{
         $i++;
         if($i===6){break;}
       }
-      $page = new page($tag,$this->css,$this->generateForIPFS,$this->generateForIPFS?'../../':'/');
+      $page = new page($tag,$this->css,$this->generateForIPFS,$this->generateForIPFS?'../../../':'/');
       $url = 'blog/tag/'.str_replace(['/',' '],'-',$tag).'/index.html';
       $content = $page->blogify($url,'<span>&nbsp;</span>&nbsp;', $tag, 'by Craig Mayhew', $content.$tags);
 
@@ -380,7 +380,7 @@ class builder{
         $i++;
         if($i===6){break;}
       }
-      $page = new page($cat,$this->css,$this->generateForIPFS,$this->generateForIPFS?'../../':'/');
+      $page = new page($cat,$this->css,$this->generateForIPFS,$this->generateForIPFS?'../../../':'/');
       $url = 'blog/cat/'.str_replace('/','-',$cat).'/index.html';
       $content = $page->blogify($url,'<span>&nbsp;</span>&nbsp;', $cat, 'by Craig Mayhew', $content.$tags);
       $page->setContent($content);

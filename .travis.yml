@@ -79,13 +79,13 @@ script:
       # this loop is to allow adding the files to ipfs
       # over and over until they are all added
       # seems to do about 10 per attempt
-      #n=1
-      #while [ $n -le 40 ]
-      #do
-      curl "https://ipfs.infura.io:5001/api/v0/add?pin=true&recursive=true&wrap-with-directory=true&progress=false" -vv -X POST -H "Content-Type: multipart/form-data" $FILES -C -
-      echo "Deployed to IPFS via Infura"
-      #  n=$(( n+1 ))
-      #done
+      n=1
+      while [ $n -le 40 ]
+      do
+        curl "https://ipfs.infura.io:5001/api/v0/add?pin=true&recursive=true&wrap-with-directory=true&progress=false" -vv -X POST -H "Content-Type: multipart/form-data" $FILES -C -
+        echo "Deployed to IPFS via Infura"
+        n=$(( n+1 ))
+      done
 
       # deploy to IPFS via local node
       cd $TRAVIS_BUILD_DIR/htdocs

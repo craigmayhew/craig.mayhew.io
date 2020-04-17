@@ -430,7 +430,12 @@ class page{
   }
   private function buildFooter(){
     $this->footer =
-                  $this->navRight.
+                 $this->navRight.
+                 '<div class="row">'.
+                   '<div class="col-12 text-center">'.
+                     '<iframe width="960" height="540" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLinYK18arSGE9FyZ9wAZTO391BiUPQqae" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'.
+                   '</div>'.
+                 '</div>'.
                  '<div class="row">'.
                    '<div class="col-12 text-center">'.
                      '<p class="copyText">&copy; 2005-'.date('Y').' Craig Mayhew</p>'.

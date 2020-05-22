@@ -1,0 +1,18 @@
+name: PHP Linting
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  phplint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@86f86b36ef15e6570752e7175f451a512eac206b
+      - run: php --version
+      - run: sh -c "! (find . -type f -name \"*.php\" $1 -exec php -l -n {} \; | grep -v \"No syntax errors detected\")"

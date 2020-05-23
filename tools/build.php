@@ -9,7 +9,7 @@ class builder{
   private $dirPages  = '../pages/';
   private $cssPath   = '../css/style.css';
   private $css       = '';
-  private $justCopy  = ['favicon.ico','files','imgs','css','js','robots.txt','uploads'];
+  private $justCopy  = ['favicon.ico','imgs','css','js','robots.txt','uploads'];
   private $generateForIPFS = false;
   /*CONFIG END*/
 

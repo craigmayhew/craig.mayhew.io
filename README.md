@@ -1,5 +1,7 @@
 # craig.mayhew.io
 
+[![Build Status](https://travis-ci.org/craigmayhew/craig.mayhew.io.svg?branch=master)](https://travis-ci.org/craigmayhew/craig.mayhew.io)
+
 Craig Mayhew's Personal website
 
 Blog posts are stored in blogposts/ as json files. One file per post.

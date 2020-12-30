@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 199.2 124.8" style="enable-background:new 0 0 199.2 124.8;" xml:space="preserve">
+	 viewBox="0 0 200 125" style="enable-background:new 0 0 200 125;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#021201;}
 	.st1{fill:#061405;}
@@ -5368,7 +5368,7 @@
 	.st5363{fill:#456F21;}
 	.st5364{fill:#BAEF76;}
 </style>
-<rect y="0.1" class="st0" width="199.2" height="124.8"/>
+<rect y="0.1" class="st0" width="200" height="125"/>
 <g>
 	<path class="st1" d="M191.5,62.2c1.8,1.7-6.4,4.3-4.6,0.9C190.2,64.5,187.5,56.9,191.5,62.2z"/>
 	<path class="st2" d="M191.5,55.2c0.3,0.7-4.9,3.4-4.1,0C188.1,54.7,189.7,49.5,191.5,55.2z"/>

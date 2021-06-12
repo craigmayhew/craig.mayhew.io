@@ -88,11 +88,11 @@ class builder{
     }
     if(isset($build['articles'])){
       echo "Building Articles\n";
-      $this->buildArticles($this->destinationFolder.$this->dirArticles);
+      $this->buildArticles($this->dir.$this->dirArticles);
     }
     if(isset($build['pages'])){
       echo "Building Pages\n";
-      $this->buildPages($this->destinationFolder.$this->dirPages);
+      $this->buildPages($this->dir.$this->dirPages);
     }
   }
 

@@ -2,4 +2,5 @@
 *.gif binary
 *.jpeg binary
 *.jpg binary
+*.phar binary
 *.png binary

@@ -62,4 +62,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@86f86b36ef15e6570752e7175f451a512eac206b
       - run: php --version
-      - run: php tools/uploadToS3.php && echo "Deployed to S3"
+      - run: php tools/build.php && php tools/uploadToS3.php && echo "Deployed to S3"

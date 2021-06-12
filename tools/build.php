@@ -3,15 +3,21 @@ date_default_timezone_set("Europe/London");
 
 class builder{
   /*CONFIG START*/
-  private $destinationFolder = '../htdocs/';
-  private $blogposts = '../blogposts/';
-  private $dirArticles  = '../articles/';
-  private $dirPages  = '../pages/';
-  private $cssPath   = '../css/style.css';
+  private $destinationFolder = 'htdocs/';
+  private $dir       = '';
+  private $blogposts = 'blogposts/';
+  private $dirArticles  = 'articles/';
+  private $dirPages  = 'pages/';
+  private $cssPath   = 'css/style.css';
   private $css       = '';
   private $justCopy  = ['favicon.ico','imgs','css','js','robots.txt','uploads'];
   private $generateForIPFS = false;
   /*CONFIG END*/
+
+  function __construct($dir=''){
+    $this->dir = $dir;
+    $this->destinationFolder = $this->dir.$this->destinationFolder;
+  }
 
   private function recurse_copy($src,$dst) {
     $dir = opendir($src);
@@ -82,35 +88,36 @@ class builder{
     }
     if(isset($build['articles'])){
       echo "Building Articles\n";
-      $this->buildArticles($this->dirArticles);
+      $this->buildArticles($this->destinationFolder.$this->dirArticles);
     }
     if(isset($build['pages'])){
       echo "Building Pages\n";
-      $this->buildPages($this->dirPages);
+      $this->buildPages($this->destinationFolder.$this->dirPages);
     }
   }
 
   private function copyStaticFiles(){
     mkdir($this->destinationFolder);
     //copy static files
-    foreach($this->justCopy as $fileOrFolder){
+    foreach($this->dir.$this->justCopy as $fileOrFolder){
       //if we are copying a file
-      if(is_file('../'.$fileOrFolder)){
+      if(is_file($this->dir.$fileOrFolder)){
         echo 'copied '.$this->destinationFolder.$fileOrFolder."\n";
-        copy('../'.$fileOrFolder,$this->destinationFolder.$fileOrFolder);
+        copy($this->dir.$fileOrFolder,$this->destinationFolder.$fileOrFolder);
       }else{ //else we are copying a folder
         //check if the folder needs creating in the destination
         if(!is_dir($this->destinationFolder.$fileOrFolder)){
           mkdir($this->destinationFolder.$fileOrFolder);
         }
         //copy the contents over
-        $this->recurse_copy('../'.$fileOrFolder,$this->destinationFolder.$fileOrFolder);
+        $this->recurse_copy($this->dir.$fileOrFolder,$this->destinationFolder.$fileOrFolder);
       }
     }
   }
   
   //build pages
   private function buildPages($dir){
+    @mkdir($dir,0777,true);
     if($handle = opendir($dir)){
       while(false !== ($entry = readdir($handle))){
         if(is_dir($dir.$entry) && $entry != '.' && $entry != '..'){
@@ -134,6 +141,7 @@ class builder{
 
   //build articles
   private function buildArticles($dir){
+    @mkdir($dir,0777,true);
     $jsonArticles = [];
     if($handle = opendir($dir)){
         while(false !== ($entry = readdir($handle))){
@@ -224,11 +232,11 @@ class builder{
     $jsonBlogPosts  = [];
     $jsonBlogCats   = [];
     $jsonBlogTags   = [];
-    if($handle = opendir($this->blogposts)){
+    if($handle = opendir($this->dir.$this->blogposts)){
       while(false !== ($entry = readdir($handle))){
         if($entry=='.' || $entry=='..'){continue;}
         if(substr($entry, -5) !== '.json'){continue;}
-        $json = json_decode(file_get_contents($this->blogposts.$entry),true);
+        $json = json_decode(file_get_contents($this->dir.$this->blogposts.$entry),true);
         $jsonBlogPosts[$json['name']] = $json;
       }
     }
@@ -604,6 +612,13 @@ class page{
     }
 }
 
+// work out if we are in the tool directory or the root of the repo
+if (file_exists(getcwd().'/composer.json')){
+  $dir = '';
+} else {
+  $dir = '../';
+}
+
 //go build stuff!
-$builder = new builder();
+$builder = new builder($dir);
 $builder->build();

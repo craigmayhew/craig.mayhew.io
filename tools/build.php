@@ -97,9 +97,9 @@ class builder{
   }
 
   private function copyStaticFiles(){
-    mkdir($this->destinationFolder);
+    @mkdir($this->destinationFolder);
     //copy static files
-    foreach($this->dir.$this->justCopy as $fileOrFolder){
+    foreach($this->justCopy as $fileOrFolder){
       //if we are copying a file
       if(is_file($this->dir.$fileOrFolder)){
         echo 'copied '.$this->destinationFolder.$fileOrFolder."\n";

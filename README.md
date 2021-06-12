@@ -3,13 +3,13 @@
 Craig Mayhew's Personal website
 
 Blog posts are stored in blogposts/ as json files. One file per post.
+Articles are stored in articles/ as json files. One file per page.
 Pages are stored in pages/ as json files. One file per page.
-
-PHP is used to generate static html in the htdocs directory, sync that to an S3 bucket and then wipe cache on cloudfront.
 
 ## deploy
 
-I'm trialling https://app.fleek.co/ which is where the DNS is currently pointing. The AWS deploy still happens so I can switch back as a fail over if required.
+IPFS: https://app.fleek.co/ builds and hosts the IPFS version whenever it detects changes on the "main" github branch.
+Web 2.0 builds run on github actions and deploy to AWS S3 + Cloudfront.
 
 ## partial local builds
 

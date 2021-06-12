@@ -441,7 +441,7 @@ class page{
                  $this->navRight.
                  '<div class="row">'.
                    '<div class="col-12 text-center">'.
-                     '<p class="copyText">&copy; 2005-'.date('Y').' Craig Mayhew</p>'.
+                     '<p class="copyText">&copy; 2005-'.date('Y').' Craig Mayhew'.($this->generateForIPFS?'<br>Delivered via IPFS':'').'</p>'.
                    '</div>'.
                  '</div>'.
                '</div>'.

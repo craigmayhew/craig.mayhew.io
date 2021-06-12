@@ -57,6 +57,7 @@ on:
 
 jobs:
   deploy:
+    needs: phplint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

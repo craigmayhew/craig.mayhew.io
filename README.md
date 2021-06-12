@@ -9,8 +9,6 @@ PHP is used to generate static html in the htdocs directory, sync that to an S3 
 
 ## deploy
 
-Deployment is handled by TravisCI. See [.travis.yml](https://github.com/craigmayhew/craig.mayhew.io/blob/master/.travis.yml)
-
 I'm trialling https://app.fleek.co/ which is where the DNS is currently pointing. The AWS deploy still happens so I can switch back as a fail over if required.
 
 ## partial local builds

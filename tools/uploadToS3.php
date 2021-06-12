@@ -1,32 +1,58 @@
 <?php
 
-require '../vendor/autoload.php';
-use Aws\Common\Aws;
+// work out if we are in the tool directory or the root of the repo
+if (file_exists(getcwd().'/vendor/autoload.php')){
+    require 'vendor/autoload.php';
+    $dir = 'htdocs';
+} else {
+    require '../vendor/autoload.php';
+    $dir = '../htdocs';
+}
 
-$dir = getenv('TRAVIS_BUILD_DIR').'/htdocs';
-$bucket = 'craig.mayhew.io';
-$keyPrefix = '';
-$options = array(
-  'params'      => array('ACL' => 'public-read'),
-  'concurrency' => 20,
-  'debug'       => true
-);
+use Aws\CloudFront\CloudFrontClient; 
+use Aws\S3\S3Client;  
+use Aws\S3\Transfer;  
+use Aws\Exception\AwsException;
 
 $config = [
-  'profile' => 'default',
-  'region' => 'eu-west-1',
-  'signature' => 'v4'
+    'profile' => 'default',
+    'region' => 'eu-west-1',
+    'signature' => 'v4',
+    'version' => '2006-03-01'
 ];
 
-$aws = Aws::factory($config);
-$cf = $aws->get('CloudFront');
+$s3 = new S3Client($config);
+
+$bucket = 's3://craig.mayhew.io';
+
+$uploader = new Transfer($s3, $dir, $bucket, [
+    'before' => function (\Aws\Command $command) {
+        // Commands can vary for multipart uploads, so check which command
+        // is being processed
+        if (in_array($command->getName(), ['PutObject', 'CreateMultipartUpload'])) {
+            // Apply an ACL
+            $command['ACL'] = 'public-read';
+        }
+    },
+    'concurrency' => 20,
+]);
+$uploader->transfer();
+
+echo 'Site uploaded to S3'."\n";
+
+$cf = new Aws\CloudFront\CloudFrontClient([
+    'profile' => 'default',
+    'region' => 'eu-west-1',
+    'version' => '2014-11-06',
+]);
+
 $distributionList = $cf->listDistributions([
     'Marker' => '',
     'MaxItems' => '100',
 ]);
 
 $distributionId = false;
-foreach($distributionList['Items'] as $d) {
+foreach($distributionList['DistributionList']['Items'] as $d) {
     if (isset($d['Aliases']['Items'])) {
         foreach ($d['Aliases']['Items'] as $aliases) {
             if ($aliases === 'craig.mayhew.io') {
@@ -37,20 +63,16 @@ foreach($distributionList['Items'] as $d) {
     }
 }
 
-$aws = Aws::factory($config);
-$s3 = $aws->get('s3');
-$s3->uploadDirectory($dir, $bucket, $keyPrefix, $options);
-
-//https://docs.aws.amazon.com/aws-sdk-php/v2/api/class-Aws.CloudFront.CloudFrontClient.html#_createInvalidation
-$cf = $aws->get('CloudFront');
 $cf->createInvalidation(array(
-    'CallerReference' => time(),
     // DistributionId is required
     'DistributionId' => $distributionId,
-    // Paths is required
-    'Paths' => array(
-        'Items' => array('/*'),
-        'Quantity' => 1
-    )
+    'InvalidationBatch' => [
+        'CallerReference' => time(),
+        // Paths is required
+        'Paths' => array(
+            'Items' => array('/*'),
+            'Quantity' => 1
+        )
+    ]
 ));
 echo 'Refreshed cloudfront: '.$distributionId."\n";

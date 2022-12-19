@@ -45,27 +45,28 @@
 #    ]
 #}
 
-name: Deploy to AWS
-
-on:
-  push:
-    branches:
-    - main
-  pull_request:
-    branches:
-    - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@86f86b36ef15e6570752e7175f451a512eac206b
-      - run: php --version
-      - run: |
-          chmod +x composer.phar
-          ./composer.phar install
-      - run: |
-          php tools/build.php
-          php tools/uploadToS3.php
-      - run: echo "Deployed to S3"
+# removed for the time being in favour of cloudflar
+#name: Deploy to AWS
+#
+#on:
+#  push:
+#    branches:
+#    - main
+#  pull_request:
+#    branches:
+#    - main
+#
+#jobs:
+#  deploy:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@86f86b36ef15e6570752e7175f451a512eac206b
+#      - run: php --version
+#      - run: |
+#          chmod +x composer.phar
+#          ./composer.phar install
+#      - run: |
+#          php tools/build.php
+#          php tools/uploadToS3.php
+#      - run: echo "Deployed to S3"

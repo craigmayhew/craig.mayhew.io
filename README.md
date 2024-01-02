@@ -23,7 +23,8 @@ Or just regenerate the web pages and static content.
 php build.php pages static 
 </pre>
 
-Finally, deploy.
-<pre>
-php uploadeToS3.php
-</pre>
+## Deployment
+
+S3 deploys were removed at commits [0c8dfe7](https://github.com/craigmayhew/craig.mayhew.io/commit/0c8dfe7c244a22091d0a0922a9cf41d6b03c56a5) and [15bf523](https://github.com/craigmayhew/craig.mayhew.io/commit/15bf5235329e6fe6d63e76b4168658136057a5c2). If you need the github + s3 deploy scripts for something else, look at those commits.
+
+Deployment is now automated via fleek and cloudflare pages gothub integrations.

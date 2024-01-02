@@ -317,8 +317,8 @@ class builder{
             '<span>'.date('d',strtotime($json['date'])).'</span>'.date('M',strtotime($json['date'])),
             $json['title'],
             'by Craig Mayhew on '.date('D jS M Y',strtotime($json['date'])).' under '.implode(', ',$json['categories']),
-            nl2br($json['content']).$tags,
-            true);
+            nl2br($json['content']).$tags
+        );
         $page->setContent($content);
         $page->setSideNav($this->getSideNav('..'));
         $content = $page->build();
@@ -476,15 +476,6 @@ class page{
   }
   public function blogify($url, $date, $title, $author, $content, $social=false){
       $return =
-      '<script>'.
-        '(function(d, s, id) {'.
-          'var js, fjs = d.getElementsByTagName(s)[0];'.
-          'if (d.getElementById(id)) return;'.
-          'js = d.createElement(s); js.id = id;'.
-          'js.src = \'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11\';'.
-          'fjs.parentNode.insertBefore(js, fjs);'.
-        '}(document, \'script\', \'facebook-jssdk\'));'.
-      '</script>'.
       '<div class="col-sm-12 col-md-9 col-lg-9 col-xl-11">'.
           '<div class="postBox">'.
               '<div class="postHead">'.
@@ -496,7 +487,6 @@ class page{
               '</div>'.
               '<div class="postBody">'.
                 $content.
-                ($social ? '<br><br><br><div class="fb-comments" data-href="https://craig.mayhew.io/'.$url.'" data-numposts="5" data-width="100%"></div>' : '').
               '</div>';
 
               if ($social) {
@@ -511,15 +501,6 @@ class page{
   }
   public function pagify($date, $title, $author, $content){
     $return =
-    '<script>'.
-        '(function(d, s, id) {'.
-        'var js, fjs = d.getElementsByTagName(s)[0];'.
-        'if (d.getElementById(id)) return;'.
-        'js = d.createElement(s); js.id = id;'.
-        'js.src = \'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11\';'.
-        'fjs.parentNode.insertBefore(js, fjs);'.
-        '}(document, \'script\', \'facebook-jssdk\'));'.
-    '</script>'.
     '<div class="col-sm-12 col-md-9 col-lg-9 col-xl-11">'.
         '<div class="postBox">'.
             '<div class="postHead">'.

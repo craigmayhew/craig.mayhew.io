@@ -6,7 +6,7 @@ Articles are stored in articles/ as json files. One file per page.
 Pages are stored in pages/ as json files. One file per page.
 
 ## Deployment
-Deployment is now automated via fleek and cloudflare pages gothub integrations.
+Deployment is now automated via fleek and cloudflare pages github integrations.
 
  - IPFS: https://app.fleek.co/ builds and hosts the IPFS version whenever it detects changes on the "main" github branch.
  - Web 2.0: A cloudflare github integration deploys on pushes to branch 'main'.

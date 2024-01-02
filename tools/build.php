@@ -314,7 +314,7 @@ class builder{
 
         $content = $page->blogify(
             'blog/'.$json['name'].'/',
-            '<span>'.date('d',strtotime($json['date'])).'</span>'.date('M',strtotime($json['date'])),
+            '<span>'.date('d',strtotime($json['date'])).'</span>'.date('M Y',strtotime($json['date'])),
             $json['title'],
             'by Craig Mayhew on '.date('D jS M Y',strtotime($json['date'])).' under '.implode(', ',$json['categories']),
             nl2br($json['content']).$tags

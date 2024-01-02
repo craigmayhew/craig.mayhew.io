@@ -311,15 +311,15 @@ body {
 	color: #fff;
 	text-transform: uppercase;
 	font-size: 14px;
-	line-height: 26.2px;
+	line-height: 12px;
 	padding: 15px 8px;
 	text-align: center;
 	height: 100%;
 }
 .date span {
-	font-size: 38px;
+	font-size: 36px;
 	line-height: 26.2px;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 }
 
 .sharePost {

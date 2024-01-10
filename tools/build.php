@@ -1,4 +1,7 @@
 <?php
+// Show all errors
+error_reporting(E_ALL);
+// London timezone
 date_default_timezone_set("Europe/London");
 
 class builder{

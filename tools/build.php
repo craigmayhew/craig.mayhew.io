@@ -17,7 +17,7 @@ class builder{
   private $generateForIPFS = false;
   /*CONFIG END*/
 
-  function __construct($dir=''){
+  function __construct(string $dir='') {
     $this->dir = $dir;
     $this->destinationFolder = $this->dir.$this->destinationFolder;
   }
@@ -39,7 +39,7 @@ class builder{
     closedir($dir);
   }
 
-  public function build(){
+  public function build() :void {
     $build = [];
 
     if(isset($GLOBALS['argv']) && is_array($GLOBALS['argv']) && count($GLOBALS['argv'])>1) {
@@ -99,7 +99,7 @@ class builder{
     }
   }
 
-  private function copyStaticFiles(){
+  private function copyStaticFiles() :void {
     @mkdir($this->destinationFolder);
     //copy static files
     foreach($this->justCopy as $fileOrFolder){
@@ -119,7 +119,7 @@ class builder{
   }
   
   //build pages
-  private function buildPages($dir){
+  private function buildPages(string $dir) :void {
     @mkdir($dir,0777,true);
     if($handle = opendir($dir)){
       while(false !== ($entry = readdir($handle))){
@@ -143,7 +143,7 @@ class builder{
   }
 
   //build articles
-  private function buildArticles($dir){
+  private function buildArticles(string $dir) :void {
     @mkdir($dir,0777,true);
     $jsonArticles = [];
     if($handle = opendir($dir)){
@@ -205,7 +205,7 @@ class builder{
     }
   }
 
-  private function getSideNav($depth = '..') {
+  private function getSideNav(string $depth = '..') :string {
     return
     '<div class="sidebar">'.
         '<aside class="widget">'.
@@ -231,7 +231,7 @@ class builder{
   }
 
   //build blog section
-  private function buildBlog(){
+  private function buildBlog() :void {
     $jsonBlogPosts  = [];
     $jsonBlogCats   = [];
     $jsonBlogTags   = [];
@@ -400,7 +400,7 @@ class builder{
       $this->generateFile($this->destinationFolder.$url,$content);
     }
   }
-  private function generateFile($name,$content){
+  private function generateFile(string $name, string $content) :void {
     $dir = dirname($name);
     if(!is_dir($dir)){
       mkdir($dir,0777,true);
@@ -415,7 +415,7 @@ class page{
   private $generateForIPFS = false;
   public  $navRight = '';
   private $title    = '';
-  function __construct($title,$css='',$ipfs=false,$relativePath='/'){
+  function __construct(string $title, string $css='', bool $ipfs=false, string $relativePath='/'){
     $this->title = $title;
     $this->generateForIPFS = $ipfs;
 
@@ -439,7 +439,7 @@ class page{
           '<div class="wrapper overlay">'.
             '<div class="container">';
   }
-  private function buildFooter(){
+  private function buildFooter() :void {
     $this->footer =
                  $this->navRight.
                  '<div class="row">'.
@@ -471,13 +471,13 @@ class page{
         '</body>'.
       '</html>';
   }
-  public function setContent($content){
+  public function setContent($content) :void {
     $this->content = $content;
   }
-  public function setSideNav($nav){
+  public function setSideNav($nav) :void {
     $this->navRight = $nav;
   }
-  public function blogify($url, $date, $title, $author, $content, $social=false){
+  public function blogify(string $url, string $date, string $title, string $author, string $content, bool $social=false) :string {
       $return =
       '<div class="col-sm-12 col-md-9 col-lg-9 col-xl-11">'.
           '<div class="postBox">'.
@@ -502,7 +502,7 @@ class page{
 
       return $return;
   }
-  public function pagify($date, $title, $author, $content){
+  public function pagify(string $date, string $title, string $author, string $content) :string {
     $return =
     '<div class="col-sm-12 col-md-9 col-lg-9 col-xl-11">'.
         '<div class="postBox">'.
@@ -521,7 +521,7 @@ class page{
 
     return $return;
   }
-  public function build()
+  public function build() :string
   {
       $this->buildFooter();
 
@@ -534,7 +534,7 @@ class page{
           $this->footer;
   }
 
-    private function buildRedirectPages(){
+    private function buildRedirectPages() :void {
         $redirects = [
             'blog/2009/07/install-a-c-compiler-in-ubuntu-9-04-jaunty/' => 'blog/install-a-c-compiler-in-ubuntu-9-04-jaunty/',
             'blog/2010/03/converting-putty-ssh-keys-to-openssh/' => 'blog/converting-putty-ssh-keys-to-openssh/',

@@ -534,66 +534,66 @@ class page{
           $this->footer;
   }
 
-    private function buildRedirectPages() :void {
-        $redirects = [
-            'blog/2009/07/install-a-c-compiler-in-ubuntu-9-04-jaunty/' => 'blog/install-a-c-compiler-in-ubuntu-9-04-jaunty/',
-            'blog/2010/03/converting-putty-ssh-keys-to-openssh/' => 'blog/converting-putty-ssh-keys-to-openssh/',
-            'blog/tag/Linux/Ubuntu' => 'blog/tag/Ubuntu/',
-            'blog/2009/08/stonehenge/stonehenge-panoramic-5/' => '',
-            'blog/2009/08/stonehenge/stonehenge-panoramic-4/' => '',
-            'blog/2009/08/stonehenge/stonehenge-panoramic-3/' => '',
-            'blog/2009/08/stonehenge/stonehenge-panoramic-1/' => '',
-            'blog/2009/08/stonehenge/stonehenge-panoramic-2/' => '',
-            'blog/2010/08/notes-on-a-second-life/' => '',
-            'blog/2012/03/intel-3-6ghz-core-i7-3820-with-32gbs-of-ram-and-7zip/' => '',
-            'twister/' => '',
-            'blog/2010/04/asus-aspire-one-network-manager-applet-disappeared/' => '',
-            'blog/2009/11/slow' => '',
-            'blog/2009/05/where-is-scanpstexe' => '',
-            'blog/2010/01/ubuntu-cpugpu-temperature-sensor/' => '',
-            'market/' => '',
-            'blog/2009/11/setting-up-vpn-in-ubuntu-9-10-karmic-koala/' => '',
-            'blog/2009/06/gnome-rdp-cant-read-gnome-rdpdb-after-ubuntu-904-upgrade/' => '',
-            'blog/2011/02/foldinghome-growth-forecast/' => '',
-            'blog/2009/06/microsoft-net-framework-assistant-10/' => '',
-            'index.php' => '',
-            'blog/2009/05/where-is-scanpstexe/' => '',
-            'blog/2009/09/ubuntu' => '',
-            'blog/2008/12/growing-a-crystal-tree/' => '',
-            'blog/2009/09/ubuntu-error-sudo-etcsudoers-is-mode-0640-should-be-0440' => '',
-            'blog/2010/12/mounting-a-windows-share-on-linux/' => '',
-            'blog/2009/02/snow-day/' => '',
-            'blog/2011/08/upgrading-ubuntu-to-10-10-blacklisted-blcr-dkms_0-8-2-13-error/' => '',
-            'blog/2010/04/vpn-with-bethere-thomson-tg585v7/' => '',
-            'blog/2009/11/installing-vmware-server-2-0-2-on-ubuntu-9-10-karmic-koala-64bit/' => '',
-            'blog/2008/10/using-a-vigor-2900g-with-a-virgin-media-internet-connection/' => '',
-            'blog/2011/01/php-email-validation-using-regex/' => '',
-            'blog/2010/04/how-to-join-my-freelancer-server/' => '',
-            'blog/tag/microsoft-freelancer/' => '',
-            'blog/2009/11/installing-nightly-builds-of-firefox-on-windows-7/' => '',
-            'blog/2009/09/ubuntu-error-sudo-etcsudoers-is-mode-0640-should-be-0440/' => '',
-            'blog/2009/05/2560x1600-desktop-backgrounds/' => '',
-            'blog/2011/04/opensim-0-7-1-rc1-and-the-shiny-new-media-on-a-prim/' => ''
-        ];
+  private function buildRedirectPages() :void {
+    $redirects = [
+        'blog/2009/07/install-a-c-compiler-in-ubuntu-9-04-jaunty/' => 'blog/install-a-c-compiler-in-ubuntu-9-04-jaunty/',
+        'blog/2010/03/converting-putty-ssh-keys-to-openssh/' => 'blog/converting-putty-ssh-keys-to-openssh/',
+        'blog/tag/Linux/Ubuntu' => 'blog/tag/Ubuntu/',
+        'blog/2009/08/stonehenge/stonehenge-panoramic-5/' => '',
+        'blog/2009/08/stonehenge/stonehenge-panoramic-4/' => '',
+        'blog/2009/08/stonehenge/stonehenge-panoramic-3/' => '',
+        'blog/2009/08/stonehenge/stonehenge-panoramic-1/' => '',
+        'blog/2009/08/stonehenge/stonehenge-panoramic-2/' => '',
+        'blog/2010/08/notes-on-a-second-life/' => '',
+        'blog/2012/03/intel-3-6ghz-core-i7-3820-with-32gbs-of-ram-and-7zip/' => '',
+        'twister/' => '',
+        'blog/2010/04/asus-aspire-one-network-manager-applet-disappeared/' => '',
+        'blog/2009/11/slow' => '',
+        'blog/2009/05/where-is-scanpstexe' => '',
+        'blog/2010/01/ubuntu-cpugpu-temperature-sensor/' => '',
+        'market/' => '',
+        'blog/2009/11/setting-up-vpn-in-ubuntu-9-10-karmic-koala/' => '',
+        'blog/2009/06/gnome-rdp-cant-read-gnome-rdpdb-after-ubuntu-904-upgrade/' => '',
+        'blog/2011/02/foldinghome-growth-forecast/' => '',
+        'blog/2009/06/microsoft-net-framework-assistant-10/' => '',
+        'index.php' => '',
+        'blog/2009/05/where-is-scanpstexe/' => '',
+        'blog/2009/09/ubuntu' => '',
+        'blog/2008/12/growing-a-crystal-tree/' => '',
+        'blog/2009/09/ubuntu-error-sudo-etcsudoers-is-mode-0640-should-be-0440' => '',
+        'blog/2010/12/mounting-a-windows-share-on-linux/' => '',
+        'blog/2009/02/snow-day/' => '',
+        'blog/2011/08/upgrading-ubuntu-to-10-10-blacklisted-blcr-dkms_0-8-2-13-error/' => '',
+        'blog/2010/04/vpn-with-bethere-thomson-tg585v7/' => '',
+        'blog/2009/11/installing-vmware-server-2-0-2-on-ubuntu-9-10-karmic-koala-64bit/' => '',
+        'blog/2008/10/using-a-vigor-2900g-with-a-virgin-media-internet-connection/' => '',
+        'blog/2011/01/php-email-validation-using-regex/' => '',
+        'blog/2010/04/how-to-join-my-freelancer-server/' => '',
+        'blog/tag/microsoft-freelancer/' => '',
+        'blog/2009/11/installing-nightly-builds-of-firefox-on-windows-7/' => '',
+        'blog/2009/09/ubuntu-error-sudo-etcsudoers-is-mode-0640-should-be-0440/' => '',
+        'blog/2009/05/2560x1600-desktop-backgrounds/' => '',
+        'blog/2011/04/opensim-0-7-1-rc1-and-the-shiny-new-media-on-a-prim/' => ''
+    ];
 
-        foreach($redirects as $from=>$to){
-            $content =
-                '<!DOCTYPE html>'.
-                '<html lang="en">'.
-                  '<head>'.
-                    '<meta http-equiv="refresh" content="0; url=https://craig.mayhew.io'.$to.'">'.
-                  '</head>'.
-                  '<body>'.
-                  '</body>'.
-                '</html>';
-            if(substr($from,-1) === '/'){
-                $filename = $from.'index.html';
-            }else{
-                $filename = $from;
-            }
-            $this->generateFile($this->destinationFolder.$filename,$content);
+    foreach($redirects as $from=>$to){
+        $content =
+            '<!DOCTYPE html>'.
+            '<html lang="en">'.
+              '<head>'.
+                '<meta http-equiv="refresh" content="0; url=https://craig.mayhew.io'.$to.'">'.
+              '</head>'.
+              '<body>'.
+              '</body>'.
+            '</html>';
+        if(substr($from,-1) === '/'){
+            $filename = $from.'index.html';
+        }else{
+            $filename = $from;
         }
+        $this->generateFile($this->destinationFolder.$filename,$content);
     }
+  }
 }
 
 // work out if we are in the tool directory or the root of the repo

@@ -22,7 +22,7 @@ class builder{
     $this->destinationFolder = $this->dir.$this->destinationFolder;
   }
 
-  private function recurse_copy($src,$dst) {
+  private function recurse_copy(string $src, string $dst) :void {
     $dir = opendir($src);
     @mkdir($dst);
     while(false !== ( $file = readdir($dir)) ) {

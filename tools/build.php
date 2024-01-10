@@ -6,15 +6,15 @@ date_default_timezone_set("Europe/London");
 
 class builder{
   /*CONFIG START*/
-  private $destinationFolder = 'htdocs/';
-  private $dir       = '';
-  private $blogposts = 'blogposts/';
-  private $dirArticles  = 'articles/';
-  private $dirPages  = 'pages/';
-  private $cssPath   = 'css/style.css';
-  private $css       = '';
+  private string $destinationFolder = 'htdocs/';
+  private string $dir       = '';
+  private string $blogposts = 'blogposts/';
+  private string $dirArticles  = 'articles/';
+  private string $dirPages  = 'pages/';
+  private string $cssPath   = 'css/style.css';
+  private string $css       = '';
   private $justCopy  = ['favicon.ico','imgs','css','js','robots.txt','uploads'];
-  private $generateForIPFS = false;
+  private bool $generateForIPFS = false;
   /*CONFIG END*/
 
   function __construct(string $dir='') {
@@ -411,10 +411,10 @@ class builder{
 }
 
 class page{
-  private $content  = '';
-  private $generateForIPFS = false;
-  public  $navRight = '';
-  private $title    = '';
+  private string $content  = '';
+  private bool $generateForIPFS = false;
+  public  string $navRight = '';
+  private string $title    = '';
   function __construct(string $title, string $css='', bool $ipfs=false, string $relativePath='/'){
     $this->title = $title;
     $this->generateForIPFS = $ipfs;
